@@ -6,7 +6,7 @@
         <meta name="author" content="Mircea Ionescu">  <!-- autorul paginii--> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- site-ul se pliaza pe marimea ecranului -->
         <meta name="keywords" content="trupa, formatie, prea, tarziu, romania, romaneasca, metal, thrash, fast, speed, death, extreme, extrem, muzica, chitara, tobe, bas, vocal"><!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
-        <meta name="description" content="Prea Tarziu este o formatie de Thrash Metal romaneasca formata din 3 membrii: Mircea, Costi si Brihac. Acest proiect a luat nastere dupa nenumarate repetitii in diferite sali din Bucuresti."><!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
+        <meta name="description" content="Prea Târziu este o formatie de Thrash Metal romaneasca formata din 3 membrii: Mircea, Costi si Brihac. Acest proiect a luat nastere dupa nenumarate repetitii in diferite sali din Bucuresti."><!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
         <!-- favicon -->
         <link rel="apple-touch-icon" sizes="180x180" href="./resurse/icon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="./resurse/icon/favicon-32x32.png">
@@ -21,9 +21,29 @@
     
     <body>
         <header>
-            <h1>
-            
-            </h1>
+            <h1>Prea Târziu</h1>
+            <nav>
+                <ul>
+                    <!--
+                        cea mai importanta sursa de venit a oricarei trupe este vanzarea de bilete, 
+                        prin urmare pagina principala este si pagina cu turneul trupei -> unde poate
+                        fi vazuta live de fani (de cele mai multe ori la concerte mici sau festivale)
+                    -->
+                    <li><a href="#turneu">Turneu</a>
+                        <ul>
+                            <li><a href="#meniu"></a></li>
+                            <li><a href="#rockstadt">Rockstadt</a></li>
+                            <li><a href="#brutal">Brutal Assault</a></li>
+                            <li><a href="#hellfest">Hellfest</a></li>
+                            <li><a href="#social">Social Media</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#albume">Albume</a></li>
+                    <li><a href="#merch">Merch</a></li>
+                    <li><a href="#media">Media</a></li>
+                    <li><a href="#trupa">Trupa</a></li>
+                </ul>
+            </nav>
         </header>
         
         <main>
@@ -68,6 +88,15 @@
     trebuie sa setati si o culoare a tile-ului (de background), care trebuie specificata și
     în tagul meta: <meta name="msapplication-TileColor" content="...culoarea aleasa de voi...">
         - linia 11
-    4)  
+    
+    4)  Împărțiți body-ul în header, main, footer.
+
+    5)  În header faceți un sistem de navigare ca în curs (nav cu listă neordonată de linkuri),
+    cu opțiuni  principale (care vor reprezenta paginile site-ului) și secundare
+    (pentru opțiunea "Acasă", adică pagina principală, subopțiunile vor cuprinde
+    linkuri către secțiunile paginii, care vor avea id-uri relevante).
+    Folosiți în header h1 pentru titlul site-ului. 
+        - linia 24
+  
 
  -->
