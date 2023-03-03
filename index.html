@@ -1,4 +1,4 @@
-<!-- SA NU UIT SA FAC CATE O VARIANTA PENTRU FIECARE TIP DE ECRAN A POSTERELOR! -->
+<!-- poate fac toate imaginile de aceeasi rezolutie de baza si apoi le micsorez in functie de ecran sa aiba aceeasi rezolutie mereu toate? -->
 
 <!DOCTYPE html>
 <html lang="ro">
@@ -60,9 +60,12 @@
                     </blockquote>
                    
                     <figure>
-                        <source srcset="" media="(max-width:700px)"/>
-                        <source srcset="" media="(max-width:1200px)"/>
-                        <img src="./resurse/imagini/concerte/rockstadt.jpg" alt="Rockstadt Extreme Fest" width="500px">
+                        <picture>
+                            <!-- il ia pe primul care se potriveste cu query-ul din media-->
+                            <source srcset="./resurse/imagini/concerte/rockstadt_50.jpg" media="(max-width:700px)"/>
+                            <source srcset="./resurse/imagini/concerte/rockstadt_75.jpg" media="(max-width:1200px)"/>
+                            <img src="./resurse/imagini/concerte/rockstadt_100.jpg" alt="Rockstadt Extreme Fest" width="500px">
+                        </picture>
                         <figcaption>Rockstadt Extreme Fest, editia 2-6 August 2023</figcaption>
                     </figure>
 
@@ -77,9 +80,11 @@
                     
 
                     <figure>
-                        <source srcset="" media="(max-width:700px)"/>
-                        <source srcset="" media="(max-width:1200px)"/>
-                        <img src="./resurse/imagini/concerte/brutal.webp" alt="Brutal Assault" width="500px">
+                        <picture>
+                            <source srcset="./resurse/imagini/concerte/brutal_50.webp" media="(max-width:700px)"/>
+                            <source srcset="./resurse/imagini/concerte/brutal_75.webp" media="(max-width:1200px)"/>
+                            <img src="./resurse/imagini/concerte/brutal_100.webp" alt="Brutal Assault" width="500px">
+                        </picture>
                         <figcaption>Brutal Assault, editia 7-10 August 2023</figcaption>
                     </figure>
 
@@ -93,9 +98,11 @@
                     </blockquote>
                     
                     <figure>
-                        <source srcset="" media="(max-width:700px)"/>
-                        <source srcset="" media="(max-width:1200px)"/>
-                        <img src="./resurse/imagini/concerte/hellfest.png" alt="Hellfest" width="500px">
+                        <picture>
+                            <source srcset="./resurse/imagini/concerte/hellfest_50.png" media="(max-width:700px)"/>
+                            <source srcset="./resurse/imagini/concerte/hellfest_75.png" media="(max-width:1200px)"/>
+                            <img src="./resurse/imagini/concerte/hellfest_100.png" alt="Hellfest" width="500px">
+                        </picture>    
                         <figcaption>Hellfest, editia 15-18 Iunie 2023</figcaption>
                     </figure>
 
