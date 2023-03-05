@@ -1,0 +1,112 @@
+
+ETAPA 1:
+
+        Creați prima pagină a site-ului (doar prima pagină; fără stilizare încă,
+    fiindcă veți primi taskuri legate de acest aspect). Puteți pune în această pagină
+    text care va fi mutat în alte pagini, mai târziu, dar nu faceți încă mai multe
+    pagini fiindcă le vom genera prin Node! La prezentare vă rog să aveți pentru
+    fiecare task notată linia din program la care l-ați rezolvat ca să nu dureze
+    prezentarea mai mult de 3-4 minute. 
+
+    1)  Creați un folder al proiectului care va cuprinde toate fisierele necesare
+    site-ului vostru. Creați în el un fisier  numit index.html. Deschideți acest
+    fișier cu un editor de text care marchează sintaxa. Adăugați în fișier doctype
+    și setați limba documentului în tagul html 
+        - linia 0
+
+    2)  Adaugati un title corespunzător conținutului textului. Folosiți 4 taguri meta
+    relevante pentru a specifica: charset-ul, autorul, cuvintele cheie, descrierea.
+        - linia 4
+
+    3)  Creați un folder (de exemplu numit "resurse") care va conține toate fișierele folosite 
+    de site, dar care nu sunt pagini html (de exemplu imagini, fisiere de stilizare etc).
+    In el creati un folder numit ico. Adaugati un favicon relevant pentru temă.
+    Folosiți https://realfavicongenerator.net pentru a genera toate dimensiunile necesare de favicon
+    și codul compatibil pentru diversele browsere și sisteme de operare. Pentru favicon transparent,
+    trebuie sa setati si o culoare a tile-ului (de background), care trebuie specificata și
+    în tagul meta: <meta name="msapplication-TileColor" content="...culoarea aleasa de voi...">
+        - linia 11
+    
+    4)  Împărțiți body-ul în header, main, footer.
+
+    5)  În header faceți un sistem de navigare ca în curs (nav cu listă neordonată de linkuri),
+    cu opțiuni  principale (care vor reprezenta paginile site-ului) și secundare
+    (pentru opțiunea "Acasă", adică pagina principală, subopțiunile vor cuprinde
+    linkuri către secțiunile paginii, care vor avea id-uri relevante).
+    Folosiți în header h1 pentru titlul site-ului. 
+        - linia 24
+
+    6)  Folosiți minim un tag dintre: section, article, aside. Trebuie să existe măcar un caz de
+    taguri de secționare imbricate (secțiune în secțiune). Puneți headingul cu nivelul corespunzător
+    nivelului imbricării. Atenție, nu folosim headinguri decât ca titluri pentru tagurile de secționare.
+    Observație: nivelul headingului trebuie să corespundă nivelului de imbricare a secțiunii (de exemplu
+    un tag de secționare aflat direct în body  are titlul scris cu h2, dar un tag de sectionare aflat
+    intr-un tag de secționare care la rândul lui se află în body, va avea titlul scris cu h3
+        - linia 51
+
+    7)  În cadrul secțiunilor folosiți minim 2 taguri dintre următoare taguri de grupare: p, ol, ul, blockquote, dl
+        - liina 56
+    
+    8)  Adăugați în pagină o imagine cu descriere, folosind figure și figcaption.Pe ecran mic (mobil)
+    trebuie să se încarce o variantă mai redusă în dimensiune (bytes) a imaginii, pe tabletă o variantă
+    medie, iar pe ecran mare varianta cea mai mare a imaginii. Folosiți un editor grafic pentru cropping
+    și redimensionare pentru a obține cele 3 variante de imagini.
+
+    9)  Textul trebuie să conțină toate cuvintele cheie identificate pentru pagina curentă. Puteți găsi mai
+    multe sintagme cheie pe care le puteți folosi, cu https://www.wordtracker.com/ sau 
+    https://app.neilpatel.com/en/ubersuggest/keyword_ideas. 
+    Acestea trebuie să apară de mai multe ori în pagină, în taguri relevante.
+
+    <b>         cuvinte si sintagme cheie
+    <u>         sublinierea unui cuvant sau sintagme gresite
+    <i>         termeni stiintifici, delimitarea unei singagme, distingerea mesajului, citire cu usurinta
+    <strong>    text important, de atentionare, serios, pronuntat pe ton de alerta
+    <em>        marcheaza citirea cu un ton accentuat
+    <q>         citat scurt inline
+    <mark>      text relevant intr-un alt context: zone dintr-un citat sau text special
+    <small>     notite de subsol, copyright
+    
+    <time>      contine o data/ o ora
+    <a>         anchor
+    <sub>       
+    <sup>       scopuri matematice (puteri sau indici)
+    <s>
+
+    10) În cadrul textului îndepliniți 3 dintre cerințele de mai jos, la alegere:
+            a)  marcați cuvintele și sintagmele cheie cu ajutorul tagului b
+            b)  marcați textul idiomatic (termeni științifici, în altă limbă, termeni tehnici, de jargon, etc) cu tagul i
+            c)  marcați textul de atenționare cu strong
+            d)  marcați textul accentuat cu em
+            e)  marcați textul șters (corectat sau care nu mai e relevant) cu tagul s și textul inserat în loc cu tagul ins
+            f)  marcați o abreviere cu abbr și cu atributul title specificați sintagma abreviată
+            g)  marcați un termen definit cu dfn
+            h)  marcați un citat cu tagul q
+    
+    11) Creați următoarele linkuri speciale: 
+            a)  un link extern (va fi in continutul paginii, nu in meniu, va face referire la
+                alt site si se va deschide in fereastră nouă)
+            b)  un link în footer către începutul paginii,
+            c)  minim două linkuri care se deschid într-un iframe (se poate face ca în exemplul de curs,
+                linkuri care deschid videoclipuri relevante de pe youtube în iframe). Atentie nu e vorba de
+                src-ul iframe-ului ce de taguri <a> care la click se deschid in iframe. Iframe-ul va contine
+                in mod default una dintre resursele specificate in linkuri
+            d)  Un link de tip download
+    
+    12) Creați în pagină mai multe zone de details și summary. Pot fi întrebări frecvente,
+    pot fi niște oferte pentru care afișăm titlul și utilizatorul le deschide pe cele care îl interesează,
+    pot fi secțiuni explicative etc.
+
+    13) În footer se vor adăuga cu ajutorul tagului address informații de contact:
+            a)  telefon fictiv, marcat cu tagul <a> si URI Scheme-ul corespunzător
+            b)  adresă fictivă care la click deschide o locatie pe Google Maps (locatia in mod normal ar corespunde cu adresa
+                dar voi veti pune drept locatie in maps, Facultatea de matematica si informatica)
+            c)  e-mail fictiv, marcat cu tagul <a> si URI Scheme-ul corespunzător în href
+            d)  Link care deschide o aplicatie de comunicare precum skype sau whatsapp pentru chat
+    
+    14) În footer se va adăuga informație de copyright, folosind tagul small, simbolul specific de copyright
+    cu codul html necesar (forma &cod;) și data creării paginii scrisă în limba română și pusă în tagul
+    time cu atributul datetime corespunzător. 
+    
+    15) Pagina trebuie sa fie valida din punct de vedere sintactic. Deci verificati cu validatorul html.
+    Validatorul va fi pregătit într-un tab, la prezentare, și pagina se va valida pe loc.
+
