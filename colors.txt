@@ -1,5 +1,5 @@
-#B30DD9
-#710BBF
-#4A0CCF
-#140AA1
-#0D39FF
+roz-alb             #FFF5FC
+lila                #C60DFF
+mov                 #6200FF  
+albastru            #0C0CF5
+albastru-negru      #031A40
