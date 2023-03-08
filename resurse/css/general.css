@@ -1,0 +1,50 @@
+body{
+    --culoare-fundal: #FFF5FC;
+    --culoare-text: #031A40; 
+    --culaore-highlight: #C60DFF;
+    --culoare-border: #6200FF; 
+    --culoare-lowlight: #0C0CF5;
+}
+
+body.dark{
+    --culoare-text: #FFF5FC;
+    --culoare-fundal: #031A40; 
+}
+
+body{
+    background-color: var(--culoare-fundal);
+    color: var(--culoare-text);
+}
+
+/* nu merge grid-pagina */
+#grid_pagina{
+    display:grid;
+    /* da dimensiunile coloanelor */
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "z-turneu z-turneu z-turneu"
+        "z-rockstadt z-brutal z-hellfest"
+        "z-social z-social z-social";
+}
+
+/* stabilire nume de grid pt fiiecare sectiune */
+#titlu_turneu{
+    border: 5px solid black;
+    grid-area: z-turneu;
+}
+#festival_rockstadt{
+    border: 5px solid black;
+    grid-area: z-rockstadt;
+}
+#festival_brutal{
+    border: 5px solid black;
+    grid-area: z-brutal;
+}
+#festival_hellfest{
+    border: 5px solid black;
+    grid-area: z-hellfest;
+}
+#div_filmari{
+    border: 5px solid black;
+    grid-area: z-social;
+}
