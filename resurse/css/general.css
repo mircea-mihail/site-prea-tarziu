@@ -4,6 +4,8 @@ body{
     --culaore-highlight: #C60DFF;
     --culoare-border: #6200FF; 
     --culoare-lowlight: #0C0CF5;
+
+    --immage-width: 400px;
 }
 
 body.dark{
@@ -16,68 +18,7 @@ body{
     color: var(--culoare-text);
 }
 
-
-/* gridul merge doar pe fii directi!! */
-#grid_pagina{
-    display:grid;
-    /* da dimensiunile coloanelor */
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 
-        "z-titlu_turneu z-titlu_turneu z-titlu_turneu"
-        "z-rockstadt z-brutal z-hellfest"
-        "z-albume z-albume z-calendar"
-        "z-albume z-albume z-anunturi"
-        "z-utilizatori z-statistici z-server"
-        "z-filmari z-filmari z-filmari"
-        "z-social z-social z-social";
+.important_events{
+    width: var(--immage-width);
 }
 
-/* stabilire nume de grid pt fiiecare sectiune */
-#titlu_turneu{
-    border: 5px solid black;
-    grid-area: z-titlu_turneu;
-}
-#rockstadt{
-    border: 5px solid black;
-    grid-area: z-rockstadt;
-}
-#brutal{
-    border: 5px solid black;
-    grid-area: z-brutal;
-}
-#hellfest{
-    border: 5px solid black;
-    grid-area: z-hellfest;
-}
-#filmari{
-    border: 5px solid black;
-    grid-area: z-filmari;
-}
-#albume{
-    border: 5px solid black;
-    grid-area: z-albume;
-}
-#calendar{
-    border: 5px solid black;
-    grid-area: z-calendar;
-}
-#anunturi{
-    border: 5px solid black;
-    grid-area: z-anunturi;
-}
-#utilizatori{
-    border: 5px solid black;
-    grid-area: z-utilizatori;
-}
-#statistici{
-    border: 5px solid black;
-    grid-area: z-statistici;
-}
-#server{
-    border: 5px solid black;
-    grid-area: z-server;
-}
-#social{
-    border: 5px solid black; 
-    grid-area: z-social;
-}
