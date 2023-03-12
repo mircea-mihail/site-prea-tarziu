@@ -2,7 +2,10 @@
 /* gridul merge doar pe fii directi!! */
 #grid_pagina{
     padding: var(--padding-sectiune);
+    justify-items: center;
+}
 
+#grid_pagina{
     display:grid;
     /* da dimensiunile coloanelor */
     grid-template-columns: 1fr 1fr 1fr;
