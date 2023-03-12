@@ -22,50 +22,50 @@
 
 /* stabilire nume de grid pt fiiecare sectiune */
 #titlu_turneu{
-    border: 5px solid black;
+    border: var(--width_border) solid var(--culoare-border);
     grid-area: z-titlu_turneu;
 }
 #rockstadt{
-    border: 5px solid black;
+    border: var(--width_border) solid var(--culoare-border);
     grid-area: z-rockstadt;
 }
 #brutal{
-    border: 5px solid black;
+    border: var(--width_border) solid var(--culoare-border);
     grid-area: z-brutal;
 }
 #hellfest{
-    border: 5px solid black;
+    border: var(--width_border) solid var(--culoare-border);
     grid-area: z-hellfest;
 }
 #filmari{
-    border: 5px solid black;
+    border: var(--width_border) solid var(--culoare-border);
     grid-area: z-filmari;
 }
 #albume{
-    border: 5px solid black;
+    border: var(--width_border) solid var(--culoare-border);
     grid-area: z-albume;
 }
 #calendar{
-    border: 5px solid black;
+    border: var(--width_border) solid var(--culoare-border);
     grid-area: z-calendar;
 }
 #anunturi{
-    border: 5px solid black;
+    border: var(--width_border) solid var(--culoare-border);
     grid-area: z-anunturi;
 }
 #utilizatori{
-    border: 5px solid black;
+    border: var(--width_border) solid var(--culoare-border);
     grid-area: z-utilizatori;
 }
 #statistici{
-    border: 5px solid black;
+    border: var(--width_border) solid var(--culoare-border);
     grid-area: z-statistici;
 }
 #server{
-    border: 5px solid black;
+    border: var(--width_border) solid var(--culoare-border);
     grid-area: z-server;
 }
 #social{
-    border: 5px solid black; 
+    border: var(--width_border) solid var(--culoare-border); 
     grid-area: z-social;
 }
