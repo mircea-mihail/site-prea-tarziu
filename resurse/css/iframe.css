@@ -22,7 +22,6 @@ div.taburi_iframe{
 div.taburi_iframe a{
     /* face linkurile sa arate normal (nesubliniate si nealbastre) */
     color: var(--culoare-text-buton);
-    text-decoration: none;
     font-weight: bold;
 
     /* inaltimea si latimea butoanelor */

@@ -38,3 +38,7 @@ body{
 #the_band_immage{
     width: var(--band-width);
 }
+
+footer *{
+    color: var(--culoare-text);
+}

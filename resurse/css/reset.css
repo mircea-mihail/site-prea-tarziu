@@ -6,4 +6,9 @@ div.taburi_iframe{
 div.taburi_iframe a{
     padding: 0px;
     margin: 0px;
+    text-decoration: none;
+}
+
+footer *{
+    text-decoration: none;
 }
