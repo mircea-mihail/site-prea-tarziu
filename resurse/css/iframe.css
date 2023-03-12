@@ -1,0 +1,67 @@
+/* definirea unor variabile vizibile in body, dar gandite special pentru
+tot ceea ce tine de sectiunea iframe */
+
+body{
+    --timp-tranzitie: 0.2s;
+    
+    --iframe_height: 40vw;
+    --iframe_width: calc(var(--iframe_height) * 1.75);
+    --latime-buton: 12vw;
+    --grosime-border-buton: 3px;
+    --gap-factor: 5;
+
+    --inaltime-text: 35px;
+    --culoare-border-buton: #031A40;
+    --culoare-text-buton: #FFF5FC;
+}
+
+div.taburi_iframe{
+    display:flex;
+}
+
+div.taburi_iframe a{
+    /* face linkurile sa arate normal (nesubliniate si nealbastre) */
+    color: var(--culoare-text-buton);
+    text-decoration: none;
+    font-weight: bold;
+
+    /* inaltimea si latimea butoanelor */
+    width:var(--latime-buton);
+
+    /* (culoarea butonului) */
+    background-color: var(--culoare-lowlight);
+
+    /* pune textul la mijloc intre stanga si dreapta */
+    text-align: center;
+    border: var(--grosime-border-buton) solid var(--culoare-border-buton);
+
+    box-sizing: border-box;
+    /* tranzitie intre culori */
+    transition: all var(--timp-tranzitie) linear;
+
+    line-height: var(--inaltime-text);
+}
+
+div.taburi_iframe{
+    /* latimea flexboxului */
+    width: var(--iframe_width);
+    
+    /* definesc flexboxul */
+    box-sizing: border-box;
+    position: relative;
+    justify-content: center;
+
+    gap: calc(var(--gap-factor) * var(--grosime-border-buton));
+}
+
+div.taburi_iframe a:hover{
+    /* culoarea textului si a fundalului cand hoveruiesti */
+    background-color: var(--culoare-highlight);
+    color: var(--culoare-border-buton);
+}
+
+#iframe_square{
+    /* marimea iframeului */
+    height: var(--iframe_height);
+    width: var(--iframe_width);
+}

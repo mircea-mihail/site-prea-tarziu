@@ -5,14 +5,14 @@ html{
 body{
     --culoare-fundal: #FFF5FC;
     --culoare-text: #031A40; 
-    --culaore-highlight: #C60DFF;
+    --culoare-highlight: #C60DFF;
     --culoare-border: #6200FF; 
     --culoare-lowlight: #0C0CF5;
 
     --band-width: 95vw;
     --festivals-width: 25vw;
     --grid-gap-width: 0.2vw;
-    --iframe_height: 40vw;
+    --width_border: 0.3vw;
 
     --padding-pagina: 0px;
     --padding-sectiune: 0px;
@@ -37,9 +37,4 @@ body{
 
 #the_band_immage{
     width: var(--band-width);
-}
-
-#iframe_square{
-    height: var(--iframe_height);
-    width: calc(var(--iframe_height) * 1.75);
 }
