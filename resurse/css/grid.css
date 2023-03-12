@@ -1,6 +1,8 @@
 
 /* gridul merge doar pe fii directi!! */
 #grid_pagina{
+    padding: var(--padding-sectiune);
+
     display:grid;
     /* da dimensiunile coloanelor */
     grid-template-columns: 1fr 1fr 1fr;
@@ -12,6 +14,7 @@
         "z-utilizatori z-statistici z-server"
         "z-filmari z-filmari z-filmari"
         "z-social z-social z-social";
+    gap: var(--grid-gap-width);
 }
 
 /* stabilire nume de grid pt fiiecare sectiune */

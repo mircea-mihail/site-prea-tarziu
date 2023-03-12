@@ -1,3 +1,7 @@
+html{
+    font-size: 20px;
+}
+
 body{
     --culoare-fundal: #FFF5FC;
     --culoare-text: #031A40; 
@@ -5,7 +9,13 @@ body{
     --culoare-border: #6200FF; 
     --culoare-lowlight: #0C0CF5;
 
-    --immage-width: 400px;
+    --band-width: 95vw;
+    --festivals-width: 25vw;
+    --grid-gap-width: 0.2vw;
+    --iframe_height: 40vw;
+
+    --padding-pagina: 0px;
+    --padding-sectiune: 0px;
 }
 
 body.dark{
@@ -16,9 +26,20 @@ body.dark{
 body{
     background-color: var(--culoare-fundal);
     color: var(--culoare-text);
+
+    padding-left: var(--padding-pagina);
+    padding-right: var(--padding-pagina);
 }
 
 .important_events{
-    width: var(--immage-width);
+    width: var(--festivals-width);
 }
 
+#the_band_immage{
+    width: var(--band-width);
+}
+
+#iframe_square{
+    height: var(--iframe_height);
+    width: calc(var(--iframe_height) * 1.75);
+}

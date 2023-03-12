@@ -1,0 +1,26 @@
+html{
+    font-size: 18px;
+}
+
+#grid_pagina{
+    padding: var(--padding-sectiune);
+
+    display:grid;
+    /* da dimensiunile coloanelor */
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "z-titlu_turneu z-titlu_turneu"
+        "z-rockstadt z-brutal"
+        "z-hellfest z-calendar"
+        "z-hellfest z-anunturi"
+        "z-albume z-utilizatori"
+        "z-albume z-utilizatori"
+        "z-statistici z-server"
+        "z-filmari z-filmari"
+        "z-social z-social ";
+    gap: var(--grid-gap-width);
+}
+
+.important_events{
+    --festivals-width: 35vw;
+}
