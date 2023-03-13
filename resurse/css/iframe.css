@@ -31,19 +31,35 @@ div.taburi_iframe a{
     background-color: var(--culoare-lowlight);
 
     /* pune textul la mijloc intre stanga si dreapta */
-    text-align: center;
     border: var(--grosime-border-buton) solid var(--culoare-border-buton);
 
     box-sizing: border-box;
-    /* tranzitie intre culori */
+    
     transition: all var(--timp-tranzitie) linear;
 
-    line-height: var(--inaltime-text);
+    /* problema: daca textul are mai multe linii atunci acest hack nu merge */
+    /* line-height: var(--inaltime-text); */
+
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+
+    /* https://exemple-css-curs3--irinaciocan.repl.co/ -> centrare.html */
+    
+    /*
+    avem in cursul 4 (sau 3?) rezolvare: 
+        text-allign: center; si mai erau niste chestii 
+        fiecare buton sa am doua divuri cu display flex si justify -content si alligh-items center si nu mai pun lineheight
+    */
+
+    border-radius: 0.6em;
 }
 
 div.taburi_iframe{
     /* latimea flexboxului */
     width: var(--iframe_width);
+    height: auto;
     
     /* definesc flexboxul */
     box-sizing: border-box;
@@ -60,6 +76,7 @@ div.taburi_iframe a:hover{
 }
 
 #iframe_square{
+    display:block;
     /* marimea iframeului */
     height: var(--iframe_height);
     width: var(--iframe_width);

@@ -1,4 +1,5 @@
-div.taburi_iframe{
+
+html, div.taburi_iframe{
     padding: 0px;
     margin: 0px;
 }
@@ -7,6 +8,10 @@ div.taburi_iframe a{
     padding: 0px;
     margin: 0px;
     text-decoration: none;
+}
+
+body{
+    margin: 0px;
 }
 
 footer *{

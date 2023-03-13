@@ -1,5 +1,6 @@
 html{
     font-size: 20px;
+    transition: font-size 0.2s linear;
 }
 
 body{
@@ -14,8 +15,8 @@ body{
     --grid-gap-width: 0.2vw;
     --width_border: 0.3vw;
 
-    --padding-pagina: 0px;
-    --padding-sectiune: 0px;
+    --padding-pagina: 10px;
+    --padding-sectiune: 10px;
 }
 
 body.dark{

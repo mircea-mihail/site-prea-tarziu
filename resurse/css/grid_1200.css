@@ -1,7 +1,3 @@
-html{
-    font-size: 18px;
-}
-
 #grid_pagina{
     padding: var(--padding-sectiune);
 
@@ -19,8 +15,4 @@ html{
         "z-filmari z-filmari"
         "z-social z-social ";
     gap: var(--grid-gap-width);
-}
-
-.important_events{
-    --festivals-width: 35vw;
 }

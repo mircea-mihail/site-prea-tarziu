@@ -1,11 +1,3 @@
-html{
-    font-size: 15px;
-}
-
 #grid_pagina{
     display: block;
-}
-
-.important_events{
-    --festivals-width: 80vw;
 }
