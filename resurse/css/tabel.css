@@ -1,0 +1,20 @@
+#albume table{
+    caption-side: bottom;
+    border-spacing: 3px;
+}
+
+#albume table td{
+    width: 25%;
+}
+
+#albume table tbody td:nth-child(odd){
+    background-color: var(--culoare-lowlight);
+}
+
+#albume table tbody td:nth-child(even){
+    background-color: var(--culoare-border);
+}
+
+#albume table tfoot{
+    background-color: var(--culoare-highlight);
+}
