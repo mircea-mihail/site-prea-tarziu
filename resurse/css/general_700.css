@@ -1,0 +1,12 @@
+html{
+    font-size: 15px;
+    transition: font-size 0.2s linear;
+}
+
+.important_events{
+    --festivals-width: 80vw;
+}
+
+#albume table{
+    border-spacing: 0px;
+}
