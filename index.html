@@ -1,5 +1,6 @@
 <!-- poate fac toate imaginile de aceeasi rezolutie de baza si apoi le micsorez in functie de ecran sa aiba aceeasi rezolutie mereu toate? -->
-<!-- cum fac sa mearga un link tip download?? -->
+<!-- daca nu vreau animatii in cod: transition: none animation:none -->
+<!-- ceva gradient -> box shadow trebuie dezactivat -->
 
 <!DOCTYPE html>
 <html lang="ro">
@@ -21,12 +22,20 @@
         <meta name="msapplication-config" content="./resurse/icon/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
         <!-- pentru css: -->
+        <link rel="stylesheet" href="resurse/css/tabel.css" type="text/css">
+
         <link rel="stylesheet" href="resurse/css/general.css" type="text/css">
+        <link rel="stylesheet" href="resurse/css/general_1200.css" type="text/css" media="screen and (max-width:1200px)">
+        <link rel="stylesheet" href="resurse/css/general_700.css" type="text/css" media="screen and (max-width:700px)">
+        
+        
         <link rel="stylesheet" href="resurse/css/grid.css" type="text/css">
         <link rel="stylesheet" href="resurse/css/grid_1200.css" type="text/css" media="screen and (max-width:1200px)">
         <link rel="stylesheet" href="resurse/css/grid_700.css" type="text/css" media="screen and (max-width:700px)">
+        
         <link rel="stylesheet" href="resurse/css/iframe.css" type="text/css">
         <link rel="stylesheet" href="resurse/css/reset.css" type="text/css">
+
 
 
     </head>
@@ -161,23 +170,45 @@
                 
                 <section id="albume">
                     <!-- ar fi cool ca fiecare celula sa fie o poza link la albumul de pe spotify -->
-                    <h3>Albume</h3>
                     <table>
-                        <tr>
-                            <td>Paranoia</td>
-                            <td>Cadere</td>
-                            <td>Decadere</td>
-                        </tr>
-                        <tr>
-                            <td>Carmangeria</td>
-                            <td>Tradare</td>
-                            <td>Uitare</td>
-                        </tr>
-                        <tr>
-                            <td>Stalpi Umbriti</td>
-                            <td>Oras Gri</td>
-                            <td>Zgomot</td>
-                        </tr>
+                        <caption>O parte din noi</caption>
+                        <thead>
+                            <th>Albume</th>
+                            <th>Singles</th>
+                            <th colspan="2">EP-s</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Paranoia</td>
+                                <td>Cadere</td>
+                                <td>Decadere</td>
+                                <td>Cafeaua Cruda</td>
+                            </tr>
+                            <tr>
+                                <td>Carmangeria</td>
+                                <td>Tradare</td>
+                                <td>Uitare</td>
+                                <td>Singur</td>
+                            </tr>
+                            <tr>
+                                <td>Stalpi Umbriti</td>
+                                <td>Oras Gri</td>
+                                <td>Zgomot</td>
+                                <td>Cartelul Fericirii</td>
+                            </tr>
+                            <tr>
+                                <td>Prea Devreme</td>
+                                <td>Poate</td>
+                                <td>Palid</td>
+                                <td>Prea Tarziu</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">spotify</td>
+                                <td colspan="2">youtube</td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </section>
                 
