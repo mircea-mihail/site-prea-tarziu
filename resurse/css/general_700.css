@@ -10,3 +10,7 @@ html{
 #albume table{
     border-spacing: 0px;
 }
+
+#scrollbar {
+    overflow-x: scroll;
+}

@@ -36,3 +36,11 @@
 #albume table tfoot{
     background-color: var(--culoare-highlight);
 }
+
+#albume table thead{
+    color: var(--culoare-text);
+}
+
+#albume table caption{
+    color: var(--culoare-text);
+}
