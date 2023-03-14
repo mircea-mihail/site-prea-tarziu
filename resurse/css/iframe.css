@@ -6,7 +6,7 @@ body{
     
     --iframe_height: 40vw;
     --iframe_width: calc(var(--iframe_height) * 1.75);
-    --latime-buton: 12vw;
+    --latime-buton: 15vw;
     --grosime-border-buton: 3px;
     --gap-factor: 5;
 
@@ -25,7 +25,8 @@ div.taburi_iframe a{
     font-weight: bold;
 
     /* inaltimea si latimea butoanelor */
-    width:var(--latime-buton);
+    width: var(--latime-buton);
+    height: calc(4 * var(--font-size));
 
     /* (culoarea butonului) */
     background-color: var(--culoare-lowlight);
@@ -44,6 +45,8 @@ div.taburi_iframe a{
     flex-direction: row;
     text-align: center;
     justify-content: center;
+    align-items: center;
+
 
     /* https://exemple-css-curs3--irinaciocan.repl.co/ -> centrare.html */
     
@@ -60,11 +63,13 @@ div.taburi_iframe{
     /* latimea flexboxului */
     width: var(--iframe_width);
     height: auto;
+    display: flex;
     
     /* definesc flexboxul */
     box-sizing: border-box;
     position: relative;
     justify-content: center;
+    align-items: center;
 
     gap: calc(var(--gap-factor) * var(--grosime-border-buton));
 }

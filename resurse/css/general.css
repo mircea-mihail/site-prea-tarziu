@@ -1,8 +1,14 @@
 html{
-    font-size: 20px;
-    transition: font-size 0.2s linear;
-    
     --font-size: 20px;
+    --timp-tranzitie: 0.2s;
+
+    --tooltip-bottom: -10px;
+    --tooltip-right: calc(var(--sus-bottom)/2 + 5px);
+
+    --sus-bottom: 30px;
+
+    font-size: 20px;
+    transition: font-size var(--timp-tranzitie) linear;
 }
 
 body{
@@ -21,6 +27,9 @@ body{
     --padding-sectiune: 10px;
     --up-button-size: 50px;
     --up-button-width: calc(var(--up-button-size) * 1.2);
+
+    --opacity-buton: 0.4;
+    --opacity-tooltip: 0;
 }
 
 body.dark{
@@ -57,12 +66,35 @@ footer *{
     font-size: var(--up-button-size);
     font-weight: 900;
     border-radius: calc(var(--up-button-width)/2);
+    
     justify-content: center;
     align-items: center;
 
-    bottom: 15px;
-    right: 15px;
+    bottom: var(--sus-bottom);
+    right: var(--sus-bottom);
     position: fixed;
+
+    border: var(--grosime-border-buton) solid var(--culoare-highlight);
+
+    opacity: var(--opacity-buton);
+    transition: all var(--timp-tranzitie) linear;
+}
+
+
+#sus:hover{
+    opacity: 1;   
+}
+
+#tooltip{
+    position: fixed;
+    bottom: var(--tooltip-bottom);
+    right: var(--tooltip-right);
+    
+    opacity: var(--opacity-tooltip);
+}
+
+#sus_tooltip:hover{
+    --opacity-tooltip: 1;
 }
 
 #sus *{

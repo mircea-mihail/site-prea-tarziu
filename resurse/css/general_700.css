@@ -1,6 +1,8 @@
 html{
     font-size: 15px;
     transition: font-size 0.2s linear;
+
+    --font-size: 15px;
 }
 
 .important_events{
