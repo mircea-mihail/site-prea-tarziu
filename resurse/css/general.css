@@ -1,6 +1,8 @@
 html{
     font-size: 20px;
     transition: font-size 0.2s linear;
+    
+    --font-size: 20px;
 }
 
 body{
@@ -17,6 +19,8 @@ body{
 
     --padding-pagina: 10px;
     --padding-sectiune: 10px;
+    --up-button-size: 50px;
+    --up-button-width: calc(var(--up-button-size) * 1.2);
 }
 
 body.dark{
@@ -42,4 +46,25 @@ body{
 
 footer *{
     color: var(--culoare-text);
+}
+
+#sus{
+    box-sizing: border-box;
+    display: flex;
+    background-color: var(--culoare-lowlight);
+    width: var(--up-button-width);
+    height: var(--up-button-width);
+    font-size: var(--up-button-size);
+    font-weight: 900;
+    border-radius: calc(var(--up-button-width)/2);
+    justify-content: center;
+    align-items: center;
+
+    bottom: 15px;
+    right: 15px;
+    position: fixed;
+}
+
+#sus *{
+    color: var(--culoare-highlight);
 }
