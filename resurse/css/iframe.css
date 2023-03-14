@@ -1,6 +1,3 @@
-/* definirea unor variabile vizibile in body, dar gandite special pentru
-tot ceea ce tine de sectiunea iframe */
-
 body{
     --timp-tranzitie: 0.2s;
     
