@@ -5,8 +5,13 @@ html{
     --tooltip-bottom: -10px;
     --tooltip-right: calc(var(--sus-bottom)/2 + 5px);
 
+    --social-media-factor: 4;
     --sus-bottom: 30px;
 
+    --skull-degree: 5deg;
+    --skull-time: 0.3s;
+
+    font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     transition: font-size var(--timp-tranzitie) linear;
 }
@@ -99,4 +104,51 @@ footer *{
 
 #sus *{
     color: var(--culoare-highlight);
+}
+
+#insta-icon{
+    font-size: calc(var(--font-size) * var(--social-media-factor));
+    color: var(--culoare-highlight);
+}
+
+#skull1{
+    animation-name: leftskull;
+    animation-duration: var(--skull-time);
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    transform-origin: center top;
+}
+
+#skull2{
+    animation-name: rightskull;
+    animation-duration: var(--skull-time);
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    transform-origin: center top;
+}
+
+@keyframes leftskull{
+    0%{
+        transform: rotate(0deg);
+    }
+    50%{
+        transform: rotate(var(--skull-degree));
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes rightskull{
+    0%{
+        transform: rotate(0deg);
+    }
+    50%{
+        transform: rotate(calc(-1 * var(--skull-degree)));
+    }
+    100%{
+        transform: rotate(0deg);
+    }
 }
