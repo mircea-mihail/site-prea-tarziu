@@ -108,7 +108,7 @@ footer *{
 
 #insta-icon{
     font-size: calc(var(--font-size) * var(--social-media-factor));
-    color: var(--culoare-highlight);
+    color: var(--culoare-text);
 }
 
 #skull1{
