@@ -21,7 +21,7 @@
 
 /* stabilire nume de grid pt fiiecare sectiune */
 #titlu_turneu{
-    border: var(--width_border) solid var(--culoare-border);
+    /* border: var(--width_border) solid var(--culoare-border); */
     grid-area: z-titlu_turneu;
 }
 #rockstadt{
@@ -65,6 +65,6 @@
     grid-area: z-server;
 }
 #social{
-    border: var(--width_border) solid var(--culoare-border); 
+    /* border: var(--width_border) solid var(--culoare-border);  */
     grid-area: z-social;
 }
