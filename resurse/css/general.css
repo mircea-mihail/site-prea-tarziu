@@ -17,7 +17,9 @@ html{
 }
 
 body{
+    --culoare-deschisa: #FFF5FC;
     --culoare-fundal: #FFF5FC;
+    --culoare-inchisa: #031A40;
     --culoare-text: #031A40; 
     --culoare-highlight: #C60DFF;
     --culoare-border: #6200FF; 
@@ -36,6 +38,11 @@ body{
 
     --opacity-buton: 0.4;
     --opacity-tooltip: 0;
+}
+
+footer{
+    --colturile-de-sus: calc(var(--font-size) * 1.8);
+    --colturile-de-jos: 0px;
 }
 
 body.dark{
@@ -80,10 +87,6 @@ header{
 /* #the_band_immage{
     width: var(--band-width);
 } */
-
-footer *{
-    color: var(--culoare-text);
-}
 
 #sus{
     box-sizing: border-box;
@@ -178,4 +181,18 @@ footer *{
     100%{
         transform: rotate(0deg);
     }
+}
+
+footer *{
+    font-weight: bold;
+    color: var(--culoare-deschisa);
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--culoare-lowlight);
+    border-radius: var(--colturile-de-sus) var(--colturile-de-sus) var(--colturile-de-jos) var(--colturile-de-jos);
 }
