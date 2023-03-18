@@ -1,3 +1,21 @@
 #grid_pagina{
-    display: block;
+    padding: var(--padding-sectiune);
+
+    display:grid;
+    /* da dimensiunile coloanelor */
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "z-titlu_turneu"
+        "z-rockstadt"
+        "z-brutal"
+        "z-hellfest"
+        "z-calendar"
+        "z-anunturi"
+        "z-albume"
+        "z-albume"
+        "z-statistici"
+        "z-server"
+        "z-filmari"
+        "z-social";
+    gap: var(--grid-gap-width);
 }

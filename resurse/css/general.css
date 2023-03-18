@@ -23,7 +23,7 @@ body{
     --culoare-border: #6200FF; 
     --culoare-lowlight: #0C0CF5;
 
-    --band-width: 95vw;
+    --band-width: 90vw;
     --festivals-width: 25vw;
     --grid-gap-width: 0.2vw;
     --width_border: 0.3vw;
@@ -46,6 +46,7 @@ body{
     background-color: var(--culoare-fundal);
     color: var(--culoare-text);
 
+    box-sizing: border-box;
     padding: var(--padding-pagina);
 }
 
