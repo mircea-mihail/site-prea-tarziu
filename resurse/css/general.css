@@ -32,6 +32,7 @@ body{
     --padding-sectiune: 0px;
     --up-button-size: 50px;
     --up-button-width: calc(var(--up-button-size) * 1.2);
+    --logo-padding: 10px;
 
     --opacity-buton: 0.4;
     --opacity-tooltip: 0;
@@ -62,8 +63,19 @@ header{
 }
 
 #the_band{
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: calc(var(--font-size) * 2.5);
 }
+
+#logo{
+    font-weight: bold;
+    box-sizing: border-box;
+    padding: var(--logo-padding);
+}   
 
 /* #the_band_immage{
     width: var(--band-width);
