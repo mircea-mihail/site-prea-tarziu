@@ -15,6 +15,7 @@
         "z-albume"
         "z-statistici"
         "z-server"
+        "z-utilizatori"
         "z-filmari"
         "z-social";
     gap: var(--grid-gap-width);

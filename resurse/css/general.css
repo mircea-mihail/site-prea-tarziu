@@ -23,7 +23,7 @@ body{
     --culoare-border: #6200FF; 
     --culoare-lowlight: #0C0CF5;
 
-    --band-width: 90vw;
+    --band-immage-height: 60vw;
     --festivals-width: 25vw;
     --grid-gap-width: 0.2vw;
     --width_border: 0.3vw;
@@ -50,6 +50,13 @@ body{
     padding: var(--padding-pagina);
 }
 
+header{
+    background-image: url("../imagini/placeholder_band_immage.jpg");   
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: var(--band-immage-height);
+}
+
 .important_events{
     width: var(--festivals-width);
 }
@@ -58,9 +65,9 @@ body{
     font-size: calc(var(--font-size) * 2.5);
 }
 
-#the_band_immage{
+/* #the_band_immage{
     width: var(--band-width);
-}
+} */
 
 footer *{
     color: var(--culoare-text);
