@@ -3,7 +3,7 @@ html{
     --timp-tranzitie: 0.2s;
 
     --tooltip-bottom: -10px;
-    --tooltip-right: calc(var(--sus-bottom)/2 + 5px);
+    --tooltip-right: calc(var(--sus-bottom)/2 - 2px);
 
     --social-media-factor: 4;
     --sus-bottom: 30px;
@@ -110,6 +110,7 @@ header{
 
     opacity: var(--opacity-buton);
     transition: all var(--timp-tranzitie) linear;
+
 }
 
 
@@ -121,7 +122,8 @@ header{
     position: fixed;
     bottom: var(--tooltip-bottom);
     right: var(--tooltip-right);
-    
+    color: var(--culoare-highlight);
+
     opacity: var(--opacity-tooltip);
 }
 
