@@ -34,7 +34,7 @@ body{
     --padding-sectiune: 0px;
     --up-button-size: 50px;
     --up-button-width: calc(var(--up-button-size) * 1.2);
-    --logo-padding: 10px;
+    --logo-padding: 5px;
 
     --opacity-buton: 0.4;
     --opacity-tooltip: 0;
@@ -79,6 +79,7 @@ header{
 }
 
 #logo{
+    color: var(--culoare-deschisa);
     font-weight: bold;
     box-sizing: border-box;
     padding: var(--logo-padding);
@@ -195,4 +196,10 @@ footer{
     align-items: center;
     background-color: var(--culoare-lowlight);
     border-radius: var(--colturile-de-sus) var(--colturile-de-sus) var(--colturile-de-jos) var(--colturile-de-jos);
+}
+
+#albume{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

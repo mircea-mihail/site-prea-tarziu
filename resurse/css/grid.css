@@ -1,5 +1,8 @@
 /* gridul merge doar pe fii directi!! */
 #grid_pagina{
+    --rotunjire: calc(2 * var(--font-size));
+    --rotunjire-mica: calc(var(--rotunjire) / 3);
+
     padding: var(--padding-sectiune);
     justify-items: center;
 }
@@ -17,6 +20,8 @@
         "z-filmari z-filmari z-filmari"
         "z-social z-social z-social";
     gap: var(--grid-gap-width);
+    color: var(--culoare-deschisa);
+    font-weight: bold;
 }
 
 /* stabilire nume de grid pt fiiecare sectiune */
@@ -26,42 +31,61 @@
 }
 #rockstadt{
     border: var(--width_border) solid var(--culoare-border);
+    background-color: var(--culoare-border);
+    border-radius: var(--rotunjire) var(--rotunjire) var(--rotunjire-mica) var(--rotunjire-mica);
     grid-area: z-rockstadt;
 }
 #brutal{
     border: var(--width_border) solid var(--culoare-border);
+    background-color: var(--culoare-border);
+    border-radius: var(--rotunjire) var(--rotunjire) var(--rotunjire-mica) var(--rotunjire-mica);
     grid-area: z-brutal;
 }
 #hellfest{
     border: var(--width_border) solid var(--culoare-border);
+    background-color: var(--culoare-border);
+    border-radius: var(--rotunjire) var(--rotunjire) var(--rotunjire-mica) var(--rotunjire-mica);
     grid-area: z-hellfest;
 }
 #filmari{
     border: var(--width_border) solid var(--culoare-border);
+    background-color: var(--culoare-border);
+    border-radius: var(--rotunjire) var(--rotunjire) 0px 0px;
     grid-area: z-filmari;
 }
 #albume{
-    border: var(--width_border) solid var(--culoare-border);
+    /* border: var(--width_border) solid var(--culoare-border);
+    background-color: var(--culoare-border); */
     grid-area: z-albume;
 }
 #calendar{
     border: var(--width_border) solid var(--culoare-border);
+    background-color: var(--culoare-border);
+    border-radius: var(--rotunjire-mica) var(--rotunjire-mica) var(--rotunjire-mica) var(--rotunjire-mica);
     grid-area: z-calendar;
 }
 #anunturi{
     border: var(--width_border) solid var(--culoare-border);
+    background-color: var(--culoare-border);
+    border-radius: var(--rotunjire-mica) var(--rotunjire-mica) var(--rotunjire-mica) var(--rotunjire-mica);
     grid-area: z-anunturi;
 }
 #utilizatori{
     border: var(--width_border) solid var(--culoare-border);
+    background-color: var(--culoare-border);
+    border-radius: var(--rotunjire-mica) var(--rotunjire-mica) var(--rotunjire-mica) var(--rotunjire-mica);
     grid-area: z-utilizatori;
 }
 #statistici{
     border: var(--width_border) solid var(--culoare-border);
+    background-color: var(--culoare-border);
+    border-radius: var(--rotunjire-mica) var(--rotunjire-mica) var(--rotunjire-mica) var(--rotunjire-mica);
     grid-area: z-statistici;
 }
 #server{
     border: var(--width_border) solid var(--culoare-border);
+    background-color: var(--culoare-border);
+    border-radius: var(--rotunjire-mica) var(--rotunjire-mica) var(--rotunjire-mica) var(--rotunjire-mica);
     grid-area: z-server;
 }
 #social{
