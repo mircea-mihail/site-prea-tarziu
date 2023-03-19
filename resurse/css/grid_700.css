@@ -1,6 +1,4 @@
 #grid_pagina{
-    padding: var(--padding-sectiune);
-
     display:grid;
     /* da dimensiunile coloanelor */
     grid-template-columns: 1fr;
@@ -19,4 +17,8 @@
         "z-filmari"
         "z-social";
     gap: var(--grid-gap-width);
+
+    --festivals-width: 20vw;
+
+    padding: calc(var(--padding-grid) * 0.2);
 }

@@ -2,6 +2,7 @@
 #grid_pagina{
     --rotunjire: calc(2 * var(--font-size));
     --rotunjire-mica: calc(var(--rotunjire) / 3);
+    --padding-grid: 2vw;
 
     padding: var(--padding-sectiune);
     justify-items: center;
@@ -22,8 +23,8 @@
     gap: var(--grid-gap-width);
     color: var(--culoare-deschisa);
     font-weight: bold;
+    padding: var(--padding-grid);
 }
-
 /* stabilire nume de grid pt fiiecare sectiune */
 #titlu_turneu{
     /* border: var(--width_border) solid var(--culoare-border); */
