@@ -25,6 +25,11 @@
     font-weight: bold;
     padding: var(--padding-grid);
 }
+
+#grid_pagina h3{
+    margin: calc(var(--font-size));
+}
+
 /* stabilire nume de grid pt fiiecare sectiune */
 #titlu_turneu{
     /* border: var(--width_border) solid var(--culoare-border); */
