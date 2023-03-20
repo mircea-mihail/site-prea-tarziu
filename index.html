@@ -43,39 +43,50 @@
         <link rel="stylesheet" href="resurse/css/grid_700.css" type="text/css" media="screen and (max-width:700px)">
         
         <link rel="stylesheet" href="resurse/css/iframe.css" type="text/css">
+        <link rel="stylesheet" href="resurse/css/nav.css" type="text/css">
     </head>
     
     <body id="home">
     <!-- <body id="home" class="dark"> -->
         <header>
-            <section id="the_band">
-                <h1 id="logo">Prea Târziu</h1>
-                <!-- <img id="the_band_immage" src="./resurse/imagini/placeholder_band_immage.jpg" alt="band_immage2"> -->
-            </section>
-            <nav id="meniu">
-                <ul>
+            <nav>
+                <!-- for mobile users -->
+                
+                <label id="hamburger" for="ch-menu">
+                    <i class="fa-solid fa-bars"></i>
+                </label>
+
+                <input id="ch-menu" type="checkbox">
+
+                <ul class = "meniu">
                     <!--
                         cea mai importanta sursa de venit a oricarei trupe este vanzarea de bilete, 
                         prin urmare pagina principala este si pagina cu turneul trupei -> unde poate
                         fi vazuta live de fani (de cele mai multe ori la concerte mici sau festivale)
                     -->
-                    <li><a href="#home">Home</a>
+                    <li><div>Home</div>
                         <ul>
                             <li><a href="#meniu">Meniu</a></li>
-                            <li><a href="#turneu">Turneu</a></li>
-                            <li><a href="#rockstadt">Rockstadt Extreme Fest</a></li>
+                            <li><a href="#titlu_turneu">Turneu</a></li>
+                            <li><a href="#rockstadt">Rockstadt</a></li>
                             <li><a href="#brutal">Brutal Assault</a></li>
                             <li><a href="#hellfest">Hellfest</a></li>
-                            <li><a href="#filmari">Filmari din anii trecuti</a></li>
+                            <li><a href="#filmari">Filmari</a></li>
                             <li><a href="#social">Social Media</a></li>
                         </ul>
                     </li>
-                    <li><a href="#albume">Albume</a></li>
+                    <!-- <li><a href="#albume">Albume</a></li> -->
                     <li><a href="#merch">Merch</a></li>
                     <li><a href="#media">Media</a></li>
                     <li><a href="#trupa">Trupa</a></li>
                 </ul>
+            
             </nav>
+            
+            <section id="the_band">
+                <h1 id="logo">Prea Târziu</h1>
+                <!-- <img id="the_band_immage" src="./resurse/imagini/placeholder_band_immage.jpg" alt="band_immage2"> -->
+            </section>
         </header>    
         <main>
             <div id="grid_pagina">
@@ -136,7 +147,7 @@
                 </section>
 
                 <section id="hellfest">
-                    <h3>Helfest</h3>
+                    <h3>Hellfest</h3>
                     <blockquote cite="https://www.hellfest.fr/en/">
                         WELCOME TO HELL
                     </blockquote>

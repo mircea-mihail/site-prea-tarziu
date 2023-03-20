@@ -2,7 +2,7 @@ html{
     --font-size: 20px;
     --timp-tranzitie: 0.2s;
 
-    --tooltip-bottom: -10px;
+    --tooltip-bottom: 5px;
     --tooltip-right: calc(var(--sus-bottom)/2 - 2px);
 
     --social-media-factor: 4;
@@ -38,6 +38,7 @@ body{
 
     --opacity-buton: 0.4;
     --opacity-tooltip: 0;
+    --margin-logo: 50px;
 }
 
 footer{
@@ -79,6 +80,7 @@ header{
 }
 
 #logo{
+    margin-top: var(--margin-logo);
     color: var(--culoare-deschisa);
     font-weight: bold;
     box-sizing: border-box;
@@ -141,6 +143,7 @@ header{
 }
 
 #titlu_turneu{
+    color: var(--culoare-text);
     font-size: calc(var(--font-size) * 2);
 }
 
@@ -204,4 +207,8 @@ footer{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+h2{
+    margin: calc(var(--font-size) * 2);
 }

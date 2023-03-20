@@ -1,0 +1,72 @@
+/* pentru mobile only */
+#hamburger, #ch-menu{
+    display: none;
+}
+
+body{
+    --inaltime-meniu: 50px;
+    --latime-buton: 150px;
+}
+
+nav{
+    height: var(--inaltime-meniu);
+    background-color: var(--culoare-inchisa);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+ul.meniu{
+    display: flex;
+    justify-content: center;
+}
+
+ul.meniu li{
+    background-color: var(--culoare-inchisa);
+    width: var(--latime-buton);
+    height: var(--inaltime-meniu);
+    overflow: hidden;
+    text-align: center;
+    /* border: 5px var(--culoare-highlight) solid; */
+    box-sizing: border-box;
+    list-style-type: none;
+
+    transition: all var(--timp-tranzitie) linear;
+}
+
+ul.meniu li *{
+    text-decoration: none;
+    color: var(--culoare-deschisa);
+    
+}
+
+ul.meniu ul{
+    width: var(--latime-buton);
+    box-sizing: border-box;
+    position: relative;
+    opacity: 0;
+
+    transform: scale(0, 0);
+    transform-origin: center top;
+    transition: all var(--timp-tranzitie) linear;
+}
+
+ul.meniu li:hover{
+    overflow: visible;
+    opacity: 1;
+}
+
+ul.meniu li:hover ul{
+    opacity: 1;
+    /* transformare geometrica */
+    transform:scale(1, 1);
+}
+
+ul.meniu li a, ul.meniu li div{
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: var(--inaltime-meniu);
+    text-decoration: none;
+    font-weight: bold;
+}
