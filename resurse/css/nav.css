@@ -1,15 +1,18 @@
-/* pentru mobile only */
+/* doar ascunde hamburgerul si checkboxul*/
 #hamburger, #ch-menu{
     display: none;
 }
 
+/* variabile */
 body{
     --inaltime-meniu: 50px;
     --latime-buton: 200px;
 
+    --culoare-text-meniu: var(--culoare-inchisa);
     --culoare-chitara: var(--culoare-deschisa);
 }
 
+/* defineste meniul */
 nav{
     height: var(--inaltime-meniu);
     background-color: var(--culoare-inchisa);
@@ -18,18 +21,19 @@ nav{
     z-index: 1;
 }
 
+/* defineste containerul general care cuprinde componentele meniului (lista neordonata) */
 ul.meniu{
     display: flex;
     justify-content: center;
 }
 
+/* setari generale pt fiecare buton in parte din meniu (li fii directi) */
 ul.meniu li{
     background-color: var(--culoare-inchisa);
     width: var(--latime-buton);
     height: var(--inaltime-meniu);
     overflow: hidden;
     text-align: center;
-    /* border: 5px var(--culoare-highlight) solid; */
     box-sizing: border-box;
     list-style-type: none;
 
@@ -47,6 +51,7 @@ ul.meniu ul{
     transition: all var(--timp-tranzitie) linear;
 }
 
+/* face submeniul sa apara (overflow-ul) */
 ul.meniu li:hover{
     overflow: visible;
     opacity: 1;
@@ -58,6 +63,7 @@ ul.meniu li:hover ul{
     transform:scale(1, 1);
 }
 
+/* continutul textului din li-uri-le din lista neordonata */
 ul.meniu li a, ul.meniu li div{
     display: block;
     width: 100%;
@@ -67,19 +73,34 @@ ul.meniu li a, ul.meniu li div{
     font-weight: bold;
     text-decoration: none;
     color: var(--culoare-deschisa);
-    transition: all linear var(--timp-tranzitie);
 }
 
-ul.meniu li div{
+/* ul.meniu li div{
     color: var(--culoare-inchisa);
 }
 
 ul.meniu li div i{
     transition: all linear var(--timp-tranzitie);
     color: var(--culoare-chitara);
+} */
+
+#home-icon-menu{
+    display: inline;
+    color: var(--culoare-chitara);
+}
+
+#home-text-menu{
+    display: inline;
+    color: var(--culoare-text-meniu);
+}
+
+ul.meniu li a, ul.meniu li div{
+    transition: all linear var(--timp-tranzitie);
 }
 
 ul.meniu li a:hover,ul.meniu li div:hover{
     color: var(--culoare-highlight);
     --culoare-chitara: var(--culoare-highlight);
+    --culoare-text-meniu: var(--culoare-highlight);
+    overflow: hidden;
 }
