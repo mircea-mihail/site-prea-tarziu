@@ -5,7 +5,9 @@
 
 body{
     --inaltime-meniu: 50px;
-    --latime-buton: 150px;
+    --latime-buton: 200px;
+
+    --culoare-chitara: var(--culoare-deschisa);
 }
 
 nav{
@@ -32,12 +34,6 @@ ul.meniu li{
     list-style-type: none;
 
     transition: all var(--timp-tranzitie) linear;
-}
-
-ul.meniu li *{
-    text-decoration: none;
-    color: var(--culoare-deschisa);
-    
 }
 
 ul.meniu ul{
@@ -69,4 +65,21 @@ ul.meniu li a, ul.meniu li div{
     line-height: var(--inaltime-meniu);
     text-decoration: none;
     font-weight: bold;
+    text-decoration: none;
+    color: var(--culoare-deschisa);
+    transition: all linear var(--timp-tranzitie);
+}
+
+ul.meniu li div{
+    color: var(--culoare-inchisa);
+}
+
+ul.meniu li div i{
+    transition: all linear var(--timp-tranzitie);
+    color: var(--culoare-chitara);
+}
+
+ul.meniu li a:hover,ul.meniu li div:hover{
+    color: var(--culoare-highlight);
+    --culoare-chitara: var(--culoare-highlight);
 }

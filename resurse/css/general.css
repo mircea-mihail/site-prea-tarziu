@@ -125,8 +125,9 @@ header{
     bottom: var(--tooltip-bottom);
     right: var(--tooltip-right);
     color: var(--culoare-highlight);
-
     opacity: var(--opacity-tooltip);
+    transition: all var(--timp-tranzitie) linear;
+
 }
 
 #sus_tooltip:hover{
