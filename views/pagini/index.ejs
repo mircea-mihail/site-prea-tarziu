@@ -1,0 +1,207 @@
+<!-- poate fac toate imaginile de aceeasi rezolutie de baza si apoi le micsorez in functie de ecran sa aiba aceeasi rezolutie mereu toate? -->
+<!-- daca nu vreau animatii in cod: transition: none animation:none -->
+<!-- ceva gradient -> box shadow trebuie dezactivat -->
+
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <title>Prea târziu</title>
+        
+        <meta name="keywords" content="trupa, formatie, prea, tarziu, romania, romaneasca, metal, thrash, fast, speed, death, extreme, extrem, muzica, chitara, tobe, bas, vocal"><!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
+        <meta name="description" content="Prea Târziu este o formatie de Thrash Metal romaneasca formata din 3 membrii: Mircea, Costi si Brihac. Acest proiect a luat nastere dupa nenumarate repetitii in diferite sali din Bucuresti."><!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
+
+        <!-- pt a inlocui ceea ce am scos din head -->
+        <%- include("../fragmente/head.ejs") %>
+    </head>
+    
+    <body id="home">
+    <!-- <body id="home" class="dark"> -->
+
+        <%- include("../fragmente/header.ejs") %>
+        <main>
+            <div id="grid_pagina">
+                <!-- the first thing people see about the band: when and where to se them live -->
+                <div id="titlu_turneu">
+                    <h2>&nbsp;<i id="skull1" class="fa-solid fa-skull"></i> Turneu <i id="skull2" class="fa-solid fa-skull"></i>&nbsp;</h2>
+                </div>
+                <!-- zona 8, dar mai sus -->
+                <section id="rockstadt">
+                    <h3>Rockstadt Extreme Fest</h3>
+                    <blockquote cite="https://www.rockstadtextremefest.ro/">
+                        The Heaviest Festival in Romania!    
+                    </blockquote>
+                
+                    <figure>
+                        <a href="https://www.rockstadtextremefest.ro/" target="_blank">
+                            <picture>
+                                <!-- il ia pe primul care se potriveste cu query-ul din media-->
+                                <source srcset="./resurse/imagini/concerte/rockstadt_50.jpg" media="(max-width:700px)">
+                                <source srcset="./resurse/imagini/concerte/rockstadt_75.jpg" media="(max-width:1200px)">
+                                <img class="important_events" src="./resurse/imagini/concerte/rockstadt_100.jpg" alt="Rockstadt Extreme Fest">
+                            </picture>
+                        </a>
+                        <figcaption>Rockstadt Extreme Fest, editia 2-6 August 2023. <a href="./resurse/imagini/concerte/rockstadt_100.jpg" download target="_blank">Download Poster</a></figcaption>
+                    </figure>
+                    <details>
+                        <summary>
+                            Cel mai mare festival romanesc de metal
+                        </summary>
+                        <p><em>Rockstadt Extreme Fest</em> este un <b>festival</b> de <b>muzică</b> <b>metal</b>, care are loc anual la baza cetății orașului Râșnov din <b>România</b>. Subintitulat „On the grounds of Transylvania”, <b>festivalul</b> se desfășoară în luna august, pe durata mai multor zile. <b>Festivalul</b> este dedicat în special metalului <b>extrem</b>, dar este deschis și altor genuri muzicale precum heavy <b>metal</b>, power <b>metal</b>, crossover <b>thrash</b> sau <b>metalcore</b>. Printre invitatii de anul acesta se afla si <b>trupa</b> noastra, <b>Prea</b> <b>Tarziu</b>. Va invitam sa luati bilete <strong>cat mai repede</strong> apasand pe poster!</p>
+                    </details>
+                </section>
+
+                <section id="brutal">
+                    <h3>Brutal Assault</h3>
+                    <blockquote cite="https://brutalassault.cz/en">
+                        BRUTAL
+                    </blockquote>
+                    
+                    <figure>
+                        <a href="https://brutalassault.cz/en" target="_blank">
+                            <picture>
+                                <source srcset="./resurse/imagini/concerte/brutal_50.webp" media="(max-width:700px)">
+                                <source srcset="./resurse/imagini/concerte/brutal_75.webp" media="(max-width:1200px)">
+                                <img class="important_events" src="./resurse/imagini/concerte/brutal_100.webp" alt="Brutal Assault">
+                            </picture>
+                        </a>
+                        <figcaption>Brutal Assault, editia 7-10 August 2023. <a href="./resurse/imagini/concerte/brutal_100.webp" download target="_blank">Download Poster</a></figcaption>
+                    </figure>
+                
+                    <details>
+                        <summary>
+                            Marele festival Ceh
+                        </summary>
+                        <p><em>Brutal Assault</em> este un <b>festival</b> in aer liber care se tine intr-o fortareata militara din secolul XVIII, din Jaroměř, Republica Cehă. Acesta se tine anual, la inceput de august, de Miercuri pana Sambata. La inceput evenimentul se axa pe grindcore dar, de-a lungul anilor, si-a marit orizonturile catre toate tipurile de <b>metal</b> <b>extrem</b>. Puteti vedea <b>live</b> si <b>formatia</b> noastra la editia de anul acesta, apasand pe poster. Biletele <strong>se vand repede!</strong></p>
+                    </details>
+                
+                </section>
+
+                <section id="hellfest">
+                    <h3>Hellfest</h3>
+                    <blockquote cite="https://www.hellfest.fr/en/">
+                        WELCOME TO HELL
+                    </blockquote>
+                    
+                    <figure>
+                        <a href="https://www.hellfest.fr/en" target="_blank">
+                            <picture>
+                                <source srcset="./resurse/imagini/concerte/hellfest_50.png" media="(max-width:700px)">
+                                <source srcset="./resurse/imagini/concerte/hellfest_75.png" media="(max-width:1200px)">
+                                <img class="important_events" src="./resurse/imagini/concerte/hellfest_100.png" alt="Hellfest">
+                            </picture>
+                        </a>    
+                        <figcaption>Hellfest, editia 15-18 Iunie 2023. <a href="./resurse/imagini/concerte/hellfest_100.png" download target="_blank">Download Poster</a></figcaption>
+                    </figure>
+                    <details>
+                        <summary>
+                            Unul dintre cele mai mari festivale europene
+                        </summary>
+                        <p><em>Hellfest</em> este un <b>festival</b> <b>muzical</b> anual, care are loc în Clisson, Franța, la mijlocul lunii iunie. <b>Festivalul</b> are loc în cadrul complexului sportiv din Val de Moine din Clisson, la aproximativ 35 km sud-est de orașul Nantes. Considerat un "<b>festival</b> de <b>muzică</b> <b>extremă</b>", programul său prezintă o varietate de muzică heavy <b>metal</b>, hard <b>rock</b>, punk și hardcore. <b>Formatia</b> <b>Prea</b> <b>Tarziu</b> este onorata sa fie invitata la editia anului acestuia. Cumparati bilete <strong>cat inca sunt disponibile</strong> de pe siteul oficial, apasand pe poster!</p>
+                    </details>
+                </section>
+
+                <section id="filmari">
+                    <h3>Filmari din anii trecuti</h3>
+                    <p></p>
+                    <div class="taburi_iframe">
+                        <a href="https://www.youtube.com/embed/13jzQpVD8m8" target="ifr-video">Rockstadt Extreme Fest</a>
+                        <a href="https://www.youtube.com/embed/zpbnnGKr-wA" target="ifr-video" >Brtual Assault</a>
+                        <a href="https://www.youtube.com/embed/ZdUCxVaFFw0" target="ifr-video" >Hellfest</a><br>
+                    </div>
+                    <iframe id="iframe_square" name="ifr-video" src="https://www.youtube.com/embed/13jzQpVD8m8" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+                        gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </section>
+                <!-- the rest of the requirements for the project -->
+                
+                <section id="albume">
+                    <!-- ar fi cool ca fiecare celula sa fie o poza link la albumul de pe spotify -->
+                    <div id="scrollbar">
+                        <table>
+                            <caption>O parte din noi</caption>
+                            <thead>
+                                <th>Albume</th>
+                                <th>Singles</th>
+                                <th colspan="2">EP-s</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Paranoia</td>
+                                    <td>Cadere</td>
+                                    <td>Decadere</td>
+                                    <td>Cafeaua Cruda</td>
+                                </tr>
+                                <tr>
+                                    <td>Carmangeria</td>
+                                    <td>Tradare</td>
+                                    <td>Uitare</td>
+                                    <td>Singur</td>
+                                </tr>
+                                <tr>
+                                    <td>Stalpi Umbriti</td>
+                                    <td>Oras Gri</td>
+                                    <td>Zgomot</td>
+                                    <td>Cartelul Fericirii</td>
+                                </tr>
+                                <tr>
+                                    <td>Prea Devreme</td>
+                                    <td>Poate</td>
+                                    <td>Palid</td>
+                                    <td>Prea Tarziu</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">spotify</td>
+                                    <td colspan="2">youtube</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </section>
+                
+                <section id="calendar">
+                    <h3>Calendar</h3>
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium nulla possimus odit similique distinctio corporis, quasi molestias. Autem cumque iusto nesciunt eius nostrum pariatur ex non voluptatum, aspernatur, et corporis.
+                    </p>
+                </section>
+
+                <section id="anunturi">
+                    <h3>Anunturi</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, placeat ducimus vero soluta neque cum cupiditate accusantium explicabo quasi ea quae at deserunt eligendi mollitia delectus maiores, ullam, ut eum!
+                    </p>
+                </section>
+
+                <section id="utilizatori">
+                    <h3>Utilizatori</h3>
+                    <p> 
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero consequuntur rerum, doloremque illum quam repellat nesciunt velit earum dolores veritatis architecto accusamus iure dolor, corporis unde amet. Perferendis, quo vero.
+                    </p>
+                </section>
+
+                <section id="statistici">
+                    <h3>Statistici</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae ullam deleniti ipsam itaque corrupti quis, sit voluptatem facilis quas fugiat ab rerum quibusdam perspiciatis iusto ad nulla consequatur quod at.
+                    </p>
+                </section>
+
+                <section id="server">
+                    <h3>Site si Server</h3>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae maxime ducimus laboriosam repellendus numquam velit rem doloremque facere voluptate quaerat magnam iure optio tempore corporis laborum deserunt unde, similique ipsam?
+                    </p>
+                </section>
+
+                <section id="social">
+                    <br><br><br><br>
+                    <a href="https://instagram.com/mircea__mihail" target="_blank"><i id="insta-icon" class="fa-brands fa-instagram"></i></a> 
+                </section>
+            </div>
+        </main>
+
+        <%- include("../fragmente/footer.ejs") %>
+    </body>
+</html>
