@@ -4,10 +4,9 @@
         <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
         <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
         <title>Cofetăria Dulcelind - eroare</title>
-        <link rel="stylesheet" type="text/css" href="resurse/css/eroare.css"
+        <link rel="stylesheet" type="text/css" href="resurse/css/eroare.css">
+        <link rel="stylesheet" href="resurse/css/erori.css" type="text/css">
         <%- include("../fragmente/head.ejs");  %> 
-
-
     </head>
     <body>
         <!-- nu vreau un header intrucat imi doresc sa vad eroarea drept primul lucru cand intru pe o pagina gresita -->
@@ -16,12 +15,14 @@
 			<div id="err-imag">
 				<img src="<%- locals.imagine %>" />
 			</div>
-			<section>
+			<div>
 				<h2><%- locals.titlu %></h2>
-				<p><%- locals.text %></p>
-			</section>
+            </div>
+            <div>
+                <p><%- locals.text %></p>
+            <div>
 		</div>
-        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br>
     </main>
     
     <%- include("../fragmente/footer.ejs");  %> 

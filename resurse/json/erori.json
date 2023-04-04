@@ -9,9 +9,9 @@
         {
             "identificator":404,
             "status":true,
-            "titlu":"404 - N-am, bre! (not found)",
-            "text": "Nu-i pe serverul ăsta, sorry, caută în altă parte!",
-            "imagine":"lupa.png"
+            "titlu":"404 - Pagina nu exista",
+            "text": "Suntem cam curiosi pentru binele nostru, nu crezi?",
+            "imagine":"nu_exista.png"
         },
         {
             "identificator":403,

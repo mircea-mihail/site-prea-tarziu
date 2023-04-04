@@ -1,0 +1,14 @@
+body{
+    --latime-imagine-eroare: 50vw;
+}
+
+#err-coloane{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+#err-coloane div img{
+    width: var(--latime-imagine-eroare);
+}
