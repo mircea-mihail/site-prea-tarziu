@@ -262,7 +262,6 @@ app.get("/*", function(req, res){
 })
 
 
-
 // daca dau o pagina random vreau sa apara eroarea 404, nu cannot get etc..
 
 // daca avem mai multe pagini .html in directorul principal
