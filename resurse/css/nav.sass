@@ -1,0 +1,68 @@
+#hamburger, #ch-menu 
+	display: none 
+
+body 
+	--inaltime-meniu: 50px 
+	--latime-buton: 200px 
+	--culoare-text-meniu: var(--culoare-inchisa) 
+	--culoare-chitara: var(--culoare-deschisa) 
+
+nav 
+	height: var(--inaltime-meniu) 
+	background-color: var(--culoare-inchisa) 
+	position: sticky 
+	top: 0 
+	z-index: 1 
+
+ul 
+	&.meniu 
+		display: flex 
+		justify-content: center 
+		li 
+			background-color: var(--culoare-inchisa) 
+			width: var(--latime-buton) 
+			height: var(--inaltime-meniu) 
+			overflow: hidden 
+			text-align: center 
+			box-sizing: border-box 
+			list-style-type: none 
+			transition: all var(--timp-tranzitie) linear 
+			&:hover 
+				overflow: visible 
+				opacity: 1 
+				ul 
+					opacity: 1 
+					transform: scale(1, 1) 
+		ul 
+			width: var(--latime-buton) 
+			box-sizing: border-box 
+			position: relative 
+			opacity: 0 
+			transform: scale(0, 0) 
+			transform-origin: center top 
+			transition: all var(--timp-tranzitie) linear 
+
+ul.meniu li a, ul.meniu li div 
+	display: block 
+	width: 100% 
+	height: 100% 
+	line-height: var(--inaltime-meniu) 
+	text-decoration: none 
+	font-weight: bold 
+	text-decoration: none 
+	color: var(--culoare-deschisa) 
+	transition: all linear var(--timp-tranzitie) 
+
+#home-icon-menu 
+	display: inline 
+	color: var(--culoare-chitara) 
+
+#home-text-menu 
+	display: inline 
+	color: var(--culoare-text-meniu) 
+
+ul.meniu li a:hover,ul.meniu li div:hover 
+	color: var(--culoare-highlight) 
+	--culoare-chitara: var(--culoare-highlight) 
+	--culoare-text-meniu: var(--culoare-highlight) 
+	overflow: hidden 

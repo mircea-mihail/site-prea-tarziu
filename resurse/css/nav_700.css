@@ -16,7 +16,7 @@ ul.meniu{
 #ch-menu:checked+ul.meniu{
     display: block;
     animation-name: animatie_meniu;
-    animation-duration: calc(10* var(--timp-tranzitie));
+    animation-duration: calc(var(--timp-tranzitie));
     animation-timing-function: linear;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
