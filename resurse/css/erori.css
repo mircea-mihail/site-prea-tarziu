@@ -1,5 +1,6 @@
 body{
     --latime-imagine-eroare: 50vw;
+    --rotunjire: 5vw;
 }
 
 #err-coloane{
@@ -10,5 +11,6 @@ body{
 }
 
 #err-coloane div img{
+    border-radius: var(--rotunjire);
     width: var(--latime-imagine-eroare);
 }

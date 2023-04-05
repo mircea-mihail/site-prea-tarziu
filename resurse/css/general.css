@@ -25,7 +25,7 @@ body{
     --culoare-border: #6200FF; 
     --culoare-lowlight: #0C0CF5;
 
-    --band-immage-height: 60vw;
+    --band-immage-height: 35vw;
     --festivals-width: 24vw;
     --grid-gap-width: 0.2vw;
     --width_border: 0.3vw;
@@ -60,7 +60,7 @@ body{
 }
 
 header{
-    background-image: url("../imagini/placeholder_band_immage.jpg");   
+    background-image: url("../imagini/placeholder_band_immage.png");   
     background-size: cover;
     background-repeat: no-repeat;
     height: var(--band-immage-height);
