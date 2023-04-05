@@ -148,10 +148,7 @@ app.get("/despre", function(req, res){
 function initializeazaErori(){
     var continut= fs.readFileSync(__dirname+"/resurse/json/erori.json").toString("utf-8");
     var obErori=JSON.parse(continut);
-    // for(let i=0; i < obErori.info_erori.length; i++)
-    // {
 
-    // }
     for(let eroare of obErori.info_erori){//eroare e pe rand fiecare el al vectorului
         // de acum toate caile catre resurse incep cu / (root-ul site-ului)
         eroare.imagine="/"+obErori.cale_baza+"/"+eroare.imagine;
@@ -165,59 +162,32 @@ function initializeazaErori(){
 
 initializeazaErori();
 
-/*
-// functie explicata, mai jos e completa luata de pe teams
-// toate argumentele pot fi null ( afiseazaEroare() )
-function afiseazaEroare(res, identificator, titlu, text, imagine){
+// daca programatorul seteaza titlul se ia cel din argument
+//daca nu e setat se ia cel din json
+//daca nu e setat in json se ia cel din valoarea default
+//idem pt celelalte
+
+function afiseazaEroare(res, _identificator, _titlu="Eroare nedefinita", _text, _imagine){
+    let vErori=obGlobal.obErori.info_erori;
+    
     // fiecare eroare are cate un identificator
     // daca vreau sa fac un overwrite la titlu sau text sau imagine 
     // pot face aici la afisare
 
     // cand primesc identificatorul trebuie sa ma uit in obErori sa vad daca exista 
     // identificatorul meu -> pot fie cu un for si if, sau cu o functie array -> find()
-    // find primeste ca parametru o functie cu iesire tru esau false
+    // find primeste ca parametru o functie cu iesire true sau false
 
-    // identificatorul din elemErreste egal cu identificatorul din afiseaza eroare (functia curenta)
-    let eroare = obGlobal.obErori.info_erori.find(function(elemErr){return elemErr.identificator==identificator});
+    // identificatorul din elemErr este egal cu identificatorul din afiseaza eroare (functia curenta)
     
-    // eroare poate fi null asa ca zicem if eroare (!= null)
-    if(eroare){
-        // am sters aici niste varuri ...
-        // nu am setat inca un status pt paginile mele: dam un mesaj cu statusul site-ului printr-un cod
-        if(eroare.status){
-            // in momentul asta as putea randa eroarea
-            // proprietatea titlu ia valoarea variabilei titlu de mai sus
-            
-            res.status(eroare.identificator).render("pagini/eroare", {titlu: var_titlu, text: var_text, imagine: var_imagine});
-        }
-        else{
-            // daca e eroare custom(fara status cunoscut) randez normal (daca e un identificator necunoscut)
-            res.render("pagini/eroare", {titlu: var_titlu, text: var_text, imagine: var_imagine});
-        }
-    }
-    else{
-        res.render("pagini/eroare", {
-            titlu: obGlobal.obErori.eroare_default.titlu,
-            text: obGlobal.obErori.eroare_default.text,
-            imagine: obGlobal.obErori.eroare_default.imagine
-        });
-    }
-}
-*/
-
-// daca programatorul seteaza titlul se ia cel din argument
-//daca nu e setat se ia cel din json
-//daca nu e setat in json se ia cel din valoarea default
-//idem pt celelalte
-
-function afiseazaEroare(res, _identificator, _titlu="titlu_default", _text, _imagine){
-    let vErori=obGlobal.obErori.info_erori;
     let eroare=vErori.find(function(elem) {return elem.identificator==_identificator;} )
-    if(eroare){
+    // adica daca nu e null
+    if(eroare){ 
         // ca la titlu1 ... etc poate fi facut si la text si imagine...
-        let titlu1= _titlu=="titlu_default" ?  (eroare.titlu || _titlu) : _titlu;
-        let text1= _text || eroare.text;
-        let imagine1= _imagine || eroare.imagine;
+        let titlu1 = _titlu=="Eroare nedefinita" ? (eroare.titlu || _titlu) : _titlu;
+        let text1 = _text || eroare.text;
+        let imagine1 = _imagine || eroare.imagine;
+        // seteaza un status custom pt http daca el exista
         if(eroare.status)
             res.status(eroare.identificator).render("pagini/eroare", {titlu:titlu1, text:text1, imagine:imagine1});
         else
