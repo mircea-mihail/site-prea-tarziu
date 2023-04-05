@@ -1,9 +1,9 @@
 {
     "cale_baza": "resurse/imagini/erori",
     "eroare_default":{
-        "titlu":"Eroare !!!",
-        "text": "A survenit eroare.",
-        "imagine":"interzis.png"
+        "titlu":"Eroare!",
+        "text": "A aparut o eroare.",
+        "imagine":"nu_exista.png"
     },
     "info_erori": [
         {
@@ -16,16 +16,16 @@
         {
             "identificator":403,
             "status":true,
-            "titlu":"403 - Da, tu ce cauți aici?!!",
-            "text": "Ai greșit ruta. Stânga-împrejur și pa!",
-            "imagine":"interzis.png"
+            "titlu":"403 - Accesul interzis",
+            "text": "Ai greșit ruta. Sper ca nu incerci ceva...",
+            "imagine":"nu_ai_ce_cauta.png"
         },
         {
             "identificator":400,
             "status":true,
             "titlu":"400 - Bad Request",
             "text": "Ai greșit Extensia. Hai mai incearca sau valea!",
-            "imagine":"interzis.png"
+            "imagine":"nu_exista.png"
         },
 
         {
@@ -33,7 +33,7 @@
             "status":false,
             "titlu":"Site în lucru",
             "text": "Muncim, muncim!",
-            "imagine":"interzis.png"
+            "imagine":"nu_exista.png"
         },
         
         {
@@ -41,7 +41,7 @@
             "status":false,
             "titlu":"Eroare baza date",
             "text": "Reveniti mai tarziu!",
-            "imagine":"interzis.png"
+            "imagine":"nu_exista.png"
         },
         
         {
@@ -49,7 +49,7 @@
             "status":false,
             "titlu":"Date gresit",
             "text": "Verificati datele",
-            "imagine":"interzis.png"
+            "imagine":"nu_exista.png"
         }
     ]
 }
