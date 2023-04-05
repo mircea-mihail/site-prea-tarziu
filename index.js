@@ -1,10 +1,3 @@
-// pt a accesa site-ul
-
-// localhost:8080/despre
-// localhost:8080/index
-
-// pt erori am un folder json cu erori.json
-
 // ; de la sfarsit e optional
 
 // VOM AVEA VIDEOCLIP:
@@ -61,7 +54,7 @@ app.set("view engine", "ejs");
 // ia recursiv si directoarele din resurse
 app.use("/resurse", express.static(__dirname+"/resurse"))
 
-/*
+//-------------------------------------------------------------------
 
 //pt a testa / / scriu node si experimentez cu node
 // node 
@@ -78,11 +71,10 @@ app.use("/resurse", express.static(__dirname+"/resurse"))
 // / / marcheaza o expresie regulata
 // se asteapta sa apara litera mica litera mare cifra
 
-app.use(/ \/resurse\/[0-9][a-z][A-Z] /, function(req, res){
-    res.send("ceva");
-    console.log(req.originalUrl)
-    console.log(req.url);
+app.use(/^\/resurse(\/[a-zA-Z0-9]*)*$/, function(req,res){
+    afiseazaEroare(res,403);
 });
+
 
 app.get("/favicon.ico", function(req, res){
     //aici pun evident calea spre favicon
@@ -100,26 +92,15 @@ app.get("/*.ejs", function(req, res){
 });
 // putin mai simplu decat mai sus ( orice cu extensia ejs )
 
-*/
+//-------------------------------------------------------------------
 
-// req -> request care este chiar /ceva si 
-// res -> result care este continutul functiei
 app.get("/pisica", function(req, res){
     // din request obtin url-ul
     console.log("Felicitari! Ai gasit secretul acestei pagini folosind calea", req.url);
     
-    // tot din request pot obtine ip-uri, dar discutia e mai lunga
-    // aici va fi ip-ul clientului 
     res.send("<h1>Nu pot sa cred! Un secret??</h1><h2>Da! Este o pisica dansatoare!</h2><iframe src=\"https://giphy.com/embed/BK1EfIsdkKZMY\" width=\"377\" height=\"480\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe>");
 })
 
-// trebuie sa accesez si / pt ceva.. problema e ca nu vrem sa facem 100 de app.geturi
-
-// vrem sa ascundem extensiile 
-
-// [ vector cu aliasuri unde sa se uite appgetul ]
-
-// req e request si res e result
 app.get(["/index", "/", "/home"], function(req, res){
     // fara sendfile
     // res.sendFile(__dirname+"index.html")
@@ -128,7 +109,7 @@ app.get(["/index", "/", "/home"], function(req, res){
     // am definit (ca ex) obiectul a cu proprietatea 10 si d cu proprietatea 20
     // si obiectul ip avand in el ip-ul curent prin req.ip
     // acum pot folosi toatea astea prin locals in index.ejs (daca decomentez ce e mai jos)
-    // res.render("pagini/index", {ip: req.ip, a: 10, b:20});
+    res.render("pagini/index", {ip: req.ip});
     res.render("pagini/index");
 
 })
@@ -169,17 +150,7 @@ initializeazaErori();
 
 function afiseazaEroare(res, _identificator, _titlu="Eroare nedefinita", _text, _imagine){
     let vErori=obGlobal.obErori.info_erori;
-    
-    // fiecare eroare are cate un identificator
-    // daca vreau sa fac un overwrite la titlu sau text sau imagine 
-    // pot face aici la afisare
 
-    // cand primesc identificatorul trebuie sa ma uit in obErori sa vad daca exista 
-    // identificatorul meu -> pot fie cu un for si if, sau cu o functie array -> find()
-    // find primeste ca parametru o functie cu iesire true sau false
-
-    // identificatorul din elemErr este egal cu identificatorul din afiseaza eroare (functia curenta)
-    
     let eroare=vErori.find(function(elem) {return elem.identificator==_identificator;} )
     // adica daca nu e null
     if(eroare){ 
@@ -189,13 +160,13 @@ function afiseazaEroare(res, _identificator, _titlu="Eroare nedefinita", _text, 
         let imagine1 = _imagine || eroare.imagine;
         // seteaza un status custom pt http daca el exista
         if(eroare.status)
-            res.status(eroare.identificator).render("pagini/eroare", {titlu:titlu1, text:text1, imagine:imagine1});
+            res.status(eroare.identificator).render("pagini/eroare.ejs", {titlu:titlu1, text:text1, imagine:imagine1});
         else
-            res.render("pagini/eroare", {titlu:titlu1, text:text1, imagine:imagine1});
+            res.render("pagini/eroare.ejs", {titlu:titlu1, text:text1, imagine:imagine1});
     }
     else{
         let errDef=obGlobal.obErori.eroare_default;
-        res.render("pagini/eroare", {titlu:errDef.titlu, text:errDef.text, imagine:obGlobal.obErori.cale_baza+"/"+errDef.imagine});
+        res.render("pagini/eroare.ejs", {titlu:errDef.titlu, text:errDef.text, imagine:obGlobal.obErori.cale_baza+"/"+errDef.imagine});
     }
 }
 
