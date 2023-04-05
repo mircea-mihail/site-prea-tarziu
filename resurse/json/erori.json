@@ -24,8 +24,8 @@
             "identificator":400,
             "status":true,
             "titlu":"400 - Bad Request",
-            "text": "Ai greșit Extensia. Hai mai incearca sau valea!",
-            "imagine":"nu_exista.png"
+            "text": "Fara astfel de extensii pe aceste meleaguri",
+            "imagine":"rea_extensie.jpg"
         },
 
         {
