@@ -62,6 +62,7 @@ body{
 header{
     background-image: url("../imagini/placeholder_band_immage.png");   
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     height: var(--band-immage-height);
 }
