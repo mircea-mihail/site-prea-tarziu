@@ -18,15 +18,16 @@ const res = require("express/lib/response");
 // obiect server express 
 app = express();
 
-// 
 
-// vectorFoldere=["temp", "temp1"]
-// for(let folder of vectorFoldere){
-//     //let calefolder = __dirname+"/"+folder
-//     let caleFolder = path.join(__dirname, folder);
-//     if (!fs.existsSync(caleFolder))
-//         fs.mkdirSync(caleFolder);
-// }
+// a mers si cu mai multe foldere
+vectorFoldere=["temp"]
+for(let folder of vectorFoldere){
+    let caleFolder = __dirname+"/"+folder
+    // let caleFolder = path.join(__dirname, folder);
+    if (!fs.existsSync(caleFolder))
+        fs.mkdirSync(caleFolder);
+    console.log("am creat un nou folder pt generat fisiere", caleFolder);
+}
 
 obGlobal = {
     obErori: null,
@@ -78,7 +79,7 @@ app.use(/^\/resurse(\/[a-zA-Z0-9]*)*$/, function(req,res){
 
 app.get("/favicon.ico", function(req, res){
     //aici pun evident calea spre favicon
-    res.sendFile(__dirname+"/resurse/imagini/favicon.ico");
+    res.sendFile(__dirname+"/resurse/icon/favicon.ico");
 });
 
 //trebuie sa stiu si cum adaug erori noi
@@ -90,9 +91,10 @@ app.get("/favicon.ico", function(req, res){
 app.get("/*.ejs", function(req, res){
     afiseazaEroare(res, 400);
 });
-// putin mai simplu decat mai sus ( orice cu extensia ejs )
 
-//-------------------------------------------------------------------
+app.get("/*.*", function(req, res){
+    afiseazaEroare(res, 400);
+});
 
 app.get("/pisica", function(req, res){
     // din request obtin url-ul
