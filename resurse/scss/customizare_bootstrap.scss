@@ -1,0 +1,15 @@
+// zic sa foloseasca bootstrap.scss din bootstrap dar sa inlocuiesc cateva variabile 
+// si fac asta chiar cu with
+
+// daca folosim bootstrap sa folosim cu customizari cu schema noastra cromatica etc
+
+@use '../../node_modules/bootstrap/scss/bootstrap.scss' with 
+(
+    // aici se pun variabile
+    $primary: red,
+    $secondary: purple
+    // asa se vor face toate toate cerintele (ca mai sus)
+    // border width
+    // dimensiuni ecran: grid-breakpoints (grid in functie de ecran)
+    // cautam fie cu control f fie cautam in documentatie
+)

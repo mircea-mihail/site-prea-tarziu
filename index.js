@@ -7,6 +7,8 @@
 
 // importa modulul express care face web building mai usor
 // si il asigneaza unei constante 
+const path=require("path")
+
 const express = require("express");
 
 // file system module
@@ -15,12 +17,23 @@ const fs = require("fs");
 // importa modulul response din modulul express
 const res = require("express/lib/response");
 
+const sass=require('sass');
+
 // obiect server express 
 app = express();
 
+obGlobal = {
+    obErori: null,
+    obImagini: null,
+    // nu sunt bune astea pt un motiv dar am nevoie de ele pt compilare automata
+    folderScss: path.join(__dirname, "resurse/scss"),
+    folderCss: path.join(__dirname, "resurse/css")
+}
+
 
 // a mers si cu mai multe foldere
-vectorFoldere=["temp"]
+// daca nu exista vrem sa il creem
+vectorFoldere=["temp", "backup"]
 for(let folder of vectorFoldere){
     let caleFolder = __dirname+"/"+folder
     // let caleFolder = path.join(__dirname, folder);
@@ -29,10 +42,16 @@ for(let folder of vectorFoldere){
     console.log("am creat un nou folder pt generat fisiere", caleFolder);
 }
 
-obGlobal = {
-    obErori: null,
-    obImagini: null
+// functie care compileaza scss-ul
+function compileazaScss(caleScss, caleCss){
+    if(!path.isAbsolute(caleScss))
+        caleScss=path.join(obGlobal.folderScss, caleScss)    
+
+    if(!path.isAbsolute(caleCss))
+        caleCss=path.join(obGlobal.folderCss, caleCss)
 }
+
+
 
 // folder proiect
 console.log("proiect", __dirname);
@@ -54,6 +73,8 @@ app.set("view engine", "ejs");
 
 // ia recursiv si directoarele din resurse
 app.use("/resurse", express.static(__dirname+"/resurse"))
+
+app.use("/node_modules", express.static(__dirname + "/node_modules"));
 
 //-------------------------------------------------------------------
 
@@ -100,7 +121,7 @@ app.get("/pisica", function(req, res){
     // din request obtin url-ul
     console.log("Felicitari! Ai gasit secretul acestei pagini folosind calea", req.url);
     
-    res.send("<h1>Nu pot sa cred! Un secret??</h1><h2>Da! Este o pisica dansatoare!</h2><iframe src=\"https://giphy.com/embed/BK1EfIsdkKZMY\" width=\"377\" height=\"480\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe>");
+    res.send("<h1>Nu pot sa cred! Un secret??</h1><h2>Da! Este o pisica dansatoare!</h2><iframe src=\"https://giphy.com/embed/BK1EfIsdkKZMY\" width=\"377\" height=\"480\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe><br>for more information click the link: <a href=\"https://pebit.github.io/\">  PisiSite </a>");
 })
 
 app.get(["/index", "/", "/home"], function(req, res){
