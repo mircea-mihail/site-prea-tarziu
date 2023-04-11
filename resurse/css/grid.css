@@ -24,6 +24,15 @@
     color: var(--culoare-deschisa);
     font-weight: bold;
     padding: var(--padding-grid);
+    /* asta intinde tot bg-ul pe tot fundalul */
+    justify-items: stretch;
+}
+
+#grid_pagina *{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
 }
 
 #grid_pagina h3{
@@ -32,6 +41,7 @@
 
 /* stabilire nume de grid pt fiiecare sectiune */
 #titlu_turneu{
+    justify-self: center;
     /* border: var(--width_border) solid var(--culoare-border); */
     grid-area: z-titlu_turneu;
 }
@@ -60,8 +70,6 @@
     grid-area: z-filmari;
 }
 #albume{
-    /* border: var(--width_border) solid var(--culoare-border);
-    background-color: var(--culoare-border); */
     grid-area: z-albume;
 }
 #calendar{
@@ -98,3 +106,67 @@
     /* border: var(--width_border) solid var(--culoare-border);  */
     grid-area: z-social;
 }
+/* 
+#rockstadt *{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#brutal *{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#hellfest *{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#calendar *{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#anunturi *{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#utilizatori *{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#statistici *{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#server *{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#social *{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+} */
+
+/* fixing the first command */
+#filmari {
+    flex-direction: column; 
+    justify-self: center;
+}
+#filmari div{
+    flex-direction: row;
+}
+#albume{
+    display: table;    
+}
+
+#titlu_turneu *{
+    flex-direction: row;
+}
+
