@@ -8,18 +8,15 @@
 // importa modulul express care face web building mai usor
 // si il asigneaza unei constante 
 const path=require("path")
-
 const express = require("express");
-
 // file system module
 const fs = require("fs");
-
 // importa modulul response din modulul express
 const res = require("express/lib/response");
-
 const sass=require('sass');
-
+const sharp = require('sharp');
 // obiect server express 
+
 app = express();
 
 obGlobal = {
@@ -29,7 +26,6 @@ obGlobal = {
     folderScss: path.join(__dirname, "resurse/scss"),
     folderCss: path.join(__dirname, "resurse/css")
 }
-
 
 // a mers si cu mai multe foldere
 // daca nu exista vrem sa il creem
@@ -50,8 +46,6 @@ function compileazaScss(caleScss, caleCss){
     if(!path.isAbsolute(caleCss))
         caleCss=path.join(obGlobal.folderCss, caleCss)
 }
-
-
 
 // folder proiect
 console.log("proiect", __dirname);
@@ -166,6 +160,51 @@ function initializeazaErori(){
 
 initializeazaErori();
 
+//////////////////////////////////  lab7  //////////////////////////////////////
+// functie similara cu initializeaza erori, folosita pentru imagini
+function initializeazaImagini(){
+    var continut= fs.readFileSync(__dirname+"/resurse/json/galerie.json").toString("utf-8");
+    
+    obGlobal.obImagini=JSON.parse(continut);
+    // ceva de facut cu imagini mici si medii
+    let vImagini = obGlobal.obImagini.imagini;
+    
+    let cale_abs = path.join(__dirname, obGlobal.obImagini.cale_galerie);
+    let cale_abs_mediu = path.join(cale_abs, "mediu");
+    let cale_abs_mic = path.join(cale_abs, "mic");
+    if(!fs.existsSync(cale_abs_mediu)) {
+        fs.mkdirSync(cale_abs_mediu);
+    }
+
+    if(!fs.existsSync(cale_abs_mic)) {
+        fs.mkdirSync(cale_abs_mic);
+    }
+
+    // pt fiecare imagine din vectorul de imagini fac una mica
+    // webp are un encoding mai eficient decat png si jpg
+    for(let imag of vImagini){
+        // astea sunt imagini mari
+        [numeFis, ext] = imag.fisier.split(".");
+        // aici tratez fisierele de marime medie
+        imag.fisier_mediu ="/" + path.join(obGlobal.obImagini.cale_galerie, "mediu", numeFis + ".webp")
+        let cale_abs_fis_mediu = path.join(__dirname, imag.fisier_mediu);
+    
+        imag.fisier_mic ="/" + path.join(obGlobal.obImagini.cale_galerie, "mic", numeFis + ".webp")
+        let cale_abs_fis_mic = path.join(__dirname, imag.fisier_mic);
+        
+
+        // sharp lucreaza pe imagini -> il folosim sa redimensionam imagini
+        // by default resize ia doar width si modifica height accordingly, apoi fisierul e pus in cale_abs_fis_mediu
+        sharp(path.join(cale_abs, imag.fisier)).resize(500).toFile(cale_abs_fis_mediu);
+        sharp(path.join(cale_abs, imag.fisier)).resize(300).toFile(cale_abs_fis_mic);
+
+
+        imag.fisier ="/" + path.join(obGlobal.obImagini.cale_galerie, imag.fisier)
+    }
+}
+
+initializeazaImagini();
+
 // daca programatorul seteaza titlul se ia cel din argument
 //daca nu e setat se ia cel din json
 //daca nu e setat in json se ia cel din valoarea default
@@ -196,9 +235,10 @@ function afiseazaEroare(res, _identificator, _titlu="Eroare nedefinita", _text, 
 // asta trebuie sa fie ultima pagina randata si trateaza toate paginile posibile
 
 app.get("/*", function(req, res){
+    
     console.log("cale: ", req.url);
     // in request.url va fi tot ce scrie utilizatorul dupa /
-    res.render("pagini"+req.url, function(err, rezRandare){ 
+    res.render("pagini"+req.url, {imagini: obGlobal.obImagini.imagini}, function(err, rezRandare){ 
         // pot avea dupa functie callback (functie transmisa ca parametru)
         console.log("eroare: ", err);
         console.log("rezultat randare: ", rezRandare);
@@ -235,3 +275,11 @@ app.listen(8080);
 console.log("serverul a pornit");
 
 // acum putem face a doua pagina
+
+
+///////////////////////////////lab7 -> json cu imagini/////////////////////////
+//exista informatii care depind de o perioada a lunii sau a anului 
+//exista informatii de timp pe care va trebui sa le modificam + ceva tranzitie
+//resurse/imagini/galerie -> ne punem niste imagini specifice, pe care le modificam noi dupa
+
+///////////////////////////////////////////////////////////////////////////////
