@@ -1,0 +1,30 @@
+bootstrap:
+    pros:
+        e un framework (cadru de lucru)
+        are gata implementate meniuri, butoane etx
+        nu mai trebuie sa facem noi de mana chestii
+    cons:
+        toate vor arata la fel
+        e greu de rescris un meniu 
+        bugurile lor devin si ale noastre
+
+    Vrem sa facem o combinatie intre bootstrap si css
+
+    instalare cu npm install bootstrap
+
+    se foloseste cu link extern -> daca pica site-ul s-a dus
+
+    getbootstrap.com -> docs -> components -> si vad ce trebuie sa modific ca sa obtinunele componente
+
+    pot modifica doar variabilele din bootstrap care au default
+    @use 'cale bootstrap.scss ' with bootstrap.scss   
+    am dat comanda de mai jos care compileaza bootstrap cu variabilele de customizare_bootstrap
+    sass scss/customizare_bootstrap.scss css/customizare_bootstrap.css
+
+    PASI: 
+        creezi customizare.scss
+        compilare fisier si pus in css
+        inclus in head fisierul css compilat
+    
+    Compilare automata scss: vom face asta la curs/lab 
+        

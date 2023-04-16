@@ -1,0 +1,38 @@
+npm init -> pt a pregati proiectul
+fac treaba cu init si se creaza un package json
+
+cu chestia aia cu / /
+se numeste expresie regulata
+
+verifica daca abc incepe cu abc
+
+    "abc".match(/^abc/g)
+
+g vine de la global
+lookup nu consuma acel 7?  doar stie ca exista. Pt a consuma 7-le dam  si un 0-9
+
+    "abc7abc".match(/^abc(?=7)[0.-9]abc/g)
+
+vede daca e un 7 sau un 3
+
+    "abc7abc".match(/^abc((?=7) | (?=3)) [0.-9]abc/g)
+
+
++ inseamna 1 sau oricate
+* inseamna 0 sau oricate
+
+0 inseamna ca pot avea fie 0 fie un numar care nu incepe cu 0 de mai mult de o cifra
+    "23+14".match(/^(([1-9][0-9])*) | 0/)
+
+exista regular expressionn
+
+
+poate fi orice litera mare urmata de oricate litere mici, urmate de cel putin un a 
+urmat apoi de oricate alte litere mici (inclusiv 0)
+
+    "Ionela".match(/^[A-Z][a-z]*(?=a)[a-z]*/)
+
+/^a.b$/ -> orice caracter intre a si b de ex a7b sau ajb
+
+partea de negativ:
+    ?!a -> sa nu fie a 

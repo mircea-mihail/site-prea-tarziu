@@ -4,7 +4,7 @@
 		{
 			"fisier":"briose-frisca.png",
 			"descriere":"Brioșe",
-			"luni":["martie","februarie","noiembrie"]
+			"luni":["martie","februarie","noiembrie", "aprilie"]
 		},
 		{
 			"fisier":"clatite.png",
@@ -15,7 +15,7 @@
 		{
 			"fisier":"gogosi.png",
 			"descriere":"Gogoși glazurate",
-			"luni":["ianuarie","noiembrie","iunie","martie"]
+			"luni":["ianuarie","noiembrie","iunie","martie", "aprilie"]
 		},
 		{
 			"fisier":"tort-scortisoara.png",

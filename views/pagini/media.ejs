@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <title>Prea târziu</title>
+        
+        <meta name="keywords" content="poze, mdeia, filmari, clipuri, trupa, formatie, prea, tarziu, romania, romaneasca, metal, thrash, fast, speed, death, extreme, extrem, muzica, chitara, tobe, bas, vocal"><!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
+        <meta name="description" content="Poze cu faimoasa trup Prea Târziu! Prea Târziu este o formatie de Thrash Metal romaneasca formata din 3 membrii: Mircea, Costi si Brihac. Acest proiect a luat nastere dupa nenumarate repetitii in diferite sali din Bucuresti."><!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
+        <%- include("../fragmente/head.ejs") %>
+    </head>
+    
+    <body id="home">
+    <!-- <body id="home" class="dark"> -->
+        <%- include("../fragmente/header.ejs") %>
+
+        <main>            
+            <section id="galerie-statica">
+                <br><br>
+                <h1>Media</h1>
+            
+                <!-- o zona oarecare in care sa pun acest div -->
+                <div id = "grid-galerie">
+                    <!-- locals.imagini e un vector de imagini -->
+                        <!-- va trebui sa adaum si imag.fisier_mic -->
+                        <% 
+                        for (let imag of locals.imagini) { 
+                            d = new Date()
+                            // in d am data curenta ( de retinut ca luna incepe de la 0 -> Ianuarie) 
+                            var v_luni=["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"]
+                            // cu acest if pun pe site doar pozele care au luna curenta in json
+                            if( imag.luni && imag.luni.includes(v_luni[d.getMonth()])){
+                        %>
+                            <figure>
+                                <picture>
+                                    <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1000px)" />
+                                    <img src="<%- imag.fisier %>" alt="imagine">
+                                </picture>
+                                <figcaption><%- imag.descriere %></figcaption>
+                            </figure>
+                        
+                            <% }  %>
+                        <% }  %>            
+                </div>
+                <br><br><br><br>
+            </section>
+        </main>
+
+        <%- include("../fragmente/footer.ejs") %>
+
+    </body>
+</html>

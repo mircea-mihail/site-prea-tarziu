@@ -6,10 +6,16 @@
 @use '../../node_modules/bootstrap/scss/bootstrap.scss' with 
 (
     // aici se pun variabile
+    
     $primary: red,
     $secondary: purple
+
     // asa se vor face toate toate cerintele (ca mai sus)
     // border width
     // dimensiuni ecran: grid-breakpoints (grid in functie de ecran)
     // cautam fie cu control f fie cautam in documentatie
+    // $font-family-base: 'Montserrat' sans-serif
+
+    // $font-family-base: 'Montserrat', sans-serif;
+
 )
