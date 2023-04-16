@@ -52,6 +52,9 @@ body.dark{
 }
 
 body{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+
     background-color: var(--culoare-fundal);
     color: var(--culoare-text);
 

@@ -1,0 +1,32 @@
+#galerie-statica{
+    padding-left:var(--padding-intern);
+    padding-right:var(--padding-intern);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+#grid-galerie {
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-row-gap: 0.5em;
+    grid-column-gap: 4em;
+    counter-reset: nrimag 0;
+}
+#grid-galerie img{
+    width: 100%;
+}
+#grid-galerie figcaption{
+    text-align:center;
+    counter-increment: nrimag 1;
+}
+
+#grid-galerie figcaption::before{
+    content: counter(nrimag, upper-alpha) ")";
+}
+
+@media screen and (max-width:500px){
+    #grid-galerie {
+        display:block;
+    }
+}
