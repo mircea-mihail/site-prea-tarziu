@@ -24,28 +24,57 @@ obGlobal = {
     obImagini: null,
     // nu sunt bune astea pt un motiv dar am nevoie de ele pt compilare automata
     folderScss: path.join(__dirname, "resurse/scss"),
-    folderCss: path.join(__dirname, "resurse/css")
+    folderCss: path.join(__dirname, "resurse/css"),
+    folderBackup: path.join(__dirname, "backup")
 }
 
 // a mers si cu mai multe foldere
 // daca nu exista vrem sa il creem
 vectorFoldere=["temp", "backup"]
 for(let folder of vectorFoldere){
-    let caleFolder = __dirname+"/"+folder
+    let caleFolder = path.join(__dirname, folder);
     // let caleFolder = path.join(__dirname, folder);
-    if (!fs.existsSync(caleFolder))
+    if (!fs.existsSync(caleFolder)){
         fs.mkdirSync(caleFolder);
-    console.log("am creat un nou folder pt generat fisiere", caleFolder);
+        console.log("am creat un nou folder pt generat fisiere", caleFolder);
+    }
 }
 
 // functie care compileaza scss-ul
 function compileazaScss(caleScss, caleCss){
+    if(!caleCss){
+        // vreau sa scot din cale numele fisierului, care e chiar ultimul dupa /
+        // separ calea dupa / si astfel am dir/dir/dir/file.ext
+        let vectorCale = caleScss.split("/");
+        let numeFisExt = vectorCale[vectorCale.length - 1];
+        // split transforma un sir intr-un vector de x subsiruri separate de separator
+        let numeFis = numeFisExt.split(".")[0];
+        caleCss = numeFis + ".css";
+    }
+
+    // cale scss deja exista ca incercam sa compilam scss-ul :)
+
+    // daca nu exista o cale absoluta pun tot pe calea default
     if(!path.isAbsolute(caleScss))
         caleScss=path.join(obGlobal.folderScss, caleScss)    
 
     if(!path.isAbsolute(caleCss))
         caleCss=path.join(obGlobal.folderCss, caleCss)
+
+    // in acest punct exista cai absolute in folderScss si folderCss
+    let vectorCale = caleCss.split("/");
+    numeFisCss = vectorCale[vectorCale.length -1];
+    if(fs.existsSync(caleCss)){
+        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, numeFisCss))
+    }
+    // diferenta dintre copy file si copy file sync e ca a doua face programul sa astepte sa se realizeze copierea
+    // sourcemap ma ajuta sa vad linia din fisierul sass care a generat o anumita chestie din site
+    rez = sass.compile(caleScss, {"sourceMap":true});
+    fs.writeFileSync(caleCss, rez.css);
+    console.log("Compilare SCSS", rez);
 }
+
+compileazaScss("a.scss");
 
 // folder proiect
 console.log("proiect", __dirname);
@@ -87,6 +116,8 @@ app.use("/node_modules", express.static(__dirname + "/node_modules"));
 // / / marcheaza o expresie regulata
 // se asteapta sa apara litera mica litera mare cifra
 
+
+
 app.use(/^\/resurse(\/[a-zA-Z0-9]*)*$/, function(req,res){
     afiseazaEroare(res,403);
 });
@@ -118,6 +149,7 @@ app.get("/pisica", function(req, res){
     res.send("<h1>Nu pot sa cred! Un secret??</h1><h2>Da! Este o pisica dansatoare!</h2><iframe src=\"https://giphy.com/embed/BK1EfIsdkKZMY\" width=\"377\" height=\"480\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe><br>for more information click the link: <a href=\"https://pebit.github.io/\">  PisiSite </a>");
 })
 
+
 app.get(["/index", "/", "/home"], function(req, res){
     // fara sendfile
     // res.sendFile(__dirname+"index.html")
@@ -127,20 +159,18 @@ app.get(["/index", "/", "/home"], function(req, res){
     // si obiectul ip avand in el ip-ul curent prin req.ip
     // acum pot folosi toatea astea prin locals in index.ejs (daca decomentez ce e mai jos)
     res.render("pagini/index", {ip: req.ip});
-    res.render("pagini/index");
-
 })
 
-// pe langa varianta asta cu copy paste, mai exista o varianta mai rapida care genereaza pagini
+// // pe langa varianta asta cu copy paste, mai exista o varianta mai rapida care genereaza pagini
 
-// as vrea sa nu am un app.get pt fiecare pagina
-app.get("/despre", function(req, res){
-    // fara sendfile
-    // res.sendFile(__dirname+"index.html")
-    // trebuie sa compileze
+// // as vrea sa nu am un app.get pt fiecare pagina
+// app.get("/despre", function(req, res){
+//     // fara sendfile
+//     // res.sendFile(__dirname+"index.html")
+//     // trebuie sa compileze
 
-    res.render("pagini/despre");
-})
+//     res.render("pagini/despre");
+// })
 
 // parsare json cu erori, transformare in string si 
 function initializeazaErori(){
@@ -154,6 +184,7 @@ function initializeazaErori(){
     // obErori e vizibil doar in functie si avem nevoie de el global
     // obiectul erori din obiectul global ia valoarea obErori din initializeazaErori 
     obGlobal.obErori=obErori;
+    // console.log("o eroare", obGlobal.obErori.info_erori[1]);
 
     // acum am in obiectul global obErori toate erorile mele din json
 }
@@ -210,7 +241,8 @@ initializeazaImagini();
 //daca nu e setat in json se ia cel din valoarea default
 //idem pt celelalte
 
-function afiseazaEroare(res, _identificator, _titlu="Eroare nedefinita", _text, _imagine){
+
+function afiseazaEroare(res, _identificator, _titlu="Eroare nedefinita", _text , _imagine){
     let vErori=obGlobal.obErori.info_erori;
 
     let eroare=vErori.find(function(elem) {return elem.identificator==_identificator;} )
@@ -235,7 +267,6 @@ function afiseazaEroare(res, _identificator, _titlu="Eroare nedefinita", _text, 
 // asta trebuie sa fie ultima pagina randata si trateaza toate paginile posibile
 
 app.get("/*", function(req, res){
-    
     console.log("cale: ", req.url);
     // in request.url va fi tot ce scrie utilizatorul dupa /
     res.render("pagini"+req.url, {imagini: obGlobal.obImagini.imagini}, function(err, rezRandare){ 
