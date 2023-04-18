@@ -1,0 +1,41 @@
+#hamburger 
+	display: block 
+	height: var(--inaltime-meniu) 
+	margin: 0 
+	color: var(--culoare-deschisa) 
+	font-size: calc(var(--inaltime-meniu) *0.9) 
+	width: auto 
+	margin: 0 
+	padding: 0 
+
+ul 
+	&.meniu 
+		display: none 
+
+#ch-menu 
+	&:checked 
+		& + ul 
+			&.meniu 
+				display: block 
+				animation-name: animatie_meniu 
+				animation-duration: calc(var(--timp-tranzitie)) 
+				animation-timing-function: linear 
+				animation-fill-mode: forwards 
+				animation-iteration-count: 1 
+				transform-origin: center top 
+				width: 100 
+
+@keyframes 
+	animatie_meniu 
+		0%{
+        opacity: 0 
+		transform: scale(1, 0) 
+100% 
+	opacity: 1 
+	transform: scale(1, 1) 
+} 
+	ul 
+		&.meniu 
+			li 
+				div 
+					color: var(--culoare-deschisa) 
