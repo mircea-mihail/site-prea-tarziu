@@ -6,3 +6,6 @@ Acest repository este dedicat proiectului meu pentru cursul de Tehnici Web de la
 
 Pentru fontul trupei am folosit: https://www.fontspace.com/burn-the-witch-font-f28730
 
+# Resurse folosite:
+
+Instalare Postgres: https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart

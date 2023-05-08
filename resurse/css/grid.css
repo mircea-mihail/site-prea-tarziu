@@ -106,53 +106,6 @@
     /* border: var(--width_border) solid var(--culoare-border);  */
     grid-area: z-social;
 }
-/* 
-#rockstadt *{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-#brutal *{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-#hellfest *{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-#calendar *{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-#anunturi *{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-#utilizatori *{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-#statistici *{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-#server *{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-#social *{
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-} */
 
 /* fixing the first command */
 #filmari {
@@ -162,10 +115,20 @@
 #filmari div{
     flex-direction: row;
 }
-#albume{
+#albume table{
     display: table;    
 }
 
+#albume table tbody tr{
+    display: table;    
+}
+
+
+#albume table tbody tr td{
+    display: table;    
+}
+
+/* acum trebuiee si pe td-uri si pe tr-uri sa pun display table */
 #titlu_turneu *{
     flex-direction: row;
 }

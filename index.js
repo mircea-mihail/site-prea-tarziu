@@ -1,3 +1,11 @@
+// GALERIE ANIMATA -> TASK BONUS DE 45 DE PUNCTE
+//      sa vad in exemplele din curs 5 -> reverse engineering 
+//      se poate intampla sa am un nr schimbator de imagini -> treubie sa ma folosesc de scss
+//      acolo definim procentajele cu o formula in functie de nr de imagini
+//      final curs 8 -> niste comentarii ( + inceput lab 8 pt explicatiii de js si SCSS)
+
+// am ramas pe la minutul 58 din lab 8
+
 // ; de la sfarsit e optional
 
 // VOM AVEA VIDEOCLIP:
@@ -15,9 +23,26 @@ const fs = require("fs");
 const res = require("express/lib/response");
 const sass=require('sass');
 const sharp = require('sharp');
-// obiect server express 
+const {Client} =require('pg');
 
+// obiect server express 
 app = express();
+
+
+
+// /////////////////////////client -> sa ma uit pe teams pe recording//////////////////////////////
+
+var client= new Client({database:"db_prea_tarziu",
+        user:"mihail",
+        password:"mihail",
+        host:"localhost",
+        port:5432});
+client.connect();
+
+client.query("select * from lab8_test", function(err, rez){
+    console.log("eroare:", err);
+    console.log("rezultat:", rez);
+})
 
 obGlobal = {
     obErori: null,
@@ -25,8 +50,30 @@ obGlobal = {
     // nu sunt bune astea pt un motiv dar am nevoie de ele pt compilare automata
     folderScss: path.join(__dirname, "resurse/scss"),
     folderCss: path.join(__dirname, "resurse/css"),
-    folderBackup: path.join(__dirname, "backup")
+    folderBackup: path.join(__dirname, "backup"), 
+    // vreau sa generez meniul pe baza datelor din tabel -> ar putea exista elemente ce difera de la o 
+    // schimbare la alta -> mereu va trebui un programator sa intre in cod la fiecare schimbare
+    
+    // vreau doar sa schimb baza de date (tabelul), nu si codul.
+    optiuniMeniu:[]
 }
+
+client.query("select * from unnest(enum_range(null::tipuri_produse))",function(err, rezTipuri){
+    // asta va fi cod executat la pornirea serverululi    
+    if(err){
+        console.log(err);
+    }
+    else{
+        //vreau sa am acces la aceste tipuri din toate paginile
+        obGlobal.optiuniMeniu = rezTipuri.rows;
+    }
+
+    // ar trebui sa fac asta pe fiecare app.get -> 
+    //ar trebui ca toate paginile sa aiba in locals acest meniu de optiuni
+    //problema e ca e posibil sa uitam sa adaugam chestii
+});
+
+
 
 // a mers si cu mai multe foldere
 // daca nu exista vrem sa il creem
@@ -45,13 +92,14 @@ function compileazaScss(caleScss, caleCss){
     if(!caleCss){
         // vreau sa scot din cale numele fisierului, care e chiar ultimul dupa /
         // separ calea dupa / si astfel am dir/dir/dir/file.ext
-        let vectorCale = caleScss.split("/");
-        let numeFisExt = vectorCale[vectorCale.length - 1];
+        // windows users might struggle cu caleScss.split("/")
+        // daca faceam cu split trebuia sa iau ultimul rezultat: let numeFisExt = vectorCale[vectorCale.length - 1];
+
+        let numeFisExt = path.basename(caleScss);
         // split transforma un sir intr-un vector de x subsiruri separate de separator
         let numeFis = numeFisExt.split(".")[0];
         caleCss = numeFis + ".css";
     }
-
     // cale scss deja exista ca incercam sa compilam scss-ul :)
 
     // daca nu exista o cale absoluta pun tot pe calea default
@@ -59,22 +107,56 @@ function compileazaScss(caleScss, caleCss){
         caleScss=path.join(obGlobal.folderScss, caleScss)    
 
     if(!path.isAbsolute(caleCss))
-        caleCss=path.join(obGlobal.folderCss, caleCss)
+    
+    caleCss=path.join(obGlobal.folderCss, caleCss)
 
-    // in acest punct exista cai absolute in folderScss si folderCss
-    let vectorCale = caleCss.split("/");
-    numeFisCss = vectorCale[vectorCale.length -1];
-    if(fs.existsSync(caleCss)){
-        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, numeFisCss))
+    //cale resurse backup
+    let caleResBackup=path.join(obGlobal.folderBackup, "resurse/css");
+    if (!fs.existsSync(caleResBackup))
+        fs.mkdirSync(caleResBackup, {recursive:true});
+
+    let numeFisCss=path.basename(caleCss);
+    if (fs.existsSync(caleCss)){
+        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,"resurse/css",numeFisCss ))// +(new Date()).getTime()
     }
+
     // diferenta dintre copy file si copy file sync e ca a doua face programul sa astepte sa se realizeze copierea
     // sourcemap ma ajuta sa vad linia din fisierul sass care a generat o anumita chestie din site
     rez = sass.compile(caleScss, {"sourceMap":true});
     fs.writeFileSync(caleCss, rez.css);
-    console.log("Compilare SCSS", rez);
+}
+//-------------------------------------------------------compilare bootstrap--------------------------------------------------------------------------
+// compileazaScss("customizare_bootstrap.scss");
+
+// de fiecare data cand pornesc serverul sa se compileze toate fisierele scss!
+v = fs.readdirSync(obGlobal.folderScss) 
+// v e un array cu fiecare fisier din folderul folder.SCSS
+// console.log(v);
+
+for (let numeFisierScss of v){
+    if(path.extname(numeFisierScss) == ".scss"){
+        compileazaScss(numeFisierScss);
+        console.log("am compilat", numeFisierScss);
+    }
 }
 
-compileazaScss("a.scss");
+// watch -> se uita la fisiere si verifica daca au aparut schimbari
+// deci se compileaza scss doar cand apar modificari la folderul de scss
+fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
+    console.log(eveniment, numeFis);
+    // evenimente:  change (daca modific ceva)
+    //              rename (adca redenumesc/creez un fisier)
+    if(eveniment == "change" || eveniment == "rename"){
+        // daca un fisier a fost sters tot rename primesc -> verific daca exista mai intai!!
+        let caleCompleta = path.join(obGlobal.folderScss, numeFis);
+        if(fs.existsSync(caleCompleta)){
+            compileazaScss(caleCompleta);
+            // nu e nevoie sa ii dau neaparat numele fisierului -> isi extrage el fisierul din calea data
+            console.log("a fost creat un fisier nou, pe care l-am si compilat", numeFis)
+        }
+    } 
+});
+
 
 // folder proiect
 console.log("proiect", __dirname);
@@ -99,6 +181,16 @@ app.use("/resurse", express.static(__dirname+"/resurse"))
 
 app.use("/node_modules", express.static(__dirname + "/node_modules"));
 
+// asa pun in locals variabila mea cu optiuniMeniu
+// problema e ca nu se mai uita in niciun alt app.use
+// deoarece asta vreau sa fie in toate paginile, voi adauga parametrul next
+app.use("/*", function(req, res, next){
+    //o alta versiune de a pune ceva in locals
+    res.locals.optiuniMeniu=obGlobal.optiuniMeniu;
+    next();
+    // next trece mai departe la urmatorul app.use
+})
+
 //-------------------------------------------------------------------
 
 //pt a testa / / scriu node si experimentez cu node
@@ -115,8 +207,6 @@ app.use("/node_modules", express.static(__dirname + "/node_modules"));
 
 // / / marcheaza o expresie regulata
 // se asteapta sa apara litera mica litera mare cifra
-
-
 
 app.use(/^\/resurse(\/[a-zA-Z0-9]*)*$/, function(req,res){
     afiseazaEroare(res,403);
@@ -241,7 +331,6 @@ initializeazaImagini();
 //daca nu e setat in json se ia cel din valoarea default
 //idem pt celelalte
 
-
 function afiseazaEroare(res, _identificator, _titlu="Eroare nedefinita", _text , _imagine){
     let vErori=obGlobal.obErori.info_erori;
 
@@ -263,18 +352,100 @@ function afiseazaEroare(res, _identificator, _titlu="Eroare nedefinita", _text ,
         res.render("pagini/eroare.ejs", {titlu:errDef.titlu, text:errDef.text, imagine:obGlobal.obErori.cale_baza+"/"+errDef.imagine});
     }
 }
+ 
+// -------------------------------------------- PRODUSE ------------------------------------------------
+
+
+// TREBUIE SA FAC CURSUL 8 PT A PUTEA VERIFICA PAGINA ASTA
+
+// proprietati: acolate -> inseamna ca e un obiect 
+//ar putea da eroare ca nu avem imaginile de pe teams,
+//dar ddaca vedem textele it's okay
+
+// pt incarcarea produselor din tabele
+app.get("/produse",function(req, res){
+    //TO DO query pentru a selecta toate produsele
+    //TO DO se adauaga filtrarea dupa tipul produsului
+    //TO DO se selecteaza si toate valorile din enum-ul categ_prajitura
+    
+    // acest query ajuta sa faca dropdown-ul posibil
+    client.query("select * from unnest(enum_range(null::categ_prajitura))",function(err, rezCategorie){
+        //query-uri imbricate pt ca nu putem folosi mereu await?
+        let conditieWhere = "";
+        //console.log("\n\nreq.query: ", req.query, "\n\nreq.query.tip: ", req.query.tip, "\n\n");
+        if(req.query.tip){
+            // pot da comenzi de js in 
+            // tip produs e coloana care defineste tipul produsului
+            conditieWhere = ` where tip_produs = '${req.query.tip}'`;
+        }
+        // daca nu am un wehre ramane doar select, dar daca am se concateneaza si e executata
+        client.query("select * from prajituri " + conditieWhere , function( err, rez){
+            console.log(300)
+            if(err){
+                console.log(err);
+                afiseazaEroare(res, 2);
+            }
+            else
+                // de aici sunt trimise optiunile pt dropdown
+                res.render("pagini/produse", {produse: rez.rows, optiuni:rezCategorie.rows});
+        }); 
+    });
+});
+
+// cu asta filtrez: pot pune in link ce vreau sa imi afiseze in pagina
+// gelaterie&a=10&nu&stiu&ce&altceva
+// app.get("/produs/:id",function(req, res){
+//     console.log(req.params);
+//     // vad in console log ce am in req.params si cum am ales id-ul si toate cele    
+//     client.query("select * from unnest(enum_range(null::categ_prajitura))",function(err, rez){
+//         // console.log(err);
+//         // console.log(rez);
+//         let conditieWhere = "";
+//         if(req.query.tip){
+//             // pot da comenzi de js in 
+//             conditieWhere = ` where tip_produs = '${req.query.tip}'`;
+//         }
+//         // daca nu am un wehre ramane doar select, dar daca am se concateneaza si e executata
+//         client.query("select * from prajituri " + conditieWhere , function( err, rez){
+//             console.log(300)
+//             if(err){
+//                 console.log(err);
+//                 afiseazaEroare(res, 2);
+//             }
+//             else
+//                 res.render("pagini/produse", {produse: rez.rows, optiuni:[]});
+//         });
+//     });
+// });
+
+app.get("/produs/:id",function(req, res){
+    console.log(req.params);
+   
+    client.query(`select * from prajituri where id = '${req.params.id}'`, function( err, rezultat){
+        if(err){
+            console.log(err);
+            afiseazaEroare(res, 2);
+        }
+        else
+            res.render("pagini/produs", {prod:rezultat.rows[0]});
+    });
+});
+
+
+// in rows-> enum range apare rezultatul {intre acolade}
+// tote valorile sunt puse in stringuri. Pt a le accesa ne putem folosi de funcita unnest
+
 
 // asta trebuie sa fie ultima pagina randata si trateaza toate paginile posibile
-
 app.get("/*", function(req, res){
-    console.log("cale: ", req.url);
+    //console.log("cale: ", req.url);
     // in request.url va fi tot ce scrie utilizatorul dupa /
     res.render("pagini"+req.url, {imagini: obGlobal.obImagini.imagini}, function(err, rezRandare){ 
         // pot avea dupa functie callback (functie transmisa ca parametru)
-        console.log("eroare: ", err);
-        console.log("rezultat randare: ", rezRandare);
+        //console.log("eroare: ", err);
+        //console.log("rezultat randare: ", rezRandare);
         if(err){
-            console.log(err);
+            //console.log(err);
             // daca e eroare afisam un text
             if(err.message.startsWith("Failed to lookup view")){
                 // res.send("Eroare 404");

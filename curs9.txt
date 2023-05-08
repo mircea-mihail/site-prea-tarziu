@@ -1,0 +1,5 @@
+PRODUSE -> putem pune produse random
+
+pt a crea un tabelul 
+    -> copiez din prajituri.sql tot si deschid query tool 
+    -> in query tool dau paste la query editor comenzile
