@@ -1,3 +1,8 @@
+//CURS 12 -> LOGIN LOGOUT
+
+
+//LAB 13 -> de vazut de ce nu merge!! ( la final pe la 11:20-11:30 )
+
 // GALERIE ANIMATA -> TASK BONUS DE 45 DE PUNCTE
 //      sa vad in exemplele din curs 5 -> reverse engineering 
 //      se poate intampla sa am un nr schimbator de imagini -> treubie sa ma folosesc de scss
@@ -5,6 +10,8 @@
 //      final curs 8 -> niste comentarii ( + inceput lab 8 pt explicatiii de js si SCSS)
 
 // am ramas pe la minutul 58 din lab 8
+
+// sa facem un cont de gmail pt web!!
 
 // ; de la sfarsit e optional
 
@@ -24,11 +31,26 @@ const res = require("express/lib/response");
 const sass=require('sass');
 const sharp = require('sharp');
 const {Client} =require('pg');
+const AccessBD = require("./resurse/js/accesbd.js");
+
+const formidable=require("formidable");
+const {Utilizator}=require("./module_proprii/utilizator.js")
+const session=require('express-session');
+const Drepturi = require("./module_proprii/drepturi.js");
+
+//query builder:
+AccessBD.getInstanta().select({
+    tabel:"prajituri",
+    campuri: ["nume", "pret", "calorii"],
+    conditiiAnd:["pret>7"]}, 
+    function(err, rez){
+        console.log(err);
+        console.log(rez);
+    }
+)
 
 // obiect server express 
 app = express();
-
-
 
 // /////////////////////////client -> sa ma uit pe teams pe recording//////////////////////////////
 
@@ -39,10 +61,10 @@ var client= new Client({database:"db_prea_tarziu",
         port:5432});
 client.connect();
 
-client.query("select * from lab8_test", function(err, rez){
-    console.log("eroare:", err);
-    console.log("rezultat:", rez);
-})
+// client.query("select * from lab8_test", function(err, rez){
+//     console.log("eroare:", err);
+//     console.log("rezultat:", rez);
+// })
 
 obGlobal = {
     obErori: null,
@@ -380,7 +402,6 @@ app.get("/produse",function(req, res){
         }
         // daca nu am un wehre ramane doar select, dar daca am se concateneaza si e executata
         client.query("select * from prajituri " + conditieWhere , function( err, rez){
-            console.log(300)
             if(err){
                 console.log(err);
                 afiseazaEroare(res, 2);
@@ -390,6 +411,85 @@ app.get("/produse",function(req, res){
                 res.render("pagini/produse", {produse: rez.rows, optiuni:rezCategorie.rows});
         }); 
     });
+});
+
+app.post("/inregistrare",function(req, res){
+    var username;
+    var poza;
+    console.log("ceva");
+    var formular= new formidable.IncomingForm()
+    // dupa ce au venit toate fisierele -> se executa parsarea
+    formular.parse(req, function(err, campuriText, campuriFisier ){//4
+        console.log("Inregistrare:",campuriText);
+
+        console.log(campuriFisier);
+        var eroare="";
+
+        var utilizNou=new Utilizator();
+        try{
+            utilizNou.setareNume=campuriText.nume;
+            utilizNou.setareUsername=campuriText.username;
+            utilizNou.email=campuriText.email
+            utilizNou.prenume=campuriText.prenume
+            
+            utilizNou.parola=campuriText.parola;
+            utilizNou.culoare_chat=campuriText.culoare_chat;
+            utilizNou.poza= poza;
+            Utilizator.getUtilizDupaUsername(campuriText.username, {}, function(u, parametru ,eroareUser ){
+                if (eroareUser==-1){//nu exista username-ul in BD
+                    utilizNou.salvareUtilizator();
+                }
+                else{
+                    eroare+="Mai exista username-ul";
+                }
+
+                if(!eroare){
+                    res.render("pagini/inregistrare", {raspuns:"Inregistrare cu succes!"})
+                    
+                }
+                else
+                    res.render("pagini/inregistrare", {err: "Eroare: "+eroare});
+            })
+            
+
+        }
+        catch(e){ 
+            console.log(e);
+            eroare+= "Eroare site; reveniti mai tarziu";
+            console.log(eroare);
+            res.render("pagini/inregistrare", {err: "Eroare: "+eroare})
+        }
+    
+
+
+
+    });
+    formular.on("field", function(nume,val){  // 1 
+	
+        console.log(`--- ${nume}=${val}`);
+		
+        if(nume=="username")
+            username=val;
+    }) 
+    formular.on("fileBegin", function(nume,fisier){ //2
+        console.log("fileBegin");
+		
+        console.log(nume,fisier);
+		//TO DO in folderul poze_uploadate facem folder cu numele utilizatorului
+        let folderUser=path.join(__dirname, "poze_uploadate",username);
+        //folderUser=__dirname+"/poze_uploadate/"+username
+        console.log(folderUser);
+        if (!fs.existsSync(folderUser))
+            fs.mkdirSync(folderUser);
+        fisier.filepath=path.join(folderUser, fisier.originalFilename)
+        poza=fisier.originalFilename
+        //fisier.filepath=folderUser+"/"+fisier.originalFilename
+
+    })    
+    formular.on("file", function(nume,fisier){//3
+        console.log("file");
+        console.log(nume,fisier);
+    }); 
 });
 
 // cu asta filtrez: pot pune in link ce vreau sa imi afiseze in pagina
@@ -475,7 +575,6 @@ app.get("/*", function(req, res){
 // obiectul express asculta pe portul 8080
 app.listen(8080);
 console.log("serverul a pornit");
-
 // acum putem face a doua pagina
 
 
