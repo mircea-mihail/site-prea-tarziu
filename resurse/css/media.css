@@ -1,0 +1,133 @@
+@media print {
+    #watermark{
+        --watermark-width: 100px;
+        --watermark-height: 2px;
+    }
+
+    #banner{
+        position: absolute;
+        display: inline block;
+        top: 0px;
+        width: 80vw;
+        border: 10px black dotted;
+    }
+
+	#absolut{
+		position: absolute;
+		display: inline-block;
+		top:100%;
+		width:20px;
+		height:20px;
+		right:0;
+		overflow: visible;
+	}
+    
+	#absolut::after{
+		content:"Element poziționat absolut pe a doua pagină.Pentru a vedea stilul de printare apăsați Ctrl+P.";
+		position: absolute;
+		font-size:10px;
+		right:0;
+		border:5px double black;
+		width:200px;
+		height:35px;
+		display: inline-block;
+	}
+
+    .meniu{
+        opacity: 0;
+    }
+
+    #sus_tooltip{
+        opacity: 0;
+    }
+
+    #filmari{
+        opacity: 0;
+    }
+
+    img{
+        opacity: 0;
+    }
+    
+    #grid_pagina{
+        display: block;
+    }
+    a{
+        text-decoration: none;
+        color: var(--culoare-fundal);
+    }
+
+	h1{
+        position: absolute;
+        left:50;
+        top: 0;
+        text-decoration: underline;
+		page-break-after: always;
+		margin-top: 90%;
+		text-align:center;
+        font-size: calc(2 * var(--font-size));
+        color: var(--culoare-text);
+	}
+
+    #grid-pag{
+		font-size: 10px;
+		box-sizing:border-box;
+		page-break-before:always;
+		background-color: white;
+		/*
+			grid-template-rows: calc(100vh - 10px) 100vh 100vh 100vh;*/
+
+		display:block;
+	}
+
+    html, body {
+    
+        width: 210mm;
+        /* height: 297mm; */
+        /*height: 282mm;*/
+        overflow:visible !important;
+        page-break-inside: avoid;
+    }
+
+	#grid-pag div:nth-child(5){
+		
+		page-break-before:always;
+	}
+
+	
+    #watermark
+    {
+        opacity: 0.65;
+        display: block;
+        position: fixed;/*apare pe toate paginile*/
+        bottom:0;
+        width: var(--watermark-width);
+        height: var(--watermark-width);
+        color:rgba(0,0,0,0.4);
+        right:0;
+        z-index: 1000;
+    }
+
+	#end{
+		page-break-before: always;
+	}
+}
+
+@page {
+    size: A4 portrait;
+    margin-bottom:2cm;
+    margin-top:2cm;
+    counter-increment: page;
+        
+}
+@page:left{
+
+    margin-left:2.5m;
+    margin-right:0.5cm;
+    border-radius: 20cm;
+}
+@page:right{
+
+    margin-right:2.5cm;
+    margin-left:0.5cm;
+}
