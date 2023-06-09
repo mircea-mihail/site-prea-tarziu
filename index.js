@@ -112,13 +112,7 @@ for(let folder of vectorFoldere){
 // functie care compileaza scss-ul
 function compileazaScss(caleScss, caleCss){
     if(!caleCss){
-        // vreau sa scot din cale numele fisierului, care e chiar ultimul dupa /
-        // separ calea dupa / si astfel am dir/dir/dir/file.ext
-        // windows users might struggle cu caleScss.split("/")
-        // daca faceam cu split trebuia sa iau ultimul rezultat: let numeFisExt = vectorCale[vectorCale.length - 1];
-
         let numeFisExt = path.basename(caleScss);
-        // split transforma un sir intr-un vector de x subsiruri separate de separator
         let numeFis = numeFisExt.split(".")[0];
         caleCss = numeFis + ".css";
     }
@@ -129,8 +123,7 @@ function compileazaScss(caleScss, caleCss){
         caleScss=path.join(obGlobal.folderScss, caleScss)    
 
     if(!path.isAbsolute(caleCss))
-    
-    caleCss=path.join(obGlobal.folderCss, caleCss)
+        caleCss=path.join(obGlobal.folderCss, caleCss)
 
     //cale resurse backup
     let caleResBackup=path.join(obGlobal.folderBackup, "resurse/css");
@@ -142,7 +135,6 @@ function compileazaScss(caleScss, caleCss){
         fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,"resurse/css",numeFisCss ))// +(new Date()).getTime()
     }
 
-    // diferenta dintre copy file si copy file sync e ca a doua face programul sa astepte sa se realizeze copierea
     // sourcemap ma ajuta sa vad linia din fisierul sass care a generat o anumita chestie din site
     rez = sass.compile(caleScss, {"sourceMap":true});
     fs.writeFileSync(caleCss, rez.css);
@@ -185,10 +177,6 @@ console.log("proiect", __dirname);
 // task 3
 console.log("cale fisier", __filename);
 console.log("director de lucru", process.cwd());
-
-// dirname si process.cwd() nu sunt mereu la fel. Dirname contine calea absoluta pentru fisierul curent, pe cand 
-// process.cwd() (current working directory) reprezinta directorul curent al procesului, care ar putea fi diferita
-// in functie de proces 
 
 // embedded javascript
 app.set("view engine", "ejs");
@@ -233,16 +221,10 @@ app.use(/^\/resurse(\/[a-zA-Z0-9]*)*$/, function(req,res){
     afiseazaEroare(res,403);
 });
 
-
 app.get("/favicon.ico", function(req, res){
     //aici pun evident calea spre favicon
     res.sendFile(__dirname+"/resurse/icon/favicon.ico");
 });
-
-//trebuie sa stiu si cum adaug erori noi
-// expresie regulata
-// app.get(/ \.ejs$ /);
-//asta se va potrivi pt orice se termina in .ejs
 
 //pot scrie si cu wildcarduri acelasi lucru
 app.get("/*.ejs", function(req, res){
@@ -369,8 +351,12 @@ function afiseazaEroare(res, _identificator, _titlu="Eroare nedefinita", _text ,
             res.render("pagini/eroare.ejs", {titlu:titlu1, text:text1, imagine:imagine1});
     }
     else{
+        let titlu2 = _titlu=="Eroare nedefinita" ? (errDef.titlu || _titlu) : _titlu;
+        let text2 = _text || errDef.text;
+        let imagine2 = _imagine || obGlobal.obErori.cale_baza+"/"+errDef.imagine;
+
         let errDef=obGlobal.obErori.eroare_default;
-        res.render("pagini/eroare.ejs", {titlu:errDef.titlu, text:errDef.text, imagine:obGlobal.obErori.cale_baza+"/"+errDef.imagine});
+        res.render("pagini/eroare.ejs", {titlu: titlu2, text: text2, imagine: imagine2});
     }
 }
  
