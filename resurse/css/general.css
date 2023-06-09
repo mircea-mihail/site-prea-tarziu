@@ -29,9 +29,13 @@ body{
     --festivals-width: 24vw;
     --grid-gap-width: 3vw;
     --width_border: 0.3vw;
+    --border-radius-banner: 15px;
+    --border-radius-immages: 5px;
 
     --padding-pagina: 0px;
     --padding-sectiune: 0px;
+    --padding-banner: 40px;
+    --padding-grid-media: 25px;
     --padding-tabel: 6px;
     --up-button-size: 50px;
     --table-font-multiplier: 1.1;
@@ -65,7 +69,7 @@ body{
 }
 
 header{
-    background-image: url("../imagini/placeholder_band_immage.png");   
+    background-image: url("../imagini/placeholder_band_immage3.png");   
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -227,16 +231,24 @@ h2{
 #banner-container{
     position: fixed;
     left: 0vw;
-    top: 50vh;
+    top: 35vh;
     width: 100vw;
     display: flex;
     justify-content: center;
 }
 
 #banner{
-    background-color: var(--culoare-border);
-    padding: 40px;
-    border-radius: 15px;
-    border: 10px var(--culoare-highlight) solid;
+    background-color: var(--culoare-deschisa);
+    padding: var(--padding-banner);
+    border-radius: var(--border-radius-immages);
+    border: 1px var(--culoare-inchisa) solid;
+    color: var(--culoare-inchisa);
+}
 
+#grid-galerie{
+    padding: var(--padding-grid-media);
+}
+
+#media-immage{
+    border-radius: var(--border-radius-immages);
 }

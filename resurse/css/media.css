@@ -32,7 +32,7 @@
 		height:35px;
 		display: inline-block;
 	}
-
+    /* display: none; */
     .meniu{
         opacity: 0;
     }
