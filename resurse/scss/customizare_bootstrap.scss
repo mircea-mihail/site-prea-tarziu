@@ -7,15 +7,47 @@
 (
     // aici se pun variabile
     
-    $primary: red,
-    $secondary: purple
-
+    $primary: #FFF5FC,
+    $secondary: #031A40,
+    $success: #C60DFF,
+    $info: #6200FF,
+    $warning:#0C0CF5,
+    
     // asa se vor face toate toate cerintele (ca mai sus)
     // border width
     // dimensiuni ecran: grid-breakpoints (grid in functie de ecran)
     // cautam fie cu control f fie cautam in documentatie
-    // $font-family-base: 'Montserrat' sans-serif
+);
 
-    // $font-family-base: 'Montserrat', sans-serif;
+.btn {
+    --bs-btn-color: #FFF5FC;
+    border-radius: 0.28rem;
+}
 
-)
+.btn:hover {
+    --bs-btn-hover-color: #C60DFF;
+    background-color: #031A40;
+    --bs-btn-hover-border-color: #031A40;
+}
+
+@media (min-width: 600px) {
+    .container-sm, .container {
+        max-width: 540px;
+    }
+}
+
+h1, .h1 {
+    font-size: calc(1.375rem + 1.4vw);
+}
+  
+h2, .h2 {
+    font-size: calc(1.325rem + 0.8vw);
+}
+  
+h3, .h3 {
+    font-size: calc(1.3rem + 0.5vw);
+}
+
+:root{
+    --bs-body-font-family: 'Montserrat', sans-serif;
+}

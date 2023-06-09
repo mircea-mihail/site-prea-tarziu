@@ -2,38 +2,71 @@
 	"cale_galerie":"resurse/imagini/galerie",
 	"imagini": [
 		{
-			"fisier":"briose-frisca.png",
-			"descriere":"Brioșe",
-			"luni":["martie","februarie","noiembrie", "aprilie"]
+			"cale_relativa":"crazy_hair.png",
+			"nume": "Par nebun",
+			"descriere":"Vocalistul nostru s-a lasat dus de val in aceasta poza.",
+			"timp": ["dimineata"]
 		},
 		{
-			"fisier":"clatite.png",
-			"descriere":"Clătite cu dulceață",
-			"luni":["ianuarie","februarie","iunie"]
+			"cale_relativa":"deathangel_guitar.png",
+			"nume": "Chitaristul de la Deathangel",
+			"descriere":"Poza aceasta este din turul nostru cu faimoasa trupa, deathangel.",
+			"timp": ["zi", "dimineata"]
 			
 		},
 		{
-			"fisier":"gogosi.png",
-			"descriere":"Gogoși glazurate",
-			"luni":["ianuarie","noiembrie","iunie","martie", "aprilie"]
+			"cale_relativa":"guitar_focus.png",
+			"nume": "Concentrare maxima",
+			"descriere":"Cele mai intense riff-uri atrag cele mai intense concentrari.",
+			"timp": ["zi"]
 		},
 		{
-			"fisier":"tort-scortisoara.png",
-			"descriere":"Tort cu scorțisoară",
-			
-			"luni":["noiembrie"]
+			"cale_relativa":"guitar_players.png",
+			"nume": "Vocalist-chitarist",
+			"descriere":"Relatia vocalist-chitarist este numai bine descrisa de aceasta poza.",
+			"timp":["noapte", "zi"]
 		},
 		{
-			"fisier":"prajitura-ciocolata.png",
-			"descriere":"Prăjitură cu ciocolată"
+			"cale_relativa":"happy_drummer.png",
+			"nume": "Baterist fericit",
+			"descriere":"Asa arata un final de melodie corect.",
+			"timp":["noapte"]
 		},
 		{
-			"fisier":"tarta-afine.png",
-			"descriere":"Tartă cu afine"
+			"cale_relativa":"intense_vocals.png",
+			"nume": "Vocalistul nostru",
+			"descriere":"Nimeni nu traieste mai bine muzica decat acest om.",
+			"timp": ["dimineata", "noapte", "zi"]
 		},
 		{
-			"fisier":"tort-trandafiri.png",
-			"descriere":"Tort special"
+			"cale_relativa":"main_stage.png",
+			"nume": "Scena cu noi",
+			"descriere":"Toata trupa este surprinsa in aceasta poza epica.",
+			"timp": ["dimineata"]
+		},
+		{
+			"cale_relativa":"serious_guitarist.png",
+			"nume": "In the zone",
+			"descriere":"Cand un chitarist intra in \"the zone\", nimeni si nimic nu il poate distrage.",
+			"timp": ["noapte", "zi"]
+		},
+		{
+			"cale_relativa":"team_guitar.png",
+			"nume": "Echipa Chitara",
+			"descriere":"Rar se poate gasi o relatie mai stransa decat cea dintre chitarist si basist.",
+			"timp": ["dimineata", "noapte", "zi"]
+		},
+		{
+			"cale_relativa":"white_black_guitar.png",
+			"nume": "Chitara alb negru",
+			"descriere":"O poza dramatica cu un chitarist dramatic.",
+			"timp": ["noapte"]
+		},
+		{
+			"cale_relativa":"whitehead_guitarist.png",
+			"nume": "Chitaristul cu cap alb",
+			"descriere":"Oamenii trec prin diferite faze in viata lor. Uneori te simti de parca ar trebui sa iti vopsesti capul alb.",
+			"timp": ["dimineata"]
 		}
 	]
 }
