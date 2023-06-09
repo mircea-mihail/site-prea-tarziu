@@ -2,7 +2,7 @@ html{
     --font-size: 20px;
     --timp-tranzitie: 0.2s;
 
-    --tooltip-bottom: 5px;
+    --tooltip-bottom: -15px;
     --tooltip-right: calc(var(--sus-bottom)/2 - 2px);
 
     --social-media-factor: 4;
@@ -222,4 +222,21 @@ h2{
 
 #watermark{
     opacity: 0;
+}
+
+#banner-container{
+    position: fixed;
+    left: 0vw;
+    top: 50vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+#banner{
+    background-color: var(--culoare-border);
+    padding: 40px;
+    border-radius: 15px;
+    border: 10px var(--culoare-highlight) solid;
+
 }

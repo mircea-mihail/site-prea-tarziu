@@ -24,7 +24,7 @@ function deleteCookie(nume){
 }
 
 
-window.addEventListener("load", function(){
+window.addEventListener("DOMContentLoaded", function(){
     if (getCookie("acceptat_banner")){
         document.getElementById("banner").style.display="none";
     }
