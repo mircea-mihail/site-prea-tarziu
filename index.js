@@ -132,7 +132,9 @@ function compileazaScss(caleScss, caleCss){
 
     let numeFisCss=path.basename(caleCss);
     if (fs.existsSync(caleCss)){
-        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,"resurse/css",numeFisCss ))// +(new Date()).getTime()
+        data_curenta = new Date();
+        let numeFisCssData = numeFisCss.split(".")[0] + "_" + data_curenta.toISOString().slice(0, 19) + "." + numeFisCss.split(".")[1]
+        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,"resurse/css",numeFisCssData))// +(new Date()).getTime()
     }
 
     // sourcemap ma ajuta sa vad linia din fisierul sass care a generat o anumita chestie din site
@@ -308,7 +310,7 @@ function initializeazaImagini(){
     // webp are un encoding mai eficient decat png si jpg
     for(let imag of vImagini){
         // astea sunt imagini mari
-        [numeFis, ext] = imag.fisier.split(".");
+        [numeFis, ext] = imag.cale_relativa.split(".");
         // aici tratez fisierele de marime medie
         imag.fisier_mediu ="/" + path.join(obGlobal.obImagini.cale_galerie, "mediu", numeFis + ".webp")
         let cale_abs_fis_mediu = path.join(__dirname, imag.fisier_mediu);
@@ -319,11 +321,11 @@ function initializeazaImagini(){
 
         // sharp lucreaza pe imagini -> il folosim sa redimensionam imagini
         // by default resize ia doar width si modifica height accordingly, apoi fisierul e pus in cale_abs_fis_mediu
-        sharp(path.join(cale_abs, imag.fisier)).resize(500).toFile(cale_abs_fis_mediu);
-        sharp(path.join(cale_abs, imag.fisier)).resize(300).toFile(cale_abs_fis_mic);
+        sharp(path.join(cale_abs, imag.cale_relativa)).resize(500).toFile(cale_abs_fis_mediu);
+        sharp(path.join(cale_abs, imag.cale_relativa)).resize(300).toFile(cale_abs_fis_mic);
 
 
-        imag.fisier ="/" + path.join(obGlobal.obImagini.cale_galerie, imag.fisier)
+        imag.cale_relativa ="/" + path.join(obGlobal.obImagini.cale_galerie, imag.cale_relativa)
     }
 }
 
@@ -351,12 +353,12 @@ function afiseazaEroare(res, _identificator, _titlu="Eroare nedefinita", _text ,
             res.render("pagini/eroare.ejs", {titlu:titlu1, text:text1, imagine:imagine1});
     }
     else{
-        let titlu2 = _titlu=="Eroare nedefinita" ? (errDef.titlu || _titlu) : _titlu;
-        let text2 = _text || errDef.text;
-        let imagine2 = _imagine || obGlobal.obErori.cale_baza+"/"+errDef.imagine;
+        // let titlu2 = _titlu=="Eroare nedefinita" ? (errDef.titlu || _titlu) : _titlu;
+        // let text2 = _text || errDef.text;
+        // let imagine2 = _imagine || obGlobal.obErori.cale_baza+"/"+errDef.imagine;
 
         let errDef=obGlobal.obErori.eroare_default;
-        res.render("pagini/eroare.ejs", {titlu: titlu2, text: text2, imagine: imagine2});
+        res.render("pagini/eroare.ejs", {titlu: errDef.titlu, text: errDef.text, imagine: obGlobal.obErori.cale_baza+"/"+errDef.imagine});
     }
 }
  

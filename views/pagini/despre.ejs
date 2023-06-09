@@ -9,19 +9,32 @@
         
         <meta name="keywords" content="trupa, formatie, prea, tarziu, romania, romaneasca, metal, thrash, fast, speed, death, extreme, extrem, muzica, chitara, tobe, bas, vocal"><!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
         <meta name="description" content="Prea Târziu este o formatie de Thrash Metal romaneasca formata din 3 membrii: Mircea, Costi si Brihac. Acest proiect a luat nastere dupa nenumarate repetitii in diferite sali din Bucuresti."><!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
+        <link rel="stylesheet" href="../../resurse/css/duotone.css" type="text/css">
         <!-- pt a inlocui chestiile generale de stil -->
         <%- include("../fragmente/head.ejs") %>
     </head>
     
     <body id="home">
     <!-- <body id="home" class="dark"> -->
-        <%- include("../fragmente/header.ejs") %>
+        <%- include("../fragmente/navbar.ejs") %>
 
         <main>            
             <section id="despre_trupa">
-                <br><br>
-                <h1>Despre Noi</h1>
-
+                <div id="duotone-container">
+                    <div id="media-immage-duotone">
+                        <br>
+                        <h1 id="despre_noi_titlu">
+                            Despre Noi
+                            <div id="text-reflectat">Despre Noi</div>
+                        </h1>
+                        <br>
+                        <p id="despre_noi_text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Prea Târziu este o formatie de Thrash Metal romaneasca formata din 3 membrii: 
+                            Mircea, Costi si Brihac. Acest proiect a luat nastere dupa nenumarate repetitii 
+                            in diferite sali din Bucuresti. Plini de pasiune si perseverenta, nimic nu poate
+                            opri acest trio din a fi cu adevarat de succes.</p>
+                    </div>    
+                </div>
                 <br>
                 <h2>lab 8 -> partea de bd</h2>
                 
@@ -32,9 +45,9 @@
 
                 <button class="btn btn-primary">ceva</button>
                 
-                <p>Prea Târziu este o formatie de Thrash Metal romaneasca formata din 3 membrii: Mircea, Costi si Brihac. Acest proiect a luat nastere dupa nenumarate repetitii in diferite sali din Bucuresti.</p>
                 <br><br><br><br>
             </section>
+            
         </main>
 
         <%- include("../fragmente/footer.ejs") %>

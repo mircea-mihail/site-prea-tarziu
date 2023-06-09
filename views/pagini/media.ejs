@@ -22,22 +22,42 @@
                     <!-- locals.imagini e un vector de imagini -->
                         <!-- va trebui sa adaum si imag.fisier_mic -->
                         <% 
+                        var v_trunchiat = []
+
                         for (let imag of locals.imagini) { 
                             d = new Date()
                             // in d am data curenta ( de retinut ca luna incepe de la 0 -> Ianuarie) 
-                            var v_luni=["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"]
+                            var v_timp=["dimineata", "zi", "noapte"]
+                            var timp_approx;
+                            if(d.getHours() < 12 && d.getHours() >= 5){
+                                timp_approx = 0;
+                            }
+                            else if(d.getHours() < 20 && d.getHours() >= 12){
+                                timp_approx = 1;
+                            }
+                            else{
+                                timp_approx = 2;
+                            }
                             // cu acest if pun pe site doar pozele care au luna curenta in json
-                            if( imag.luni && imag.luni.includes(v_luni[d.getMonth()])){
-                        %>
+                            if( imag.timp && imag.timp.includes(v_timp[timp_approx])){
+                                console.log(imag.nume)
+                                v_trunchiat.push(imag)
+                            }
+                        }
+                        console.log(v_trunchiat.length)
+                        for (let i = 0; i < v_trunchiat.length - v_trunchiat.length % 3; i++){
+                            console.log('am intrat pe for')
+                            var imag = v_trunchiat[i] 
+                            console.log(imag.nume)
+
+                            %>
                             <figure>
                                 <picture>
                                     <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1000px)" />
-                                    <img src="<%- imag.fisier %>" alt="imagine">
+                                    <img id="media-immage" src="<%- imag.cale_relativa %>" alt = <%- imag.nume %> />
                                 </picture>
-                                <figcaption><%- imag.descriere %></figcaption>
-                            </figure>
-                        
-                            <% }  %>
+                                <figcaption> <%- imag.nume %> <br> <%- imag.descriere %></figcaption>
+                            </figure>                        
                         <% }  %>            
                 </div>
                 <br><br><br><br>
