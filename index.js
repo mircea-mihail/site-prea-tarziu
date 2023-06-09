@@ -182,7 +182,6 @@ fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
 
 // folder proiect
 console.log("proiect", __dirname);
-
 // task 3
 console.log("cale fisier", __filename);
 console.log("director de lucru", process.cwd());

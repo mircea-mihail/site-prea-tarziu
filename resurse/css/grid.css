@@ -28,7 +28,7 @@
     justify-items: stretch;
 }
 
-#grid_pagina *{
+#grid_pagina >*, #grid_pagina >* >*{
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -116,20 +116,15 @@
     flex-direction: row;
 }
 #albume table{
-    display: table;    
+    font-size: calc(var(--table-font-multiplier) * var(--font-size));
+    display: table !important;    
 }
 
-#albume table tbody tr{
-    display: table;    
-}
-
-
-#albume table tbody tr td{
-    display: table;    
+#albume table td{
+    padding: var(--padding-tabel);
 }
 
 /* acum trebuiee si pe td-uri si pe tr-uri sa pun display table */
 #titlu_turneu *{
     flex-direction: row;
 }
-

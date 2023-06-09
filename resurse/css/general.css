@@ -32,7 +32,9 @@ body{
 
     --padding-pagina: 0px;
     --padding-sectiune: 0px;
+    --padding-tabel: 6px;
     --up-button-size: 50px;
+    --table-font-multiplier: 1.1;
     --up-button-width: calc(var(--up-button-size) * 1.2);
     --logo-padding: 5px;
 
@@ -216,4 +218,8 @@ footer{
 
 h2{
     margin: calc(var(--font-size) * 2);
+}
+
+#watermark{
+    opacity: 0;
 }

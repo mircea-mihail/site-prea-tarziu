@@ -15,15 +15,16 @@
     </head>
     
     <body id="home">
-    <!-- <body id="home" class="dark"> -->
-
         <%- include("../fragmente/header.ejs") %>
         <main>
             <div id="grid_pagina">
-                <!-- the first thing people see about the band: when and where to se them live -->
+                <!-- the first thing people see about the band: when and where to se them live -->                
                 <div id="titlu_turneu">
+                    <button class="btn btn-secondary" id="tema">change-theme</button>
+
                     <h2>&nbsp;<i id="skull1" class="fa-solid fa-skull"></i> Turneu <i id="skull2" class="fa-solid fa-skull"></i>&nbsp;</h2>
                 </div>
+                
                 <!-- zona 8, dar mai sus -->
                 <section id="rockstadt">
                     <h3>Rockstadt Extreme Fest</h3>
@@ -103,7 +104,7 @@
                 <section id="filmari">
                     <h3>Filmari din anii trecuti</h3>
                     <div class="taburi_iframe">
-                        <a href="https://www.youtube.com/embed/13jzQpVD8m8" target="ifr-video">Rockstadt Extreme Fest</a>
+                        <a href="https://www.youtube.com/embed/13jzQpVD8m8" target="ifr-video">REF</a>
                         <a href="https://www.youtube.com/embed/zpbnnGKr-wA" target="ifr-video" >Brtual Assault</a>
                         <a href="https://www.youtube.com/embed/ZdUCxVaFFw0" target="ifr-video" >Hellfest</a><br>
                     </div>
@@ -117,7 +118,9 @@
                     <!-- ar fi cool ca fiecare celula sa fie o poza link la albumul de pe spotify -->
                     <div id="scrollbar">
                         <table>
-                            <caption>O parte din noi</caption>
+                            <div id="caption-div">
+                                <caption>O parte din noi</caption>
+                            </div>
                             <thead>
                                 <th>Albume</th>
                                 <th>Singles</th>

@@ -52,8 +52,8 @@ div.taburi_iframe a{
         text-allign: center; si mai erau niste chestii 
         fiecare buton sa am doua divuri cu display flex si justify -content si alligh-items center si nu mai pun lineheight
     */
-
-    border-radius: 0.6em;
+    border-bottom: none;
+    border-radius: 0.6em 0.6em 0em 0em;
 }
 
 div.taburi_iframe{
@@ -82,4 +82,5 @@ div.taburi_iframe a:hover{
     /* marimea iframeului */
     height: var(--iframe_height);
     width: var(--iframe_width);
+    min-width: 300px;
 }
