@@ -35,6 +35,7 @@ body{
     --padding-pagina: 0px;
     --padding-sectiune: 0px;
     --padding-banner: 40px;
+    --padding-general: 40px;
     --padding-grid-media: 25px;
     --padding-tabel: 6px;
     --up-button-size: 50px;
@@ -251,4 +252,8 @@ h2{
 
 #media-immage{
     border-radius: var(--border-radius-immages);
+}
+
+.padding-general{
+    padding: var(--padding-general);
 }

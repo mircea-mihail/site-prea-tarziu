@@ -1,11 +1,14 @@
 #media-immage-duotone{
+    --duotone-transition-time: 1s;
 	position:relative;
 	background-image:url("../imagini/galerie/intense_vocals.png");
 	background-size: cover;
     height: 400px;
 	filter:brightness(200%) grayscale(0) ;
-	transition:all 1s linear;
+	transition:all var(--duotone-transition-time) linear;
     padding: var(--padding-grid-media);
+    overflow: hidden;
+
 }
 
 #despre_noi_titlu{
@@ -28,7 +31,7 @@
 	top:0;
 	left:0;
 	
-	transition:all 1s linear;
+	transition:all var(--duotone-transition-time) linear;
 }
 
 #media-immage-duotone:after{
@@ -59,7 +62,7 @@
     opacity: 0.45;
     color: #C60DFF;
     filter: blur(3px);
-    transition: all 1s linear;
+    transition: all var(--duotone-transition-time) linear;
     z-index: 100;
 }
 
@@ -72,5 +75,45 @@
 }
 
 #duotone-container:hover #text-reflectat{
+    color: var(--culoare-deschisa);
+}
+
+.buton-pisica{
+    background-color: var(--culoare-fundal);
+    border: none;
+    color: var(--culoare-fundal);
+    border-radius: var(--border-radius-immages);
+    padding: var(--padding-tabel);
+}
+
+.buton-pisica:hover{
+    background-color: var(--culoare-highlight);
+    border: none;
+    color: var(--culoare-text);
+}
+
+#scrolling-text{
+    color: var(--culoare-highlight);
+    white-space: nowrap;
+    position: absolute;
+    top: 10px;
+    left: -300;
+    animation: scroll_left 4s linear infinite;
+    font-weight: 700;
+    transition: color var(--duotone-transition-time) linear;
+}
+
+@keyframes scroll_left {
+    0%{
+        top: 10px;
+        left: -510px;
+    }
+    100%{
+        top: 10px;
+        left: 0px;
+    }
+}
+
+#duotone-container:hover #scrolling-text{
     color: var(--culoare-deschisa);
 }
