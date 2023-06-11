@@ -30,10 +30,13 @@
         <li><a href="/produse">Merch</a>
             <ul>
                 <li><a href="/produse">Toate</a></li>
-                <li><a href="/produse?tip=cofetarie">Cofetarie</a></li>
-                <li><a href="/produse?tip=gelaterie">Gelaterie</a></li>
+                <% for (let i = 0; i < optiuniMeniu.length; i++) { 
+                    let tip_produs = optiuniMeniu[i]['unnest']%>
+                    <li><a href="/produse?tip=<%-tip_produs%>>"><%-tip_produs%></a></li>
+                <% } %>
             </ul>
         </li>
+
         <li><a href="/media">Media</a></li>
         <li><a href="/despre">Trupa</a></li>
         <li><button class="btn btn-secondary" id="tema"><i class="fa-solid fa-wand-magic-sparkles"></i></button></li>    

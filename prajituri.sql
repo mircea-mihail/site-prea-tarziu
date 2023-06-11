@@ -15,7 +15,7 @@ CREATE TYPE tipuri_produse AS ENUM('cofetarie', 'patiserie', 'gelaterie');
 -- enum permite definirea unor siruri de caractere drept valori -> nu foloseste stringurile astea pt identificare
 -- ci se foloseste de niste numere asociate fiecarui string (0, 1, 2, 3)
 
-CREATE TABLE IF NOT EXISTS prajituri (
+CREATE TABLE IF NOT EXISTS test123 (
    -- serial face id-ul automat (creaza o secventa)
    id serial PRIMARY KEY,
    -- varchar are pana la 50, char are obligatoriu 50

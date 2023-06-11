@@ -39,15 +39,15 @@ const session=require('express-session');
 const Drepturi = require("./module_proprii/drepturi.js");
 
 //query builder:
-AccessBD.getInstanta().select({
-    tabel:"prajituri",
-    campuri: ["nume", "pret", "calorii"],
-    conditiiAnd:["pret>7"]}, 
-    function(err, rez){
-        console.log(err);
-        console.log(rez);
-    }
-)
+// AccessBD.getInstanta().select({
+//     tabel:"merchendise",
+//     campuri: ["nume", "pret", "greutate"],
+//     conditiiAnd:["pret>7"]}, 
+//     function(err, rez){
+//         console.log(err);
+//         console.log(rez);
+//     }
+// )
 
 // obiect server express 
 app = express();
@@ -80,7 +80,7 @@ obGlobal = {
     optiuniMeniu:[]
 }
 
-client.query("select * from unnest(enum_range(null::tipuri_produse))",function(err, rezTipuri){
+client.query("select * from unnest(enum_range(null::categorii))",function(err, rezTipuri){
     // asta va fi cod executat la pornirea serverululi    
     if(err){
         console.log(err);
@@ -88,6 +88,7 @@ client.query("select * from unnest(enum_range(null::tipuri_produse))",function(e
     else{
         //vreau sa am acces la aceste tipuri din toate paginile
         obGlobal.optiuniMeniu = rezTipuri.rows;
+        console.log(obGlobal.optiuniMeniu);
     }
 
     // ar trebui sa fac asta pe fiecare app.get -> 
