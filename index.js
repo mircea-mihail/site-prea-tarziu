@@ -379,17 +379,17 @@ app.get("/produse",function(req, res){
     //TO DO se selecteaza si toate valorile din enum-ul categ_prajitura
     
     // acest query ajuta sa faca dropdown-ul posibil
-    client.query("select * from unnest(enum_range(null::categ_prajitura))",function(err, rezCategorie){
+    client.query("select * from unnest(enum_range(null::categorii))",function(err, rezCategorie){
         //query-uri imbricate pt ca nu putem folosi mereu await?
         let conditieWhere = "";
         //console.log("\n\nreq.query: ", req.query, "\n\nreq.query.tip: ", req.query.tip, "\n\n");
         if(req.query.tip){
             // pot da comenzi de js in 
             // tip produs e coloana care defineste tipul produsului
-            conditieWhere = ` where tip_produs = '${req.query.tip}'`;
+            conditieWhere = ` where categorie = '${req.query.tip}'`;
         }
         // daca nu am un wehre ramane doar select, dar daca am se concateneaza si e executata
-        client.query("select * from prajituri " + conditieWhere , function( err, rez){
+        client.query("select * from merchendise " + conditieWhere , function( err, rez){
             if(err){
                 console.log(err);
                 afiseazaEroare(res, 2);
@@ -439,7 +439,6 @@ app.post("/inregistrare",function(req, res){
                     res.render("pagini/inregistrare", {err: "Eroare: "+eroare});
             })
             
-
         }
         catch(e){ 
             console.log(e);
@@ -447,10 +446,6 @@ app.post("/inregistrare",function(req, res){
             console.log(eroare);
             res.render("pagini/inregistrare", {err: "Eroare: "+eroare})
         }
-    
-
-
-
     });
     formular.on("field", function(nume,val){  // 1 
 	

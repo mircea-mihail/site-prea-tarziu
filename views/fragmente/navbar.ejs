@@ -31,8 +31,8 @@
             <ul>
                 <li><a href="/produse">Toate</a></li>
                 <% for (let i = 0; i < optiuniMeniu.length; i++) { 
-                    let tip_produs = optiuniMeniu[i]['unnest']%>
-                    <li><a href="/produse?tip=<%-tip_produs%>>"><%-tip_produs%></a></li>
+                    let categorie = optiuniMeniu[i]['unnest']%>
+                    <li><a href="/produse?tip=<%-categorie%>"><%-categorie%></a></li>
                 <% } %>
             </ul>
         </li>

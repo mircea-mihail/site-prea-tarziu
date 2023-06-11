@@ -1,85 +1,93 @@
 <!DOCTYPE html>
 <html  lang="ro">
     <head>
-        <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
-        <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
+        <title>Prea târziu</title>
+        <meta name="keywords" content="poze, mdeia, filmari, clipuri, trupa, formatie, prea, tarziu, romania, romaneasca, metal, thrash, fast, speed, death, extreme, extrem, muzica, chitara, tobe, bas, vocal"><!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
+        <meta name="description" content="Poze cu faimoasa trup Prea Târziu! Prea Târziu este o formatie de Thrash Metal romaneasca formata din 3 membrii: Mircea, Costi si Brihac. Acest proiect a luat nastere dupa nenumarate repetitii in diferite sali din Bucuresti."><!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
         <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
-        <title>Cofetăria Dulcelind - home</title>
         <%- include("../fragmente/head") %>     
         <script type="text/javascript" src=/resurse/js/produse.js></script>
 
     </head>
     <body>
-    <%- include("../fragmente/header") %>
+        <%- include("../fragmente/header") %>
 
-    <main>
-        <label> Nume: <input type="text" id="inp-nume"></label>
-        <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
-        <div> Calorii:<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
-            <p><label>Dietetic (calorii &lt; 350)
-                <input id="i_rad1"  name="gr_rad" value="0:350" type="radio"/>
-            </label></p>
-            <p><label>Mediu (350 &le; calorii &lt; 700)
-                <input id="i_rad2"  name="gr_rad" value="350:750" type="radio"/>
-            </label>
-            <p><label>Ridicat caloric (700 &le; calorii)
-                <input id="i_rad3" name="gr_rad" value="700:1000000000" type="radio"/>
-            </label>
-            <p><label>Toate
-                <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
-            </label>
-        </div>
-
-
-        <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="70"> <span id="infoRange">(0)</span></label>
-        <label>Select simplu:
-            <select id="inp-categorie">
-                <!--    o sa trebuiasca sa fac exact asta in header ejs unde inlocuiec taote categoriile de sub 
-                        /produse cu un for identic cu asta de mai jos
-                        vom face exact asta si in meniu
-                -->
-                <option id="sel-toate" selected value="toate">toate</option>
-                <% for (let opt of locals.optiuni) { %>
-                    <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
-                <% } %>
-            </select>
-        </label>
-        <p>
-        <button id="filtrare">Filtreaza</button> 
-
-        <button id="resetare">Reseteaza</button><br/>
-        <button id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
-        <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
-        
-        </p>
-        
-        <!-- vreau sa pun in containerul asta paragraful creat cu suma preturilor produselor -->
-        <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
-        <section id="produse">
-            <h2>Produse</h2>
-            <div class="grid-produse">
-                <% for( let prod of locals.produse) { %>
-                    <article class="produs" >
-                        <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
-                        <div class="info-prod">
-                            <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
-                            <p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii%></span></p>
-                            <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj%></span></p>
-                        </div>
-                        <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
-                        <figure>
-                            <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
-                        </figure>
-                        <label class="selecteaza-cos">
-                            Selectează:<br/>
-                            <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
-                        </label>
-                    </article>
-                <% }%>
+        <main>
+            <label> Nume: <input type="text" id="inp-nume"></label>
+            <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
+            <div> Calorii:<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
+                <p><label>Dietetic (calorii &lt; 350)
+                    <input id="i_rad1"  name="gr_rad" value="0:350" type="radio"/>
+                </label></p>
+                <p><label>Mediu (350 &le; calorii &lt; 700)
+                    <input id="i_rad2"  name="gr_rad" value="350:750" type="radio"/>
+                </label>
+                <p><label>Ridicat caloric (700 &le; calorii)
+                    <input id="i_rad3" name="gr_rad" value="700:1000000000" type="radio"/>
+                </label>
+                <p><label>Toate
+                    <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
+                </label>
             </div>
-        </section>
-    </main>
 
-    <%- include("../fragmente/footer") %>
+
+            <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="70"> <span id="infoRange">(0)</span></label>
+            <label>Select simplu:
+                <select id="inp-categorie">
+                    <!--    o sa trebuiasca sa fac exact asta in header ejs unde inlocuiec taote categoriile de sub 
+                            /produse cu un for identic cu asta de mai jos
+                            vom face exact asta si in meniu
+                    -->
+                    <option id="sel-toate" selected value="toate">toate</option>
+                    <% for (let opt of locals.optiuni) { %>
+                        <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                    <% } %>
+                </select>
+            </label>
+            <p>
+            <button id="filtrare">Filtreaza</button> 
+
+            <button id="resetare">Reseteaza</button><br/>
+            <button id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
+            <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
+            
+            </p>
+            
+            <!-- vreau sa pun in containerul asta paragraful creat cu suma preturilor produselor -->
+            <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
+            <section id="produse">
+                <h2>Produse</h2>
+                <div class="grid-produse">
+                    
+                    <% for( let prod of locals.produse) { %>
+                        <article class="produs container-vertical" >
+                            <h3 class="nume"><a href="/produs/<%-prod.id %>"><span class="val-nume"><%- prod.nume%></span></a></h3>
+                            <div class="container-orizontal">
+                                <div id="col-1" class="container-vertical-dreapta">
+                                    <figure>
+                                        <a href="/produs/<%-prod.id %>" ><img id="imagine-produs" src="/resurse/imagini/produse/<%- prod.imagine %>"alt="[imagine <%- prod.nume %>]" /></a>
+                                    </figure>
+                                    <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
+                                    <p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii%></span></p>
+                                    <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj%></span></p>
+                                </div>
+                                <div id="col-2">
+                                    <p>salut</p>
+                                    <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
+                                    <label class="selecteaza-cos">
+                                        Adauga in cos<br/>
+                                        <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
+                                    </label>
+                                </div>
+                            </div>
+                        </article>
+                    <% }%>
+                </div>
+                <br>
+            </section>
+            
+        </main>
+
+        <%- include("../fragmente/footer") %>
     </body>
 </html>
