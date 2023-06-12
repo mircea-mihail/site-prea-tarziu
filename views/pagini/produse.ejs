@@ -58,22 +58,37 @@
             <section id="produse">
                 <h2>Produse</h2>
                 <div class="grid-produse">
-                    
                     <% for( let prod of locals.produse) { %>
                         <article class="produs container-vertical" >
                             <h3 class="nume"><a href="/produs/<%-prod.id %>"><span class="val-nume"><%- prod.nume%></span></a></h3>
                             <div class="container-orizontal">
                                 <div id="col-1" class="container-vertical-dreapta">
                                     <figure>
-                                        <a href="/produs/<%-prod.id %>" ><img id="imagine-produs" src="/resurse/imagini/produse/<%- prod.imagine %>"alt="[imagine <%- prod.nume %>]" /></a>
+                                        <a id="link-imagine" href="/produs/<%-prod.id %>" >
+                                            <img id="imagine-produs" src="/resurse/imagini/produse/<%- prod.imagine %>"alt="[imagine <%- prod.nume %>]" />
+                                        </a>
                                     </figure>
-                                    <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
-                                    <p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii%></span></p>
-                                    <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj%></span></p>
+                                    <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span> RON</p>
+                                    <p class="categorie">Tip: <span class="val-categorie"><%- prod.categorie%></span></p>
+                                    <p class="culori">
+                                        Culori:
+                                        <% for(let i = 0; i < prod.culori.length; i++){ %>
+                                            <span class="val-culori"><%-prod.culori[i]%></span>
+                                        <% } %>
+                                    </p>
+                                    <p class="adaugat">Adaugat pe: 
+                                        <span class="val-gramaj">
+                                            <%-prod.data_adaugare.getDate()%>.<%-(1+prod.data_adaugare.getMonth())%>.<%-prod.data_adaugare.getFullYear()%>
+                                        </span>
+                                    </p>
+                                    <% if(prod.produse_in_romania){ %>
+                                        <p>Produs in Romania✓</p>
+                                    <% } else {%>
+                                        <p><br></p> 
+                                    <% } %>
                                 </div>
                                 <div id="col-2">
-                                    <p>salut</p>
-                                    <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
+                                    <p>test test mafaka</p>
                                     <label class="selecteaza-cos">
                                         Adauga in cos<br/>
                                         <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">

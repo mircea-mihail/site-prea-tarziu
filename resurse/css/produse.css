@@ -40,25 +40,12 @@ main{
 .grid-produse .produs figure{
     text-align: center;
 }
-.grid-produse .produs figure img{
-    border:1px solid var(--culoare-lowlight)
-}
-.grid-produse .produs .info-prod{
-    display:flex;
-    background-color: var(--cl-marcare);
-}
+
 .grid-produse .produs .info-prod p{
     width:30%;
     text-align:center;
     font-weight:bold;
 }
-
-.grid-produse .produs p.categorie{
-
-    text-align:center;
-    font-weight:bold;
-}
-
 
 .produs{
     position: relative;
@@ -68,8 +55,8 @@ main{
     display: inline-block;
     background-color: var(--culoare-border);
     position:absolute;
-    bottom:0.5rem;
-    right:0.5rem;
+    bottom:1rem;
+    right:1rem;
     border-radius: 0.5rem;
     text-align: center;
     padding:0.3rem;
@@ -87,6 +74,9 @@ main{
 
 #imagine-produs{
     width: var(--latime-imagini);
+    padding: 0px;
+    margin: 0px;
+    border-radius: var(--border-radius-immages);
 }
 
 .container-vertical{
@@ -104,9 +94,14 @@ main{
 }
 
 #col-1{
-    background-color: red;
+    padding: 1rem;
+}
+
+#col-1 figure{
+    display: flex;
+    align-items: flex-start;
 }
 
 #col-2{
-    background-color: green;
+    padding: 1rem;
 }
