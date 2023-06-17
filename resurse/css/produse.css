@@ -105,3 +105,28 @@ main{
 #col-2{
     padding: 1rem;
 }
+
+.nume-prop{
+    font-weight: 1000;
+    color: var(--culoare-deschisa-darker)
+}
+
+.val-prop{
+    font-weight: 500;
+    color: var(--culoare-deschisa)
+}
+
+#info-suma{
+    align-items: center;
+    width: calc(var(--font-size) * 3.6);
+    position: fixed;
+    top: 87vh;
+    left:  92.76vw;
+    font-weight: 900;
+    color: var(--culoare-inchisa);
+    background-color: var(--culoare-deschisa);
+    z-index: 10;
+    border-radius: var(--font-size);
+    border: solid var(--culoare-inchisa) var(--width_border);
+    border: 1px var(--culoare-inchisa) solid;
+}

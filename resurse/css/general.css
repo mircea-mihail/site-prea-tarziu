@@ -19,11 +19,14 @@ html{
 body{
     --culoare-deschisa: #FFF5FC;
     --culoare-fundal: #FFF5FC;
+    --culoare-deschisa-darker: #ffd0f1;
     --culoare-inchisa: #031A40;
     --culoare-text: #031A40; 
     --culoare-highlight: #C60DFF;
     --culoare-border: #6200FF; 
+    --culoare-border-darker: #2e0077;
     --culoare-lowlight: #0C0CF5;
+    --culoare-lowlight-lighter: #a1a1fb;
 
     --band-immage-height: 35vw;
     --festivals-width: 24vw;
@@ -229,16 +232,17 @@ h2{
     opacity: 0;
 }
 
-#banner-container{
+.banner-container{
     position: fixed;
     left: 0vw;
     top: 35vh;
     width: 100vw;
     display: flex;
     justify-content: center;
+    z-index: 100;
 }
 
-#banner{
+.banner{
     background-color: var(--culoare-deschisa);
     padding: var(--padding-banner);
     border-radius: var(--border-radius-immages);

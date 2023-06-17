@@ -13,25 +13,46 @@
         <%- include("../fragmente/header") %>
 
         <main>
-            <label> Nume: <input type="text" id="inp-nume"></label>
+            <label> Nume:</label>
+            <textarea type="text" rows="1" cols="10" id="inp-nume"></textarea>
+            <br>
+            <label> Cuvant Cheie: <input type="text" id="inp-cuvant-desc"></label>
+            <br> 
+            <label> Noutati? <input type="checkbox" id="inp-checkbox"></label>
+
+
             <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
-            <div> Calorii:<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
-                <p><label>Dietetic (calorii &lt; 350)
-                    <input id="i_rad1"  name="gr_rad" value="0:350" type="radio"/>
+            <div> Garantie:<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
+                <p><label>Fara Garantie (garantie &lt; o zi)
+                    <input id="i_rad1"  name="gr_rad" value="0:1" type="radio"/>
                 </label></p>
-                <p><label>Mediu (350 &le; calorii &lt; 700)
-                    <input id="i_rad2"  name="gr_rad" value="350:750" type="radio"/>
+                <p><label>Garantie normala (o zi &le; durata garantiei &le; 30 de zile)
+                    <input id="i_rad2"  name="gr_rad" value="1:31" type="radio"/>
                 </label>
-                <p><label>Ridicat caloric (700 &le; calorii)
-                    <input id="i_rad3" name="gr_rad" value="700:1000000000" type="radio"/>
+                <p><label>Garantie de lunga durata (31 de zile &le; durata garantiei)
+                    <input id="i_rad3" name="gr_rad" value="31:1000000000" type="radio"/>
                 </label>
                 <p><label>Toate
                     <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
                 </label>
             </div>
+            
+            <% 
+                var l_pret_minim = parseFloat(produse[0].pret);
+                var l_pret_maxim = parseFloat(produse[0].pret);
 
+                for (let prod of produse){
+                    if(parseFloat(prod.pret) > l_pret_maxim){
+                        l_pret_maxim = parseFloat(prod.pret);
+                    }
+                    if(parseFloat(prod.pret) < l_pret_minim){
+                        l_pret_minim = parseFloat(prod.pret);
+                    }
+                }
 
-            <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="70"> <span id="infoRange">(0)</span></label>
+            %>
+
+            <label> Pret minim: <input type="range" id="inp-pret" value="<%-l_pret_minim%>" min="<%-l_pret_minim%>" max="<%-l_pret_maxim%>"> <span id="infoRange">(<%-l_pret_minim%>)</span></label>
             <label>Select simplu:
                 <select id="inp-categorie">
                     <!--    o sa trebuiasca sa fac exact asta in header ejs unde inlocuiec taote categoriile de sub 
@@ -44,19 +65,35 @@
                     <% } %>
                 </select>
             </label>
-            <p>
-            <button id="filtrare">Filtreaza</button> 
 
-            <button id="resetare">Reseteaza</button><br/>
-            <button id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
-            <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
-            
+            <label for="inp-culori">Alege culorile:</label>            
+            <input type="text" id="inp-culori" list="culori">
+            <datalist id="culori">
+                <option value="rosu">
+                <option value="albastru">
+                <option value="negru">
+                <option value="alb">
+            </datalist>
+
+            <p>
+                <button id="filtrare">Filtreaza</button> 
+                <button id="resetare">Reseteaza</button><br/>
+                <button id="sortCrescNume">Sorteaza crescator nume si raportul garantie/pret</button>
+                <button id="sortDescrescNume">Sorteaza descrescator dupa nume si raportul garantie/pret</button>
             </p>
             
+            <div id="container-resetare-sigura" class="banner-container" style="display: none;">
+                <p class="banner">Resetare a filtrelor?<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-secondary" id="changed_my_mind">Nu</button>&nbsp;&nbsp;                
+                    <button class="btn btn-secondary" id="reset_for_sure">Da</button></p>
+            </div>
+            
             <!-- vreau sa pun in containerul asta paragraful creat cu suma preturilor produselor -->
-            <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
+            <div id="div-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </div>
             <section id="produse">
                 <h2>Produse</h2>
+                <h3 id="nu_exista_produse" style="display: none;">Nu exista produse care sa se potriveasca cu selectia dumneavoastra!</h3>
                 <div class="grid-produse">
                     <% for( let prod of locals.produse) { %>
                         <article class="produs container-vertical" >
@@ -68,27 +105,42 @@
                                             <img id="imagine-produs" src="/resurse/imagini/produse/<%- prod.imagine %>"alt="[imagine <%- prod.nume %>]" />
                                         </a>
                                     </figure>
-                                    <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span> RON</p>
-                                    <p class="categorie">Tip: <span class="val-categorie"><%- prod.categorie%></span></p>
-                                    <p class="culori">
+                                    <p class="nume-prop">Pret: <span class="val-prop val-pret"><%- prod.pret%></span> RON</p>
+                                    <p class="nume-prop">Garantie: <span class="val-prop val_garantie"><%-prod.garantie%></span> zile</p>
+                                    <p class="nume-prop">
                                         Culori:
                                         <% for(let i = 0; i < prod.culori.length; i++){ %>
-                                            <span class="val-culori"><%-prod.culori[i]%></span>
+                                            <span class="val-prop"><%-prod.culori[i]%></span>
                                         <% } %>
                                     </p>
-                                    <p class="adaugat">Adaugat pe: 
-                                        <span class="val-gramaj">
-                                            <%-prod.data_adaugare.getDate()%>.<%-(1+prod.data_adaugare.getMonth())%>.<%-prod.data_adaugare.getFullYear()%>
-                                        </span>
+                                    <div class="inp-culori" style="display: none;"><%-prod.culori%></div>
+                                    <p class="nume-prop">Adaugat pe: 
+                                        <time class="val-prop">
+                                            <%     
+                                                vec_week = ["Luni", "Marti", "Miercuri", "Joi", "Vineri", "Sambata", "Duminica"];
+                                                vec_mon = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];                                                
+                                            %>     
+                                            <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <%-vec_week[prod.data_adaugare.getDay()-1]%>
+                                            <%-prod.data_adaugare.getDate()%>
+                                            <%-vec_mon[prod.data_adaugare.getMonth()]%>
+                                            <%-prod.data_adaugare.getFullYear()%>
+                                            <div class="inp_data_curenta_unix_time" style="display: none;"><%- prod.data_adaugare.getTime() %></div>
+                                        </time>
                                     </p>
                                     <% if(prod.produse_in_romania){ %>
-                                        <p>Produs in Romania✓</p>
+                                        <p class="val-prop">Produs in Romania✓</p>
                                     <% } else {%>
                                         <p><br></p> 
                                     <% } %>
                                 </div>
+
                                 <div id="col-2">
-                                    <p>test test mafaka</p>
+                                    <p class="nume-prop">Tip: <span class="val-prop val-categorie"><%-prod.categorie%></span></p>
+                                    <p class="nume-prop">Material: <span class="val-prop"><%-prod.material%></span></p>
+                                    <p class="nume-prop">&nbsp;&nbsp;&nbsp;&nbsp;<span class="val-prop val-descriere"><%-prod.descriere%></span></p>
+                                    <p class="nume-prop">Artic-<span class="val-prop"><%-prod.id%></span></p>
+                                    
                                     <label class="selecteaza-cos">
                                         Adauga in cos<br/>
                                         <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
@@ -99,6 +151,7 @@
                     <% }%>
                 </div>
                 <br>
+
             </section>
             
         </main>
