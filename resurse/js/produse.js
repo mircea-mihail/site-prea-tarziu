@@ -1,5 +1,10 @@
 window.addEventListener("load", function() {
     var v_produse_original_order = null;
+    document.getElementById("inp-nume").placeholder = document.getElementsByClassName("produs")[0].getElementsByClassName("val-nume")[0].innerHTML.split(" ")[0] + 
+        " " + document.getElementsByClassName("produs")[0].getElementsByClassName("val-nume")[0].innerHTML.split(" ")[1];
+    document.getElementById("inp-cuvant-desc").placeholder = document.getElementsByClassName("produs")[0].getElementsByClassName("val-descriere")[0].innerHTML.split(" ")[1];
+
+    
     document.getElementById("inp-pret").onchange=function(){
         document.getElementById("infoRange").innerHTML=`(${this.value})`
     }
@@ -8,7 +13,6 @@ window.addEventListener("load", function() {
         let empty_display = document.getElementById("nu_exista_produse");
         empty_display.style.display="none";
         let val_nume=document.getElementById("inp-nume").value.toLowerCase();
-
         console.log(val_nume[0])
         let radiobuttons=document.getElementsByName("gr_rad");
         let durata_garantiei;
@@ -31,6 +35,13 @@ window.addEventListener("load", function() {
 
         let val_pret=document.getElementById("inp-pret").value;
         let val_categ=document.getElementById("inp-categorie").value;
+
+        let v_materiale = [];
+        for( checked_material of document.getElementById("inp-materiale")){
+            if(checked_material.selected){
+                v_materiale.push(checked_material.value);
+            }
+        }
         var produse=document.getElementsByClassName("produs");
         
         let cuvant_descriere=document.getElementById("inp-cuvant-desc").value; 
@@ -45,8 +56,13 @@ window.addEventListener("load", function() {
             
             let cond1 = true;
             if(val_nume != null){
+                document.getElementById("inp-nume").style.backgroundColor = "white";
                 let nume=prod.getElementsByClassName("val-nume")[0].innerHTML.toLowerCase();
                 cond1= (nume.startsWith(val_nume));    
+            }
+            if(val_nume.startsWith(".") || val_nume.startsWith(",") || val_nume.startsWith(" ")){
+                cond1 = true;
+                document.getElementById("inp-nume").style.backgroundColor = "red";
             }
             
             let garantie=parseInt(prod.getElementsByClassName("val_garantie")[0].innerHTML);
@@ -60,9 +76,16 @@ window.addEventListener("load", function() {
 
             let descriere=prod.getElementsByClassName("val-descriere")[0].innerHTML.split(" ");
             let cond5 = false;
-            for(let cuvant in descriere){
-                if(descriere[cuvant].startsWith(cuvant_descriere)){
-                    cond5 = true;
+            if(cuvant_descriere.startsWith(".") || cuvant_descriere.startsWith(",") || cuvant_descriere.startsWith(" ")){
+                cond5 = true;
+                document.getElementById("inp-cuvant-desc").style.backgroundColor = "red";
+            }
+            else{
+                document.getElementById("inp-cuvant-desc").style.backgroundColor = "white";
+                for(let cuvant in descriere){
+                    if(descriere[cuvant].startsWith(cuvant_descriere)){
+                        cond5 = true;
+                    }
                 }
             }
 
@@ -79,8 +102,12 @@ window.addEventListener("load", function() {
             }
 
             let cond7 = true;
-            if( culoare_produs != ""){
+            if(culoare_produs.startsWith(".") || culoare_produs.startsWith(",") || culoare_produs.startsWith(" ")){
+                document.getElementById("inp-culori").style.backgroundColor = "red";
+            }
+            else if( culoare_produs != ""){
                 cond7 = false;
+                document.getElementById("inp-culori").style.backgroundColor = "white";
                 let culori_produs = prod.getElementsByClassName("inp-culori")[0].innerHTML.split(",");
                 for (pos_culoare in culori_produs){
                     if (culori_produs[pos_culoare] == culoare_produs.toLowerCase()){
@@ -88,7 +115,23 @@ window.addEventListener("load", function() {
                     }
                 }
             }
-            if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7){
+            let cond8 = false;
+            for (let material of v_materiale){
+                if(material == "toate"){
+                    cond8 = true;
+                }
+            }
+            if(cond8 != true){
+                for (let material of v_materiale){
+                    for(let material_produs of prod.getElementsByClassName("val-material")[0].innerHTML.split(" ")){
+                        if(material == material_produs){
+                            cond8 = true;
+                        }
+                    }
+                }
+            }
+
+            if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8){
                 prod.style.display="block";
                 something_to_display = something_to_display || true;
             }
@@ -118,6 +161,7 @@ window.addEventListener("load", function() {
         var produse=document.getElementsByClassName("produs");
         document.getElementById("infoRange").innerHTML="(0)";
         document.getElementById("inp-cuvant-desc").value="";
+        document.getElementById("inp-materiale").value="toate";
         for (let prod of produse){
             prod.style.display="block";
         }
@@ -126,6 +170,9 @@ window.addEventListener("load", function() {
                 prod.parentElement.appendChild(prod);
             }
         }
+        document.getElementById("inp-nume").style.backgroundColor = "white";
+        document.getElementById("inp-cuvant-desc").style.backgroundColor = "white";
+        document.getElementById("inp-culori").style.backgroundColor = "white";
     }
     
     document.getElementById("changed_my_mind").onclick = function(){
@@ -213,4 +260,26 @@ window.addEventListener("load", function() {
             //care nu afecteaza containerul in care se gasesete
         }
     }
+    
+    toggleVisibility();
 })
+
+function toggleVisibility(){
+    let displayType;
+    if(window.innerWidth < 700){
+        displayType = "none";
+    }
+    else{
+        displayType = "block";
+    }
+    
+    let i = 0;
+    elementInvizibil = document.getElementsByClassName("invizibil_pe_mobile")[i];
+    while(elementInvizibil){
+        elementInvizibil.style.display = displayType;
+        i += 1;
+        elementInvizibil = document.getElementsByClassName("invizibil_pe_mobile")[i];
+    }
+}
+
+window.addEventListener("resize", toggleVisibility);

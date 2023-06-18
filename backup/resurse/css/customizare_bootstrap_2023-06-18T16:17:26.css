@@ -10775,23 +10775,12 @@ textarea.form-control-lg {
 }
 
 .btn-warning {
-  border-color: #0C0CF5;
-  font-weight: 600;
-}
-
-.btn-warning:hover {
-  background-color: #6200FF;
-  border-color: #6200FF;
-  color: #FFF5FC;
-}
-
-.btn-secondary:hover {
-  background-color: #031A40;
-  border-color: #031A40;
+  border-color: #FFF5FC;
 }
 
 .btn:hover {
   --bs-btn-hover-color: #C60DFF;
+  background-color: #031A40;
   --bs-btn-hover-border-color: #031A40;
 }
 

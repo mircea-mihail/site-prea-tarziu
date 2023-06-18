@@ -6,30 +6,90 @@
         
         <title>Cofetăria Dulcelind - home</title>
         <%- include("../fragmente/head") %>     
+        <link href="/resurse/css/produse.css" type="text/css" rel="stylesheet" />
         <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-    <%- include("../fragmente/header") %>
+    <%- include("../fragmente/navbar") %>
 
     <main>
-        <section>
-            <h2>Pagină produs</h2>
-                <article id="art-produs">
-                    <h3><span class="nume"><%- locals.prod.nume %></span></h3>
-                    <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
-                    <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
-                    <p>Ingrediente: <span class="ingrediente"><%- locals.prod.ingrediente %> </span></p>
-                    <p>Calorii: <span class="calorii"><%- locals.prod.calorii %> </span></p>
-                    <p>Gramaj: <span class="gramaj"><%- locals.prod.gramaj %> </span></p>
-                    <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
-                    <p>Pentru diabetici: <span class="pt_diabetici"><%- locals.prod.pt_diabetici %> </span></p>
-                    <p>Data adăugare: <span class="categorie"><%- locals.prod.data_adaugare %> </span></p>
-                    <figure class="imag-produs">
-                        <img  src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
-                    </figure>    
-                </article>
-            
-        </section>
+        <!-- <section>
+            <h2 class="d-flex justify-content-center">Pagina produsului</h2>
+            <article id="art-produs">
+                <h3 class="d-flex justify-content-center"><span class="nume"><%- locals.prod.nume %></span></h3>
+                <figure class="imag-produs">
+                    <img  src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
+                </figure>
+                <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
+                <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
+                <p>Greutate: <span class="greutate"><%- locals.prod.greutate %> </span></p>
+                <p>Garantie: <span class="garantie"><%- locals.prod.garantie %> </span></p>
+                <p>Culori: <span class="culori"><%- locals.prod.culori %> </span></p>
+                <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
+                <p>Material: <span class="material"><%- locals.prod.material %> </span></p>
+                <p>Produs in Romania: <span class="produs-in-ro"><%- locals.prod.produse_in_romania %> </span></p>
+                <p>Data adăugare: <span class="data"><%- locals.prod.data_adaugare %> </span></p>
+            </article>
+            <br>
+        </section> -->
+        <h2 class="d-flex justify-content-center">Pagina produsului</h2>
+        <div class="d-flex justify-content-center m-3">
+            <article class="produs container-vertical container-produs" >
+                <h3 class="nume d-flex justify-content-center m-3"><a href="/produs/<%-prod.id %>"><span class="val-nume"><%-prod.nume%></span></a></h3>
+                <div class="container-orizontal">
+                    <div id="col-1" class="container-vertical-dreapta">
+                        <figure>
+                            <a id="link-imagine" href="/produs/<%-prod.id %>" >
+                                <img id="imagine-produs" src="/resurse/imagini/produse/<%- prod.imagine %>"alt="[imagine <%- prod.nume %>]" />
+                            </a>
+                        </figure>
+                        <p class="nume-prop">Pret: <span class="val-prop val-pret"><%- prod.pret%></span> RON</p>
+                        <p class="nume-prop">Garantie: <span class="val-prop val_garantie"><%-prod.garantie%></span> zile</p>
+                        <div class="inp-culori" style="display: none;"><%-prod.culori%></div>
+                        <p class="nume-prop">Adaugat pe: 
+                            <time class="val-prop">
+                                <%     
+                                    vec_week = ["Luni", "Marti", "Miercuri", "Joi", "Vineri", "Sambata", "Duminica"];
+                                    vec_mon = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];                                                
+                                %>     
+                                <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <%-vec_week[prod.data_adaugare.getDay()-1]%>
+                                <%-prod.data_adaugare.getDate()%>
+                                <%-vec_mon[prod.data_adaugare.getMonth()]%>
+                                <%-prod.data_adaugare.getFullYear()%>
+                                <div class="inp_data_curenta_unix_time" style="display: none;"><%- prod.data_adaugare.getTime() %></div>
+                            </time>
+                        </p>
+                        <% if(prod.produse_in_romania){ %>
+                            <p class="val-prop">Produs in Romania✓</p>
+                        <% } else {%>
+                            <p><br></p> 
+                        <% } %>
+                        <p class="nume-prop artic">Artic-<span class="val-prop"><%-prod.id%></span></p>
+
+                    </div>
+
+                    <div id="col-2">
+                        <p class="nume-prop">Tip: <span class="val-prop val-categorie"><%-prod.categorie%></span></p>
+                        <p class="nume-prop">Material: <span class="val-prop"><%-prod.material%></span></p>
+                        <p class="nume-prop">&nbsp;&nbsp;&nbsp;&nbsp;<span class="val-prop val-descriere"><%-prod.descriere%></span></p>
+                        <p class="nume-prop">
+                            Culori:
+                            <% for(let i = 0; i < prod.culori.length; i++){ %>
+                                <span class="val-prop"><%-prod.culori[i]%></span>
+                            <% } %>
+                        </p>
+                        <br>
+                        <label class="selecteaza-cos">
+                            Adauga in cos<br/>
+                            <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
+                        </label>
+                        <br>
+                    </div>
+                </div>
+            </article>
+        </div>
+        
     </main>
 
     <%- include("../fragmente/footer") %>

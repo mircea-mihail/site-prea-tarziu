@@ -10776,13 +10776,12 @@ textarea.form-control-lg {
 
 .btn-warning {
   border-color: #0C0CF5;
-  font-weight: 600;
+  font-weight: 6500;
 }
 
 .btn-warning:hover {
-  background-color: #6200FF;
-  border-color: #6200FF;
-  color: #FFF5FC;
+  background-color: #0C0CF5;
+  border-color: #C60DFF;
 }
 
 .btn-secondary:hover {

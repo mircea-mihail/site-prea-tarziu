@@ -10781,8 +10781,7 @@ textarea.form-control-lg {
 
 .btn-warning:hover {
   background-color: #6200FF;
-  border-color: #6200FF;
-  color: #FFF5FC;
+  border-color: #FFF5FC;
 }
 
 .btn-secondary:hover {

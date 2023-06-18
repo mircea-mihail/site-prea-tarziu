@@ -77,7 +77,8 @@ obGlobal = {
     // schimbare la alta -> mereu va trebui un programator sa intre in cod la fiecare schimbare
     
     // vreau doar sa schimb baza de date (tabelul), nu si codul.
-    optiuniMeniu:[]
+    optiuniMeniu:[],
+    materiale:[]
 }
 
 client.query("select * from unnest(enum_range(null::categorii))",function(err, rezTipuri){
@@ -90,13 +91,19 @@ client.query("select * from unnest(enum_range(null::categorii))",function(err, r
         obGlobal.optiuniMeniu = rezTipuri.rows;
         console.log(obGlobal.optiuniMeniu);
     }
-
-    // ar trebui sa fac asta pe fiecare app.get -> 
-    //ar trebui ca toate paginile sa aiba in locals acest meniu de optiuni
-    //problema e ca e posibil sa uitam sa adaugam chestii
 });
 
-
+client.query("select * from unnest(enum_range(null::materiale))",function(err, rezTipuri){
+    // asta va fi cod executat la pornirea serverululi    
+    if(err){
+        console.log(err);
+    }
+    else{
+        //vreau sa am acces la aceste tipuri din toate paginile
+        obGlobal.materiale = rezTipuri.rows;
+        console.log(obGlobal.materiale);
+    }
+});
 
 // a mers si cu mai multe foldere
 // daca nu exista vrem sa il creem
@@ -374,10 +381,6 @@ function afiseazaEroare(res, _identificator, _titlu="Eroare nedefinita", _text ,
 
 // pt incarcarea produselor din tabele
 app.get("/produse",function(req, res){
-    //TO DO query pentru a selecta toate produsele
-    //TO DO se adauaga filtrarea dupa tipul produsului
-    //TO DO se selecteaza si toate valorile din enum-ul categ_prajitura
-    
     // acest query ajuta sa faca dropdown-ul posibil
     client.query("select * from unnest(enum_range(null::categorii))",function(err, rezCategorie){
         //query-uri imbricate pt ca nu putem folosi mereu await?
@@ -396,7 +399,7 @@ app.get("/produse",function(req, res){
             }
             else
                 // de aici sunt trimise optiunile pt dropdown
-                res.render("pagini/produse", {produse: rez.rows, optiuni:rezCategorie.rows});
+                res.render("pagini/produse", {produse: rez.rows, optiuni:rezCategorie.rows, materiale:obGlobal.materiale});
         }); 
     });
 });
@@ -498,13 +501,13 @@ app.post("/inregistrare",function(req, res){
 //             else
 //                 res.render("pagini/produse", {produse: rez.rows, optiuni:[]});
 //         });
-//     });
+//     });  
 // });
 
 app.get("/produs/:id",function(req, res){
     console.log(req.params);
    
-    client.query(`select * from prajituri where id = '${req.params.id}'`, function( err, rezultat){
+    client.query(`select * from merchendise where id = '${req.params.id}'`, function( err, rezultat){
         if(err){
             console.log(err);
             afiseazaEroare(res, 2);
