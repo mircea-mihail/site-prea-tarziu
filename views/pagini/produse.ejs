@@ -13,28 +13,29 @@
         <%- include("../fragmente/header") %>
 
         <main>
-            <label> Nume:</label>
-            <textarea type="text" rows="1" cols="10" id="inp-nume"></textarea>
-            <br>
-            <label> Cuvant Cheie: <input type="text" id="inp-cuvant-desc"></label>
-            <br> 
-            <label> Noutati? <input type="checkbox" id="inp-checkbox"></label>
-
+            <div class="d-flex justify-content-center">
+                <label class="m-3"> Nume:</label>
+                <textarea class="m-3" type="text" rows="1" cols="10" id="inp-nume"></textarea>
+                <br>
+                <label class="m-3"> Cuvant Cheie: <input type="text" id="inp-cuvant-desc"></label>
+                <br> 
+                <label class="m-3"> Noutati? <input type="checkbox" id="inp-checkbox"></label>
+            </div>
 
             <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
-            <div> Garantie:<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
-                <p><label>Fara Garantie (garantie &lt; o zi)
-                    <input id="i_rad1"  name="gr_rad" value="0:1" type="radio"/>
+            <div class="btn-group-toggle d-flex justify-content-center" data-toggle="buttons"><!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
+                <p><label class="btn btn-warning m-2">Fara Garantie
+                    <input class="form-check-input" id="i_rad1"  name="gr_rad" value="0:1" type="radio"/>
                 </label></p>
-                <p><label>Garantie normala (o zi &le; durata garantiei &le; 30 de zile)
-                    <input id="i_rad2"  name="gr_rad" value="1:31" type="radio"/>
-                </label>
-                <p><label>Garantie de lunga durata (31 de zile &le; durata garantiei)
-                    <input id="i_rad3" name="gr_rad" value="31:1000000000" type="radio"/>
-                </label>
-                <p><label>Toate
-                    <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
-                </label>
+                <p><label class="btn btn-warning m-2">Garantie normala
+                    <input class="form-check-input" id="i_rad2"  name="gr_rad" value="1:31" type="radio"/>
+                </label></p>
+                <p><label class="btn btn-warning m-2">Garantie de lunga
+                    <input class="form-check-input " id="i_rad3" name="gr_rad" value="31:1000000000" type="radio"/>
+                </label></p>
+                <p><label class="btn btn-warning m-2">Toate
+                    <input class="form-check-input" id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
+                </label></p>
             </div>
             
             <% 
@@ -51,34 +52,36 @@
                 }
 
             %>
+            <div class="d-flex justify-content-center">
+                <label> Pret minim: <input type="range" id="inp-pret" value="<%-l_pret_minim%>" min="<%-l_pret_minim%>" max="<%-l_pret_maxim%>"> <span id="infoRange">(<%-l_pret_minim%>)</span></label>
+                <label>Select simplu:
+                    <select id="inp-categorie">
+                        <!--    o sa trebuiasca sa fac exact asta in header ejs unde inlocuiec taote categoriile de sub 
+                                /produse cu un for identic cu asta de mai jos
+                                vom face exact asta si in meniu
+                        -->
+                        <option id="sel-toate" selected value="toate">Toate</option>
+                        <% for (let opt of locals.optiuni) { %>
+                            <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                        <% } %>
+                    </select>
+                </label>
 
-            <label> Pret minim: <input type="range" id="inp-pret" value="<%-l_pret_minim%>" min="<%-l_pret_minim%>" max="<%-l_pret_maxim%>"> <span id="infoRange">(<%-l_pret_minim%>)</span></label>
-            <label>Select simplu:
-                <select id="inp-categorie">
-                    <!--    o sa trebuiasca sa fac exact asta in header ejs unde inlocuiec taote categoriile de sub 
-                            /produse cu un for identic cu asta de mai jos
-                            vom face exact asta si in meniu
-                    -->
-                    <option id="sel-toate" selected value="toate">Toate</option>
-                    <% for (let opt of locals.optiuni) { %>
-                        <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
-                    <% } %>
-                </select>
-            </label>
+                <label>Select multiplu:
+                    <select id="inp-materiale" class="selectpicker" multiple>
+                        <option id="sel-multiplu-toate" selected >
+                            toate
+                        </option>
+                        <% for (let opt of locals.materiale) { %>
+                            <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                        <% } %>
+                    </select>
+                </label>
 
-            <label>Select multiplu:
-                <select id="inp-materiale" class="selectpicker" multiple>
-                    <option id="sel-multiplu-toate" selected >
-                        toate
-                    </option>
-                    <% for (let opt of locals.materiale) { %>
-                        <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
-                    <% } %>
-                </select>
-            </label>
+                <label for="inp-culori">Alege culorile:</label>            
+                <input type="text" id="inp-culori" list="culori" placeholder="<%-locals.produse[1].culori[0]%>"> 
+            </div>
 
-            <label for="inp-culori">Alege culorile:</label>            
-            <input type="text" id="inp-culori" list="culori" placeholder="<%-locals.produse[1].culori[0]%>"> 
             <datalist id="culori">
                 <% 
                     primul_produs = locals.produse[0]

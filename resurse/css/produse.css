@@ -123,6 +123,10 @@ main{
     left:1rem;
 }
 
+#inp-materiale{
+    height: 50px;
+}
+
 @media screen and (max-width: 1200px){    
     .grid-produse{
         display: grid;

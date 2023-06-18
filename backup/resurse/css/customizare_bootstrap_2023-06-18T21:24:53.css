@@ -10816,13 +10816,6 @@ h3, .h3 {
   --bs-body-font-family: "Montserrat", sans-serif;
 }
 
-.form-check-input {
-  transition: background-color 0.3s ease;
-}
-
 .form-check-input:checked {
-  background-color: #C60DFF;
-  border-color: transparent;
-  color: #0C0CF5;
-  box-shadow: 0 0 2px #0C0CF5;
+  color: #C60DFF;
 }
