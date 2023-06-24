@@ -40,15 +40,11 @@
                             }
                             // cu acest if pun pe site doar pozele care au luna curenta in json
                             if( imag.timp && imag.timp.includes(v_timp[timp_approx])){
-                                console.log(imag.nume)
                                 v_trunchiat.push(imag)
                             }
                         }
-                        console.log(v_trunchiat.length)
                         for (let i = 0; i < v_trunchiat.length - v_trunchiat.length % 3; i++){
-                            console.log('am intrat pe for')
                             var imag = v_trunchiat[i] 
-                            console.log(imag.nume)
 
                             %>
                             <figure>

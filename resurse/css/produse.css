@@ -123,9 +123,55 @@ main{
     left:1rem;
 }
 
-#inp-culori, #inp-categorie, #inp-materiale, #inp-nume, #inp-cuvant-desc{
+#container-materiale{
+    display: inline;
+    border-radius: var(--border-radius-immages);
+    height: calc(var(--font-size) * 1.5);
+    width: calc(var(--font-size) * 6.5);
+    overflow: hidden;
+}
+
+
+#container-materiale:hover{
+    overflow: visible;
+}
+
+#materiale-uarrow{
+    display: none;
+}
+
+#materiale-darrow{
+    display: inline;
+}
+
+#container-materiale:hover #materiale-uarrow{
+    display: inline;
+}
+
+#container-materiale:hover #materiale-darrow{
+    display: none;
+}
+
+#inp-materiale{
+    color: var(--culoare-text);
+    background-color: var(--culoare-fundal);
+    border: 1px solid var(--culoare-lowlight);
+}
+
+.pg-btn-sizes{
+    width: calc(2.5*var(--font-size));
+    height: calc(2.5*var(--font-size));
+}
+
+#inp-culori, #inp-categorie, #inp-nume, #inp-cuvant-desc{
     height: calc(var(--font-size) * 1.5);
     width: calc(var(--font-size) * 7.5);
+    border-radius: var(--border-radius-immages);
+    
+    color: var(--culoare-text);
+    background-color: var(--culoare-fundal);
+    border: 1px solid var(--culoare-lowlight);
+
 }
 
 #arata-filtrele{
