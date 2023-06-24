@@ -7,8 +7,6 @@
         <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
         <%- include("../fragmente/head") %>     
         <script type="text/javascript" src=/resurse/js/produse.js></script>
-        <script type="text/javascript" src=/resurse/js/paginare.js></script>
-
     </head>
     <body>
         <%- include("../fragmente/header") %>
@@ -227,27 +225,27 @@
                     
                     //generate the buttons
                     %>
-                    <div class="btn-group-toggle d-flex justify-content-center" data-toggle="buttons">
+                    <div id="page-index" class="btn-group-toggle d-flex justify-content-center" data-toggle="buttons">
                     
-                    <p>
-                        <label class="btn btn-warning my-3 mx-2 pg-btn-sizes d-flex justify-content-center align-items-center">
-                            0
-                            <input style="display: none;" id="page_rad0" checked name="gr_rad" type="radio"/>
-                        </label>
-                    </p>
+                        <p>
+                            <label class="btn btn-warning my-3 mx-2 pg-btn-sizes d-flex justify-content-center align-items-center">
+                                0
+                                <input style="display: none;" id="page_rad0" checked name="pg_rad" type="radio"/>
+                            </label>
+                        </p>
                     <%
                         for(let pg_idx = 1; pg_idx < nr_pg; pg_idx++){ %>
                             <p>
                                 <label class="btn btn-warning my-3 mx-2 pg-btn-sizes d-flex justify-content-center align-items-center">
                                     <%-pg_idx%>
-                                    <input style="display: none;" id="page_rad<%-pg_idx%>" name="gr_rad" type="radio"/>
+                                    <input style="display: none;" id="page_rad<%-pg_idx%>" name="pg_rad" type="radio"/>
                                 </label>
                             </p>
                         <%}
                     %>
                     </div>
                     <%
-
+                    
                 %>
 
             </section>

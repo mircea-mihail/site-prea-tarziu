@@ -1,4 +1,38 @@
 window.addEventListener("load", function() {
+    //initializeaza variabile pentru pagini si gaseste ce produse sunt si nu sunt afisate la load ( toate sunt :) ) 
+    var produse_totale;
+    var pagina_curenta = 0;
+    var produse_pagina = [];
+
+    var nr_prod = 0;
+    produse_totale=document.getElementsByClassName("produs");
+    for(let produs of produse_totale){
+        if(produs.style.display != "none"){
+            produse_pagina.push(produs)
+            nr_prod ++;
+        }
+    }
+
+    var prod_per_pg = 6;
+    var nr_pg = Math.ceil(nr_prod/prod_per_pg)
+    
+    //selecteaza doar produsele de pe prima pagina (pagina curenta)
+
+    for(let i = 0; i < nr_pg; i ++){
+        if(document.getElementById("page_rad" + i.toString()).checked == true){
+            pagina_curenta = i;
+            break;
+        }
+    }
+    for(let prod_idx = 0; prod_idx < produse_pagina.length; prod_idx ++){
+        if(Math.floor(prod_idx / 6) != pagina_curenta){
+            produse_pagina[prod_idx].style.display= "none";
+        }
+        else{
+            produse_pagina[prod_idx].style.display= "block";
+        }
+    }
+
     var v_produse_original_order = null;
     document.getElementById("inp-nume").placeholder = document.getElementsByClassName("produs")[0].getElementsByClassName("val-nume")[0].innerHTML.split(" ")[0] + 
         " " + document.getElementsByClassName("produs")[0].getElementsByClassName("val-nume")[0].innerHTML.split(" ")[1];
@@ -7,10 +41,14 @@ window.addEventListener("load", function() {
     document.getElementById("filtrare").onclick = filtreaza;
     
     function filtreaza(){
+        //afiseaza toate produsele pt inceput ca abia apoi sa faca o filtrare corecta
+        for(let prod of produse_totale){
+            prod.style.display = "block"
+        }
+        
         let empty_display = document.getElementById("nu_exista_produse");
         empty_display.style.display="none";
         let val_nume=document.getElementById("inp-nume").value.toLowerCase();
-        console.log(val_nume[0])
         let radiobuttons=document.getElementsByName("gr_rad");
         let durata_garantiei;
         for(let r of radiobuttons){
@@ -63,7 +101,7 @@ window.addEventListener("load", function() {
             }
             
             let garantie=parseInt(prod.getElementsByClassName("val_garantie")[0].innerHTML);
-            let cond2= (durata_garantiei=="toate" || inceput_garantie<=garantie && garantie < sfarsit_garantie);
+            let cond2 = (durata_garantiei=="toate" || inceput_garantie<=garantie && garantie < sfarsit_garantie);
 
             let pret=parseFloat(prod.getElementsByClassName("val-pret")[0].innerHTML);
             let cond3= (pret>=val_pret);
@@ -127,7 +165,6 @@ window.addEventListener("load", function() {
                     }
                 }
             }
-
             if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8){
                 prod.style.display="block";
                 something_to_display = something_to_display || true;
@@ -139,6 +176,19 @@ window.addEventListener("load", function() {
         if(!something_to_display){
             empty_display.style.display="block";
         }
+        //pentru pagina, updateaza vectorul de produse ce sunt afisate curent in total
+        nr_prod = 0;
+        produse_pagina = [];
+        document.getElementById("page_rad0").checked = true;
+
+        for(let produs of produse_totale){
+            if(produs.style.display != "none"){
+                produse_pagina.push(produs)
+                nr_prod += 1;
+            }
+        }
+        display_current_page()
+        
     }
 
     document.getElementById("resetare").onclick= function(){
@@ -193,6 +243,23 @@ window.addEventListener("load", function() {
         document.getElementById("inp-nume").style.backgroundColor = "white";
         document.getElementById("inp-cuvant-desc").style.backgroundColor = "white";
         document.getElementById("inp-culori").style.backgroundColor = "white";
+        
+        // afiseaza doar elementele de pe prima pagina
+        document.getElementById("page_rad0").checked = true;
+        for(let i = 0; i < nr_pg; i ++){
+            if(document.getElementById("page_rad" + i.toString()).checked == true){
+                pagina_curenta = i;
+                break;
+            }
+        }
+        for(let prod_idx = 0; prod_idx < produse_pagina.length; prod_idx ++){
+            if(Math.floor(prod_idx / 6) != pagina_curenta){
+                produse_pagina[prod_idx].style.display= "none";
+            }
+            else{
+                produse_pagina[prod_idx].style.display= "block";
+            }
+        }
     }
     
     document.getElementById("changed_my_mind").onclick = function(){
@@ -297,6 +364,25 @@ window.addEventListener("load", function() {
                 document.getElementById("toate-filtrele").style.opacity = "1";
                 document.getElementById("text-ascunde-filtrele").innerHTML = "ascunde filtrele";
             }, 200);
+        }
+    }
+
+    document.getElementById("page-index").onchange = display_current_page;
+    
+    function display_current_page(){
+        for(let i = 0; i < nr_pg; i ++){
+            if(document.getElementById("page_rad" + i.toString()).checked == true){
+                pagina_curenta = i;
+                break;
+            }
+        }
+        for(let prod_idx = 0; prod_idx < produse_pagina.length; prod_idx ++){
+            if(Math.floor(prod_idx / 6) != pagina_curenta){
+                produse_pagina[prod_idx].style.display= "none";
+            }
+            else{
+                produse_pagina[prod_idx].style.display= "block";
+            }
         }
     }
     
