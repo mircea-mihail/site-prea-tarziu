@@ -9,7 +9,9 @@ window.addEventListener("load", function() {
         document.getElementById("infoRange").innerHTML=`(${this.value})`
     }
 
-    document.getElementById("filtrare").onclick= function(){
+    document.getElementById("filtrare").onclick = filtreaza;
+    
+    function filtreaza(){
         let empty_display = document.getElementById("nu_exista_produse");
         empty_display.style.display="none";
         let val_nume=document.getElementById("inp-nume").value.toLowerCase();
@@ -159,7 +161,7 @@ window.addEventListener("load", function() {
         document.getElementById("i_rad4").checked=true;
         document.getElementById("inp-checkbox").checked=false;
         var produse=document.getElementsByClassName("produs");
-        document.getElementById("infoRange").innerHTML="(0)";
+        document.getElementById("infoRange").innerHTML="(" + l_pret_minim + ")";
         document.getElementById("inp-cuvant-desc").value="";
         document.getElementById("inp-materiale").value="toate";
         for (let prod of produse){
@@ -262,6 +264,24 @@ window.addEventListener("load", function() {
     }
     
     toggleVisibility();
+
+    document.getElementById("check-filtre").onchange=function(){
+        if(document.getElementById("check-filtre").checked){
+            document.getElementById("toate-filtrele").style.opacity = "0";
+            setTimeout(function () {
+                document.getElementById("toate-filtrele").style.display = "none";
+                document.getElementById("text-ascunde-filtrele").innerHTML = "arata filtrele";
+            }, 300);
+        }
+        else{
+            document.getElementById("toate-filtrele").style.display = "block";
+            setTimeout(function () {
+                document.getElementById("toate-filtrele").style.opacity = "1";
+                document.getElementById("text-ascunde-filtrele").innerHTML = "ascunde filtrele";
+            }, 200);
+        }
+    }
+    
 })
 
 function toggleVisibility(){

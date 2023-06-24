@@ -10786,6 +10786,10 @@ textarea.form-control-lg {
   color: var(--culoare-deschisa);
 }
 
+.btn-focus {
+  background-color: red;
+}
+
 .btn-secondary {
   background-color: var(--culoare-inchisa);
   border-color: var(--culoare-inchisa);

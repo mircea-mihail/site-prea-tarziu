@@ -10770,12 +10770,11 @@ textarea.form-control-lg {
   }
 }
 .btn {
-  --bs-btn-color: var(--culoare-deschisa);
+  --bs-btn-color: var(c);
   border-radius: 0.28rem;
 }
 
 .btn-warning {
-  background-color: var(--culoare-lowlight);
   border-color: var(--culoare-lowlight);
   font-weight: 600;
 }
@@ -10783,22 +10782,17 @@ textarea.form-control-lg {
 .btn-warning:hover {
   background-color: var(--culoare-border);
   border-color: var(--culoare-border);
-  color: var(--culoare-deschisa);
-}
-
-.btn-secondary {
-  background-color: var(--culoare-inchisa);
-  border-color: var(--culoare-inchisa);
+  color: #FFF5FC;
 }
 
 .btn-secondary:hover {
-  background-color: var(--culoare-inchisa);
-  border-color: var(--culoare-inchisa);
+  background-color: #031A40;
+  border-color: #031A40;
 }
 
 .btn:hover {
   --bs-btn-hover-color: var(--culoare-highlight);
-  --bs-btn-hover-border-color: var(--culoare-inchisa);
+  --bs-btn-hover-border-color: #031A40;
 }
 
 @media (min-width: 600px) {

@@ -106,7 +106,7 @@ main{
     align-items: center;
     width: calc(var(--font-size) * 3.6);
     position: fixed;
-    top: 87vh;
+    top: 87.5vh;
     left:  92.76vw;
     font-weight: 900;
     color: var(--culoare-inchisa);
@@ -123,8 +123,26 @@ main{
     left:1rem;
 }
 
-#inp-materiale{
+#inp-culori, #inp-categorie, #inp-materiale, #inp-nume, #inp-cuvant-desc{
+    height: calc(var(--font-size) * 1.5);
+    width: calc(var(--font-size) * 7.5);
+}
+
+#arata-filtrele{
+    background-color:var(--culoare-lowlight);
     height: 50px;
+    margin: 0px;
+    padding: 0px;
+    color: var(--culoare-deschisa);
+    font-weight: 900;
+    font-size: calc(1.5*var(--font-size));
+    transition: all var(--timp-tranzitie) linear;
+}
+#arata-filtrele:hover{
+    background-color: var(--culoare-border);
+}
+#toate-filtrele{
+    transition: all 0.2s linear;
 }
 
 @media screen and (max-width: 1200px){    

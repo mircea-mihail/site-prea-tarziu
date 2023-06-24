@@ -61,6 +61,19 @@ body.dark{
     --culoare-fundal: #031A40; 
 }
 
+body.green{
+    --culoare-deschisa: #bcffcd;
+    --culoare-fundal: #bcffcd;
+    --culoare-deschisa-darker: #6aff90;
+    --culoare-inchisa: #004913;
+    --culoare-text: #004913; 
+    --culoare-highlight: #56b200;
+    --culoare-border: #007a7d; 
+    --culoare-border-darker: #005a5d;
+    --culoare-lowlight: #006126;
+    --culoare-lowlight-lighter: #00943b; 
+}
+
 body{
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;

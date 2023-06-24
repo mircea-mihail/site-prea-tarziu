@@ -10786,11 +10786,6 @@ textarea.form-control-lg {
   color: var(--culoare-deschisa);
 }
 
-.btn-secondary {
-  background-color: var(--culoare-inchisa);
-  border-color: var(--culoare-inchisa);
-}
-
 .btn-secondary:hover {
   background-color: var(--culoare-inchisa);
   border-color: var(--culoare-inchisa);

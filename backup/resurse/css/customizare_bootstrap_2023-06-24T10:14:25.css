@@ -10775,7 +10775,6 @@ textarea.form-control-lg {
 }
 
 .btn-warning {
-  background-color: var(--culoare-lowlight);
   border-color: var(--culoare-lowlight);
   font-weight: 600;
 }
@@ -10784,11 +10783,6 @@ textarea.form-control-lg {
   background-color: var(--culoare-border);
   border-color: var(--culoare-border);
   color: var(--culoare-deschisa);
-}
-
-.btn-secondary {
-  background-color: var(--culoare-inchisa);
-  border-color: var(--culoare-inchisa);
 }
 
 .btn-secondary:hover {

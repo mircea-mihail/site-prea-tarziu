@@ -11,126 +11,137 @@
     </head>
     <body>
         <%- include("../fragmente/header") %>
+        <label id="arata-filtrele" class="d-flex justify-content-center align-items-center">
+            <div id="text-ascunde-filtrele">ascunde filtrele</div>
+            <input type="checkbox" style="display: none;" id="check-filtre" autocomplete="off">
+        </label>
 
         <main>
-            <div class="d-flex justify-content-center">
-                <label class="m-3"> Nume:</label>
-                <textarea class="m-3" type="text" rows="1" cols="10" id="inp-nume"></textarea>
-                <br>
-                <label class="m-3"> Cuvant Cheie: <input type="text" id="inp-cuvant-desc"></label>
-                <br> 
-                <label class="m-3"> Noutati? <input type="checkbox" id="inp-checkbox"></label>
-            </div>
-
-            <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
-            <div class="btn-group-toggle d-flex justify-content-center" data-toggle="buttons"><!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
-                <p><label class="btn btn-warning m-2">Fara Garantie
-                    <input class="form-check-input" id="i_rad1"  name="gr_rad" value="0:1" type="radio"/>
-                </label></p>
-                <p><label class="btn btn-warning m-2">Garantie normala
-                    <input class="form-check-input" id="i_rad2"  name="gr_rad" value="1:31" type="radio"/>
-                </label></p>
-                <p><label class="btn btn-warning m-2">Garantie de lunga
-                    <input class="form-check-input " id="i_rad3" name="gr_rad" value="31:1000000000" type="radio"/>
-                </label></p>
-                <p><label class="btn btn-warning m-2">Toate
-                    <input class="form-check-input" id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
-                </label></p>
-            </div>
             
-            <% 
-                var l_pret_minim = parseFloat(produse[0].pret);
-                var l_pret_maxim = parseFloat(produse[0].pret);
-
-                for (let prod of produse){
-                    if(parseFloat(prod.pret) > l_pret_maxim){
-                        l_pret_maxim = parseFloat(prod.pret);
-                    }
-                    if(parseFloat(prod.pret) < l_pret_minim){
-                        l_pret_minim = parseFloat(prod.pret);
-                    }
-                }
-
-            %>
-            <div class="d-flex justify-content-center">
-                <label> Pret minim: <input type="range" id="inp-pret" value="<%-l_pret_minim%>" min="<%-l_pret_minim%>" max="<%-l_pret_maxim%>"> <span id="infoRange">(<%-l_pret_minim%>)</span></label>
-                <label>Select simplu:
-                    <select id="inp-categorie">
-                        <!--    o sa trebuiasca sa fac exact asta in header ejs unde inlocuiec taote categoriile de sub 
-                                /produse cu un for identic cu asta de mai jos
-                                vom face exact asta si in meniu
-                        -->
-                        <option id="sel-toate" selected value="toate">Toate</option>
-                        <% for (let opt of locals.optiuni) { %>
-                            <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
-                        <% } %>
-                    </select>
-                </label>
-
-                <label>Select multiplu:
-                    <select id="inp-materiale" class="selectpicker" multiple>
-                        <option id="sel-multiplu-toate" selected >
-                            toate
-                        </option>
-                        <% for (let opt of locals.materiale) { %>
-                            <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
-                        <% } %>
-                    </select>
-                </label>
-
-                <label for="inp-culori">Alege culorile:</label>            
-                <input type="text" id="inp-culori" list="culori" placeholder="<%-locals.produse[1].culori[0]%>"> 
-            </div>
-
-            <datalist id="culori">
-                <% 
-                    primul_produs = locals.produse[0]
-                    for(culoare of primul_produs.culori){ %>
-                        <option value="<%-culoare%>">
-                <%  }
-                %>
-                
-            </datalist>
-            <p>
+            <div id="toate-filtrele">  
                 <div class="d-flex justify-content-center">
-                    <button class="btn btn-warning d-flex align-items-center m-2" id="filtrare">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
-                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
-                        </svg>
-                        <div class="invizibil_pe_mobile">&nbsp;Filtreaza</div>
-                    </button> 
-                    <button class="btn btn-warning d-flex align-items-center m-2" id="resetare">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rewind-circle-fill" viewBox="0 0 16 16">
-                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16ZM7.729 5.055A.5.5 0 0 1 8 5.5v1.886l3.21-2.293A.5.5 0 0 1 12 5.5v5a.5.5 0 0 1-.79.407L8 8.614V10.5a.5.5 0 0 1-.79.407l-3.5-2.5a.5.5 0 0 1 0-.814l3.5-2.5a.5.5 0 0 1 .519-.038Z"/>
-                        </svg>
-                        <div class="invizibil_pe_mobile">&nbsp;Reseteaza</div>
-                    </button>
-                    <button class="btn btn-warning d-flex align-items-center m-2" id="sortCrescNume">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
-                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
-                        </svg> 
-                        <div class="invizibil_pe_mobile">&nbsp;nume si garantie/pret</div>
-                    </button>
-                    <button class="btn btn-warning d-flex align-items-center m-2" id="sortDescrescNume">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
-                            <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
-                        </svg>
-                        <div class="invizibil_pe_mobile">&nbsp;nume si garantie/pret</div>
-                    </button>
+                    <label class="my-3"> Nume:</label>
+                    <textarea class="my-3 mx-1" type="text" rows="1" cols="10" id="inp-nume"></textarea>
+                    <label class="m-3"> Cuvant Cheie: <input type="text" id="inp-cuvant-desc"></label>
+                    <label class="my-3" for="inp-culori">Culorile:</label>            
+                    <input class="my-3 mx-1" type="text" id="inp-culori" list="culori" placeholder="<%-locals.produse[1].culori[0]%>"> 
+                    <label class="m-3"> Noutati? <input type="checkbox" class="form-check-input" id="inp-checkbox"></label>
                 </div>
-            </p>
-            
-            <div id="container-resetare-sigura" class="banner-container" style="display: none;">
-                <p class="banner">Resetare a filtrelor?<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-secondary" id="changed_my_mind">Nu</button>&nbsp;&nbsp;                
-                    <button class="btn btn-secondary" id="reset_for_sure">Da</button></p>
-            </div>
-            
-            <!-- vreau sa pun in containerul asta paragraful creat cu suma preturilor produselor -->
-            <div class="d-flex justify-content-center">
-                <div id="div-suma">
-                    Apăsați Alt+"c" pentru suma preturilor produselor afișate.
+                <% 
+                    var l_pret_minim = parseFloat(produse[0].pret);
+                    var l_pret_maxim = parseFloat(produse[0].pret);
+
+                    for (let prod of produse){
+                        if(parseFloat(prod.pret) > l_pret_maxim){
+                            l_pret_maxim = parseFloat(prod.pret);
+                        }
+                        if(parseFloat(prod.pret) < l_pret_minim){
+                            l_pret_minim = parseFloat(prod.pret);
+                        }
+                    }
+
+                %>
+                <div class="d-flex justify-content-center align-items-center">
+                    <label class="m-3 form-label d-flex align-items-center"> 
+                        <div class="mx-1">Pret:</div>  
+                        <input type="range" id="inp-pret" class="form-range"  value="<%-l_pret_minim%>" min="<%-l_pret_minim%>" max="<%-l_pret_maxim%>"/> 
+                        <span class="mx-1" id="infoRange">(<%-l_pret_minim%>)</span>
+                    </label>
+
+                    <label class="m-3">Categoria:
+                        <select id="inp-categorie">
+                            <!--    o sa trebuiasca sa fac exact asta in header ejs unde inlocuiec taote categoriile de sub 
+                                    /produse cu un for identic cu asta de mai jos
+                                    vom face exact asta si in meniu
+                            -->
+                            <option id="sel-toate" selected value="toate">Toate</option>
+                            <% for (let opt of locals.optiuni) { %>
+                                <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                            <% } %>
+                        </select>
+                    </label>
+
+                    <label class="m-3">Materialul:
+                        <select id="inp-materiale" class="selectpicker" multiple>
+                            <option id="sel-multiplu-toate" selected >
+                                toate
+                            </option>
+                            <% for (let opt of locals.materiale) { %>
+                                <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                            <% } %>
+                        </select>
+                    </label>
+                </div>
+
+                <datalist id="culori">
+                    <% 
+                        primul_produs = locals.produse[0]
+                        for(culoare of primul_produs.culori){ %>
+                            <option value="<%-culoare%>">
+                    <%  }
+                    %>
+                </datalist>
+                
+                <div class="btn-group-toggle d-flex justify-content-center" data-toggle="buttons"><!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
+                    <p><label class="btn btn-warning m-2">Fara Garantie
+                        <input class="form-check-input" id="i_rad1"  name="gr_rad" value="0:1" type="radio"/>
+                    </label></p>
+                    <p><label class="btn btn-warning m-2">Garantie normala
+                        <input class="form-check-input" id="i_rad2"  name="gr_rad" value="1:31" type="radio"/>
+                    </label></p>
+                    <p><label class="btn btn-warning m-2">Garantie de lunga
+                        <input class="form-check-input " id="i_rad3" name="gr_rad" value="31:1000000000" type="radio"/>
+                    </label></p>
+                    <p><label class="btn btn-warning m-2">Toate
+                        <input class="form-check-input" id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
+                    </label></p>
+                </div>
+                
+                <div>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-warning d-flex align-items-center mx-2" id="filtrare">
+                            
+                            <div class="invizibil_pe_mobile">&nbsp;Filtreaza</div>
+                        </button> 
+                        <button class="btn btn-warning d-flex align-items-center mx-2" id="filtrare">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
+                            </svg>
+                            <div class="invizibil_pe_mobile">&nbsp;Filtreaza</div>
+                        </button> 
+                        <button class="btn btn-warning d-flex align-items-center mx-2" id="resetare">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rewind-circle-fill" viewBox="0 0 16 16">
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16ZM7.729 5.055A.5.5 0 0 1 8 5.5v1.886l3.21-2.293A.5.5 0 0 1 12 5.5v5a.5.5 0 0 1-.79.407L8 8.614V10.5a.5.5 0 0 1-.79.407l-3.5-2.5a.5.5 0 0 1 0-.814l3.5-2.5a.5.5 0 0 1 .519-.038Z"/>
+                            </svg>
+                            <div class="invizibil_pe_mobile">&nbsp;Reseteaza</div>
+                        </button>
+                        <button class="btn btn-warning d-flex align-items-center mx-2" id="sortCrescNume">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                            </svg> 
+                            <div class="invizibil_pe_mobile">&nbsp;nume si garantie/pret</div>
+                        </button>
+                        <button class="btn btn-warning d-flex align-items-center mx-2" id="sortDescrescNume">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+                            </svg>
+                            <div class="invizibil_pe_mobile">&nbsp;nume si garantie/pret</div>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="container-resetare-sigura" class="banner-container" style="display: none;">
+                    <p class="banner">Resetare a filtrelor?<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-secondary" id="changed_my_mind">Nu</button>&nbsp;&nbsp;                
+                        <button class="btn btn-secondary" id="reset_for_sure">Da</button></p>
+                </div>
+                
+                <!-- vreau sa pun in containerul asta paragraful creat cu suma preturilor produselor -->
+                <div class="d-flex justify-content-center">
+                    <div id="div-suma" class="my-3">
+                        Apăsați Alt+"c" pentru suma preturilor produselor afișate.
+                    </div>
                 </div>
             </div>
             <section id="produse">

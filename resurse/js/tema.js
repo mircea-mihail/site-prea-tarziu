@@ -9,7 +9,7 @@
 //vreau asta sa se intample instant
 let tema = localStorage.getItem("tema");
 if(tema){
-    document.body.classList.add("dark");
+    document.body.classList.add(tema);
 }
 //Problema: dureaza ceva ca tema sa se schimbe
 //la produse nu se schimba tema
@@ -20,7 +20,12 @@ window.addEventListener("DOMContentLoaded", function(){
         //classList modifica clase
         if(document.body.classList.contains("dark")){
             document.body.classList.remove("dark");
-            localStorage.removeItem("tema");
+            document.body.classList.add("green");
+            localStorage.setItem("tema", "green");            
+        }
+        else if(document.body.classList.contains("green")){
+            document.body.classList.remove("green");
+            localStorage.removeItem("tema");            
         }
         else{
             document.body.classList.add("dark")
