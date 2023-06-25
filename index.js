@@ -38,16 +38,16 @@ const {Utilizator}=require("./module_proprii/utilizator.js")
 const session=require('express-session');
 const Drepturi = require("./module_proprii/drepturi.js");
 
-//query builder:
-// AccessBD.getInstanta().select({
-//     tabel:"merchendise",
-//     campuri: ["nume", "pret", "greutate"],
-//     conditiiAnd:["pret>7"]}, 
-//     function(err, rez){
-//         console.log(err);
-//         console.log(rez);
-//     }
-// )
+// query builder:
+AccessBD.getInstanta().select({
+    tabel:"merchendise",
+    campuri: ["nume", "pret", "greutate"],
+    conditii:[["pret>100", "greutate<0.5"], ["pret<40", "greutate<0.02"]]}, 
+    function(err, rez){
+        console.log(err);
+        console.log(rez);
+    }
+)
 
 // obiect server express 
 app = express();
@@ -89,7 +89,6 @@ client.query("select * from unnest(enum_range(null::categorii))",function(err, r
     else{
         //vreau sa am acces la aceste tipuri din toate paginile
         obGlobal.optiuniMeniu = rezTipuri.rows;
-        console.log(obGlobal.optiuniMeniu);
     }
 });
 
@@ -101,7 +100,6 @@ client.query("select * from unnest(enum_range(null::materiale))",function(err, r
     else{
         //vreau sa am acces la aceste tipuri din toate paginile
         obGlobal.materiale = rezTipuri.rows;
-        console.log(obGlobal.materiale);
     }
 });
 
@@ -160,7 +158,6 @@ v = fs.readdirSync(obGlobal.folderScss)
 for (let numeFisierScss of v){
     if(path.extname(numeFisierScss) == ".scss"){
         compileazaScss(numeFisierScss);
-        console.log("am compilat", numeFisierScss);
     }
 }
 
@@ -181,12 +178,6 @@ fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
     } 
 });
 
-
-// folder proiect
-console.log("proiect", __dirname);
-// task 3
-console.log("cale fisier", __filename);
-console.log("director de lucru", process.cwd());
 
 // embedded javascript
 app.set("view engine", "ejs");
@@ -407,7 +398,6 @@ app.get("/produse",function(req, res){
 app.post("/inregistrare",function(req, res){
     var username;
     var poza;
-    console.log("ceva");
     var formular= new formidable.IncomingForm()
     // dupa ce au venit toate fisierele -> se executa parsarea
     formular.parse(req, function(err, campuriText, campuriFisier ){//4

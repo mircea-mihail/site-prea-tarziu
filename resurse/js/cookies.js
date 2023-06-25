@@ -1,4 +1,4 @@
-
+var ONE_MINUTE = 60000;
 
 //setCookie("a",10, 1000)
 function setCookie(nume, val, timpExpirare){//timpExpirare in milisecunde
@@ -20,7 +20,7 @@ function getCookie(nume){
 //pt a sterge cookieul ii setez data curenta ca expirare
 function deleteCookie(nume){
     console.log(`${nume}; expires=${(new Date()).toUTCString()}`)
-    document.cookie=`${nume}=0; expires=${(new Date()).toUTCString()}`;
+    document.cookie=`${nume}=0; expires=${(new Date()).toUTCString()};`;
 }
 
 
@@ -34,4 +34,7 @@ window.addEventListener("DOMContentLoaded", function(){
         setCookie("acceptat_banner", true, 60000);
         document.getElementById("banner").style.display="none"
     }
+
+    // console.log(document.URL)
+    setCookie("last_page_visited", document.URL, 24*ONE_MINUTE)
 })

@@ -118,10 +118,20 @@ class AccesBD{
     //      conditii e vector de vectori tip conditiiAnd[] si fac or intre subliste si and intre elementele sublistelor
     
     //tabel, coloane conditii
-    select({tabel="",campuri=[],conditiiAnd=[]} = {}, callback, parametriQuery=[]){
+    //====================================================================== DE FACUT BONUS ====================
+    //fac conditii o lista de liste:
+    //[[nume == ion, pprenume == maria], [data nasterii == 4 mai, nr_pantofi == 3]]
+    //fac or intre liste si and intre conditiile din liste ( mega simplu )
+    select({tabel="",campuri=[],conditii=[]} = {}, callback, parametriQuery=[]){
         let conditieWhere="";
-        if(conditiiAnd.length>0)
-            conditieWhere=`where ${conditiiAnd.join(" and ")}`;
+        if(conditii.length>0){
+            conditieWhere="where "
+            for(let condAnd of conditii){
+                let conditiiAnd = `(${condAnd.join(" and ")})`;
+                conditieWhere += conditiiAnd + " or ";
+            }
+            conditieWhere = conditieWhere.slice(0, conditieWhere.length - 4)
+        }
             
         // select nume, prenume from tabel where conditie and contidie and conditie
         let comanda=`select ${campuri.join(",")} from ${tabel} ${conditieWhere}`;
@@ -152,7 +162,14 @@ class AccesBD{
             return null;
         }
     }
-    insert({tabel="",campuri={}} = {}, callback){
+    insert({tabel="",campuri={}} = {}, callback){ 
+        /*accessBD.getInstanta().insert({tabel:"produse",
+            campuri:{
+                nume: "ionel",
+                pret: 10
+            }
+        })
+        */
         console.log("-------------------------------------------")
         console.log(Object.keys(campuri).join(","));
         console.log(Object.values(campuri).join(","));                                              // ia x si il pune intre apostrofuri
@@ -181,13 +198,20 @@ class AccesBD{
     //     this.client.query(comanda,callback)
     // }
 
-    update({tabel="",campuri={}, conditiiAnd=[]} = {}, callback, parametriQuery){
+    update({tabel="",campuri={}, conditii=[]} = {}, callback, parametriQuery){
         let campuriActualizate=[];
         for(let prop in campuri)
             campuriActualizate.push(`${prop}='${campuri[prop]}'`);
         let conditieWhere="";
-        if(conditiiAnd.length>0)
-            conditieWhere=`where ${conditiiAnd.join(" and ")}`;
+        if(conditii.length>0){
+            conditieWhere="where "
+            for(let condAnd of conditii){
+                let conditiiAnd = `(${condAnd.join(" and ")})`;
+                conditieWhere += conditiiAnd + " or ";
+            }
+            conditieWhere = conditieWhere.slice(0, conditieWhere.length - 4)
+        }
+        
         let comanda=`update ${tabel} set ${campuriActualizate.join(", ")}  ${conditieWhere}`;
         console.log(comanda);
         this.client.query(comanda,callback)
@@ -220,10 +244,16 @@ class AccesBD{
     //     this.client.query(comanda,valori, callback)
     // }
 
-    delete({tabel="",conditiiAnd=[]} = {}, callback){
+    delete({tabel="",conditii=[]} = {}, callback){
         let conditieWhere="";
-        if(conditiiAnd.length>0)
-            conditieWhere=`where ${conditiiAnd.join(" and ")}`;
+        if(conditii.length>0){
+            conditieWhere="where "
+            for(let condAnd of conditii){
+                let conditiiAnd = `(${condAnd.join(" and ")})`;
+                conditieWhere += conditiiAnd + " or ";
+            }
+            conditieWhere = conditieWhere.slice(0, conditieWhere.length - 4)
+        }
         
         let comanda=`delete from ${tabel} ${conditieWhere}`;
         console.log(comanda);

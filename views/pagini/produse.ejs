@@ -175,42 +175,49 @@
                                     <p class="nume-prop me-3">Pret: <span class="val-prop val-pret"><%- prod.pret%></span> RON</p>
                                     <p class="nume-prop">Garantie: <span class="val-prop val_garantie"><%-prod.garantie%></span> zile</p>
                                 </div>
-                                <p class="nume-prop">
-                                    Culori:
-                                    <% for(let i = 0; i < prod.culori.length; i++){ %>
-                                        <span class="val-prop"><%-prod.culori[i]%></span>
-                                    <% } %>
-                                </p>
-                                <div class="nume-prop">Adaugat pe: 
-                                    <time class="val-prop">
-                                        <%     
-                                            vec_week = ["Luni", "Marti", "Miercuri", "Joi", "Vineri", "Sambata", "Duminica"];
-                                            vec_mon = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];                                                
-                                        %>     
-                                        <%-vec_week[prod.data_adaugare.getDay()-1]%>
-                                        <%-prod.data_adaugare.getDate()%>
-                                        <%-vec_mon[prod.data_adaugare.getMonth()]%>
-                                        <%-prod.data_adaugare.getFullYear()%>
-                                        <div class="inp_data_curenta_unix_time" style="display: none;"><%- prod.data_adaugare.getTime() %></div>
-                                    </time>
-                                </div>
-                                <div class="d-flex flex-row align-items-center" style="display: none;">
-                                    <p style="display: none;" class="nume-prop me-3">Tip: <span class="val-prop val-categorie"><%-prod.categorie%></span></p>
-                                    <p style="display: none;" class="nume-prop">Material: <span class="val-prop val-material"><%-prod.material%></span></p>
-                                </div>
-                                <div class="inp-culori" style="display: none;"><%-prod.culori%></div>
-                                <p class="nume-prop m-3">&nbsp;&nbsp;&nbsp;&nbsp;<span class="val-prop val-descriere"><%-prod.descriere%></span></p>
-                                <% if(prod.produse_in_romania){ %>
-                                    <p class="val-prop">Produs in Romania✓</p>
-                                <% } else {%>
-                                    <p><br></p> 
-                                <% } %>
-                                <br><br>
-                                <p class="nume-prop artic">Artic-<span class="val-prop"><%-prod.id%></span></p>
-                                <label class="selecteaza-cos">
-                                    Adauga in cos<br/>
-                                    <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
-                                </label>
+                                <details class="d-flex flex-column align-items-center ">
+                                    <summary class="mb-3 d-flex flex-column align-items-center">
+                                        Mai multe informatii
+                                    </summary>
+                                    <div class="d-flex flex-column align-items-center ">
+                                        <p class="nume-prop">
+                                            Culori:
+                                            <% for(let i = 0; i < prod.culori.length; i++){ %>
+                                                <span class="val-prop"><%-prod.culori[i]%></span>
+                                            <% } %>
+                                        </p>
+                                        <div class="nume-prop">Adaugat pe: 
+                                            <time class="val-prop">
+                                                <%     
+                                                    vec_week = ["Luni", "Marti", "Miercuri", "Joi", "Vineri", "Sambata", "Duminica"];
+                                                    vec_mon = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];                                                
+                                                %>     
+                                                <%-vec_week[prod.data_adaugare.getDay()-1]%>
+                                                <%-prod.data_adaugare.getDate()%>
+                                                <%-vec_mon[prod.data_adaugare.getMonth()]%>
+                                                <%-prod.data_adaugare.getFullYear()%>
+                                                <div class="inp_data_curenta_unix_time" style="display: none;"><%- prod.data_adaugare.getTime() %></div>
+                                            </time>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center" style="display: none;">
+                                            <p style="display: none;" class="nume-prop me-3">Tip: <span class="val-prop val-categorie"><%-prod.categorie%></span></p>
+                                            <p style="display: none;" class="nume-prop">Material: <span class="val-prop val-material"><%-prod.material%></span></p>
+                                        </div>
+                                        <div class="inp-culori" style="display: none;"><%-prod.culori%></div>
+                                        <p class="nume-prop m-3">&nbsp;&nbsp;&nbsp;&nbsp;<span class="val-prop val-descriere"><%-prod.descriere%></span></p>
+                                        <% if(prod.produse_in_romania){ %>
+                                            <p class="val-prop">Produs in Romania✓</p>
+                                        <% } else {%>
+                                            <p><br></p> 
+                                        <% } %>
+                                        <br><br>
+                                        <p class="nume-prop artic">Artic-<span class="val-prop"><%-prod.id%></span></p>
+                                        <label class="selecteaza-cos">
+                                            Adauga in cos<br/>
+                                            <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
+                                        </label>
+                                    </div>
+                                </details>
                             </div>
                         </article>
                     <% }%>
